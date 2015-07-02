@@ -1,4 +1,12 @@
 {
   "name": "creative-chatter",
-  "app_id": "d281affb"
+  "app_id": "d281affb",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }
