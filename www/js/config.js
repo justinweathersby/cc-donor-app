@@ -5,6 +5,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: 'templates/login.html'
     })
+    .state('signup',{
+      url: '/signup',
+      templateUrl: 'templates/signup.html'
+    })
     .state('tabs', {
       url: '/tab', //-- actual address
       abstract: true, //--never actualy going to navagate away from this template
