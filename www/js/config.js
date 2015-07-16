@@ -53,10 +53,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.terms_and_conditions', {
       url: '/terms_and_conditions',
       views: {
-        'terms_and_conditions' : {
+        'terms-and-conditions-tab' : {
         templateUrl: '/terms_and_conditions'
         }
       }
     })
+    
     $urlRouterProvider.otherwise('/tab/dashboard'); //--default go to page
 });

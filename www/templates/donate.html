@@ -12,10 +12,13 @@
         <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
       </div>
       <label class="item item-input">
-        <input type="text" placeholder="Estimated Value" ng-model="data.estimated_value">
+        <input type="number" placeholder="Estimated Value" ng-model="data.estimated_value">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Quantity" ng-model="data.quantity">
+        <input type="number" placeholder="Quantity" ng-model="data.quantity">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Brief description of item" ng-model="data.resource_description">
       </label>
     </div>
     <div class="list">
@@ -25,6 +28,14 @@
         </label>
         Accept terms and conditions
       </li>
+    </div>
+    <div style="padding-top:20px">
+      <button class="button button-block button-positive" ng-click="login(data)">
+        Post Item
+      </button>
+      <button class="button button-block button-positive" ng-click="login(data)">
+        Reset
+      </button>
     </div>
   </ion-content>
 </ion-viegw>
