@@ -1,6 +1,10 @@
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html'
+    })
     .state('tabs', {
       url: '/tab', //-- actual address
       abstract: true, //--never actualy going to navagate away from this template
