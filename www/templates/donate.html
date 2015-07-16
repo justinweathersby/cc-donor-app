@@ -3,5 +3,28 @@
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
   </ion-header-bar>
   <ion-content class="padding">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="Your Item" ng-model="data.resource_name">
+      </label>
+      <div class="padding">
+        Item not listed? Email
+        <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
+      </div>
+      <label class="item item-input">
+        <input type="text" placeholder="Estimated Value" ng-model="data.estimated_value">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Quantity" ng-model="data.quantity">
+      </label>
+    </div>
+    <div class="list">
+      <li class="item item-checkbox">
+        <label class="checkbox">
+          <input type="checkbox">
+        </label>
+        Accept terms and conditions
+      </li>
+    </div>
   </ion-content>
-</ion-view>
+</ion-viegw>
