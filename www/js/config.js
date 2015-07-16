@@ -27,8 +27,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/donate',
       views: {
         'donate-tab' : { //--name of view
-        templateUrl: 'templates/donate.html'
-        //controller: 'DashboardController'
+        templateUrl: 'templates/donate.html',
+        controller: 'DonateController'
         }
       }
     })
@@ -58,6 +58,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    
+
     $urlRouterProvider.otherwise('/tab/dashboard'); //--default go to page
 });
