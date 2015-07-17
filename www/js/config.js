@@ -27,8 +27,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/donate',
       views: {
         'donate-tab' : { //--name of view
-        templateUrl: 'templates/donate.html',
-        controller: 'DonateController'
+        templateUrl: 'templates/donate.html'
+        //controller: 'DonateController'
         }
       }
     })
