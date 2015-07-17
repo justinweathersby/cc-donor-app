@@ -3,12 +3,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
-      templateUrl: 'templates/login.html'
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl'
     })
     .state('signup',{
       url: '/signup',
-      templateUrl: 'templates/signup.html'
+      templateUrl: 'templates/signup.html',
+      controller: 'loginCtrl'
     })
+    .state('terms-and-conditions', {
+      url: '/terms_and_conditions',
+      templateUrl: 'templates/terms_and_conditions.html'
+    })
+    .state('donations', {
+      url: '/donations',
+      templateUrl: 'templates/donations.html'
+    })
+
+    //--Routes for tabs
     .state('tabs', {
       url: '/tab', //-- actual address
       abstract: true, //--never actualy going to navagate away from this template
@@ -50,14 +62,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tabs.terms_and_conditions', {
-      url: '/terms_and_conditions',
-      views: {
-        'terms-and-conditions-tab' : {
-        templateUrl: '/terms_and_conditions'
-        }
-      }
-    })
 
-    $urlRouterProvider.otherwise('/tab/dashboard'); //--default go to page
+    $urlRouterProvider.otherwise('/login'); //--default go to page
 });
