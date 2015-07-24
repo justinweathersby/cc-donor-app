@@ -1,3 +1,4 @@
+'use strict'
 
 app.controller('AppController', function($scope, $ionicHistory) {});
 app.controller('LoginController', function() {});
@@ -16,8 +17,13 @@ app.controller('DonateController', function($scope, camera) {
   };
 });
 
-app.controller('loginCtrl', function($scope, $state) {
+app.controller('loginController', function($scope, auth, $state) {
+  $scope.user = {};
   $scope.login = function(user) {
+    if ($scope.loginForm.$valid){
+      console.log($scope.user);
+      auth.login($scope.user);
+    }
     console.log('Sign-In', user);
     $state.go('tabs.dashboard');
   };
@@ -29,4 +35,4 @@ app.controller('loginCtrl', function($scope, $state) {
   $scope.goToLogin = function() {
     $state.go('login');
   };
-})
+});

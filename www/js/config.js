@@ -4,12 +4,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'loginCtrl'
+      controller: 'loginController'
     })
     .state('signup',{
       url: '/signup',
       templateUrl: 'templates/signup.html',
-      controller: 'loginCtrl'
+      controller: 'loginController'
     })
     .state('terms-and-conditions', {
       url: '/terms_and_conditions',
