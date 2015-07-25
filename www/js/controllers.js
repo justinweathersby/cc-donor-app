@@ -17,12 +17,12 @@ app.controller('DonateController', function($scope, camera) {
   };
 });
 
-app.controller('loginController', function($scope, auth, $state) {
+app.controller('loginController', function($scope, authService, $state) {
   $scope.user = {};
   $scope.login = function(user) {
     if ($scope.loginForm.$valid){
       console.log($scope.user);
-      auth.login($scope.user);
+      authService.login($scope.user);
     }
     console.log('Sign-In', user);
     $state.go('tabs.dashboard');
