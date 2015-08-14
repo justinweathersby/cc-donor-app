@@ -4,12 +4,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'loginController'
+      controller: 'LoginController'
     })
     .state('signup',{
       url: '/signup',
       templateUrl: 'templates/signup.html',
-      controller: 'loginController'
+      controller: 'LoginController'
     })
     .state('terms-and-conditions', {
       url: '/terms_and_conditions',
@@ -26,9 +26,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       abstract: true, //--never actualy going to navagate away from this template
       templateUrl: 'templates/tabs.html'
 
-      data: {
-        authorizedRoles: [USER_ROLES.admin]
-      }
     })
     .state('tabs.dashboard', { //--child template of tabs
       url: '/dashboard',

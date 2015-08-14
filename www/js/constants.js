@@ -3,9 +3,10 @@ app.constant('AUTH_EVENTS', {
   notAuthorized: 'auth-not-authorized'
 });
 
-.constant('USER_ROLES', {
+app.constant('USER_ROLES', {
   admin : 'admin_role',
   public: 'public'
+  vendor: 'Vendor'
 });
-
-.constant('ChatterApiUrl', 'http://localhost:8100/api')
+//
+// app.constant('ChatterApiUrl', 'http://localhost:8100/api');
