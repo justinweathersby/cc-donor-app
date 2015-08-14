@@ -3,4 +3,9 @@ app.constant('AUTH_EVENTS', {
   notAuthorized: 'auth-not-authorized'
 });
 
-app.constant('ChatterApiUrl', 'http://localhost:8100/api')
+.constant('USER_ROLES', {
+  admin : 'admin_role',
+  public: 'public'
+});
+
+.constant('ChatterApiUrl', 'http://localhost:8100/api')

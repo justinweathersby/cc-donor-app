@@ -25,6 +25,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/tab', //-- actual address
       abstract: true, //--never actualy going to navagate away from this template
       templateUrl: 'templates/tabs.html'
+
+      data: {
+        authorizedRoles: [USER_ROLES.admin]
+      }
     })
     .state('tabs.dashboard', { //--child template of tabs
       url: '/dashboard',

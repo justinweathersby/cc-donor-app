@@ -3,8 +3,13 @@ app.service('authService', function($http, currentUserService){
     return  $http({method: 'POST', url: '/api/login', headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
       .success( function( data )
       {
+        // TODO:
+        console.log('Return Data From Login Post to Api:', data)
         currentUserService.token = data.auth_token;
         currentUserService.id = data.id;
+
+         console.log('service data:', data);
+
       });
     }; //--End of login function
   this.logout = function(user){
