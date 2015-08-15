@@ -17,7 +17,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('donations', {
       url: '/donations',
-      templateUrl: 'templates/donations.html'
+      templateUrl: 'templates/donations/donations.html',
+      controller: 'DonationController'
+    })
+
+    .state('viewDonation', {
+      url: '/donations/:id/view',
+      templateUrl: 'templates/donations/donation-view.html',
+      controller: 'DonationController'
     })
 
     //--Routes for tabs

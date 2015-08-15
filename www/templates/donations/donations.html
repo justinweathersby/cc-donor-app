@@ -5,11 +5,13 @@
   </ion-header-bar>
   <ion-content class="padding">
     <div class="list">
-    <a class="item item-avatar" href="#">
-      <img src="http://placehold.it/140x100">
-      <h2>Toys</h2>
-      <p>Assortment of boys toys. Aging from 6 to 10.</p>
-    </a>
+      <ion-item collection-repeat="donation in donations"
+      <a class="item item-avatar" ui-sref="viewDonation({id:donation.id})">
+        <img src="http://placehold.it/140x100">
+        <h2>{{donation.title}}</h2>
+        <p>{{donation.description}}</p>
+      </a>
+    </ion-item>
   </div>
   </ion-content>
 </ion-view>

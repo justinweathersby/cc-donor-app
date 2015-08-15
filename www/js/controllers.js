@@ -21,8 +21,7 @@ app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPo
 
 });
 
-app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService, needService) {
-
+app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
   $scope.login = function(user) {
     if ($scope.loginForm.$valid){
       authService.login(user).success(function(){
@@ -37,7 +36,6 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
         });
       });
     }
-
   }; //end of login function
 
   $scope.goToSignUp = function() {
@@ -47,6 +45,27 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   $scope.goToLogin = function() {
     $state.go('login');
   };
+});
+
+app.controller('NeedController', function($scope, Need){
+  $scope.needs = Need.query();
+
+  // var entries = Need.query(function() {
+  //   console.log(entries);
+  // });
+});
+
+//--Handles User Resources
+app.controller('DonationController', function($scope, $stateParams, Donation){
+  $scope.donations = Donation.query();
+  $scope.donation = Donation.get({ id: $stateParams.id });
+
+  $scope.viewDonation = function(id){
+    $state.go('viewDonation({id:id})')
+  }
+  // var entries = Need.query(function() {
+  //   console.log(entries);
+  // });
 });
 
 app.controller('DonateController', function($scope, camera) {
