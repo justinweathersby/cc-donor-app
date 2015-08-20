@@ -9,7 +9,9 @@ app.service('currentUserService', function(){
 app.service('authService', function($http, currentUserService){
 
   this.login = function(user){
-    return  $http({method: 'POST', url: '/api/login', headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+    return  $http({method: 'POST',
+                   url: '/api/login',
+                   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
       .success( function( data )
       {
         // TODO:
@@ -43,7 +45,8 @@ app.service('authService', function($http, currentUserService){
 
 app.service('needService', function($http){
   this.getNeeds = function(){
-    return  $http({method: 'GET', url: '/api/needs'})
+    return  $http({method: 'GET',
+                   url: '/api/needs'})
       .success( function( data )
       {
         console.log('Return Data From Service get to Api:', data)

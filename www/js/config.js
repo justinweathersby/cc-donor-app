@@ -15,6 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/terms_and_conditions',
       templateUrl: 'templates/terms_and_conditions.html'
     })
+    
     .state('donations', {
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
@@ -70,6 +71,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+
 
     $urlRouterProvider.otherwise('/login'); //--default go to page
 });
