@@ -15,7 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/terms_and_conditions',
       templateUrl: 'templates/terms_and_conditions.html'
     })
-    
+
     .state('donations', {
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
@@ -48,8 +48,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/donate',
       views: {
         'donate-tab' : { //--name of view
-        templateUrl: 'templates/donate.html'
-        //controller: 'DonateController'
+        templateUrl: 'templates/donations/donation-new.html'
+        controller: 'DonationController'
         }
       }
     })
