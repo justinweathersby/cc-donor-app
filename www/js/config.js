@@ -45,11 +45,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     .state('tabs.donate', { //--child template of tabs
-      url: '/donate',
+      url: '/donations/new',
       views: {
         'donate-tab' : { //--name of view
-        templateUrl: 'templates/donations/donation-new.html'
-        controller: 'DonationController'
+        templateUrl: 'templates/donations/donation-new.html',
+        controller: 'DonationCreateController'
         }
       }
     })

@@ -5,20 +5,21 @@
   <ion-content class="padding">
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" placeholder="Your Item" ng-model="data.resource_name">
+        <input type="text" placeholder="Your Item" ng-model="donation.title">
       </label>
       <div class="padding" style="text-align:center;">
         Item not listed? Email
         <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
       </div>
+      <!-- <select ng-model="donation.category_id" ng-options="category.id as category.name for category in categories"></select> -->
       <label class="item item-input">
-        <input type="number" placeholder="Estimated Value" ng-model="data.estimated_value">
+        <input type="number" placeholder="Estimated Value" ng-model="donation.value">
       </label>
       <label class="item item-input">
-        <input type="number" placeholder="Quantity" ng-model="data.quantity">
+        <input type="number" placeholder="Quantity" ng-model="donation.quantity">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Brief description of item" ng-model="data.resource_description">
+        <input type="text" placeholder="Brief description of item" ng-model="donation.description">
       </label>
     </div>
     <div class="list">
@@ -45,7 +46,7 @@
       </div>
     </div>
     <div>
-      <button class="button button-block button-positive" ng-click="getPhoto()">
+      <button class="button button-block button-positive" ng-click="addDonation()">
         Post Item
       </button>
       <button class="button button-block button-positive" ng-click="login(data)">
