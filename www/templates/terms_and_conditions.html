@@ -1,10 +1,14 @@
-<ion-view>
-  <ion-header-bar class="bar-positive">
+<!-- <script id= 'terms_and_conditions.html' type="text/ng-template"> -->
+  <!-- <ion-header-bar class="bar-positive">
     <button class="button icon ion-arrow-left-c" ng-click="$ionicGoBack()"> Back </button>
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
-  </ion-header-bar>
+  </ion-header-bar> -->
+  <div class="modal">
+    <ion-header-bar>
+      <h2 class="title">Terms and Conditions</h2>
+    </ion-header-bar>
+
   <ion-content class="padding">
-    <h2 style="text-align:center;"> Terms and Conditions</h2>
     <h4>
       <strong class="mark">
         BY ACCESSING OR USING THIS WEBSITE, YOU ARE DEEMED TO HAVE READ AND AGREED TO THE FOLLOWING TERMS AND CONDITIONS:
@@ -22,7 +26,6 @@
         administered by the American Arbitration Association under its Commercial Arbitration
         Rules, and judgment on the award rendered by the arbitrator(s) may be entered in any
         court having jurisdiction thereof
-
       </p>
     </div>
     <br/>
@@ -225,8 +228,9 @@
       </div>
     </p>
     </h2>
-    <button class="button button-block button-positive" ng-click="$ionicGoBack()">
-      Back
+    <button class="button button-block button-positive" ng-click="closeModal()">
+      Close
     </button>
   </ion-content>
-</ion-view>
+</div>
+<!-- </script> -->

@@ -68,7 +68,7 @@ app.controller('DonationController', function($scope, $stateParams, Donation){
   // });
 });
 
-app.controller('DonationCreateController', function($scope, $stateParams, Donation) {
+app.controller('DonationCreateController', function($scope, $stateParams, $ionicModal, Donation) {
   $scope.donation = new Donation();  //create new donation instance. Properties will be set via ng-model on UI
   $scope.categories = [{ 'id': '1', 'name': 'Parking1' },{ 'id': '2', 'name': 'Parking2' }];
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
@@ -77,6 +77,25 @@ app.controller('DonationCreateController', function($scope, $stateParams, Donati
       $state.go('donations'); // on success go back to home i.e. donations state.
     });
   }
+
+  $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })
+
+  $scope.openModal = function() {
+    $scope.modal.show()
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 });
 
 app.controller('DonateController', function($scope, camera) {
