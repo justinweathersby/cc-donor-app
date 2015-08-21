@@ -12,9 +12,9 @@
         <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
       </div>
       <label class="item item-input">
-        <ion-autocomplete ng-model="donation.category_id" />
+        <ion-autocomplete ng-model="donation.category_id" items-method="callbackMethod(query)" item-value-key="id" item-view-value-key="name"/>
       </label>
-      
+      <!-- <select ng-model="donation.category_id" ng-options="category.id as category.name for category in categories"></select> -->
       <label class="item item-input">
         <input type="number" placeholder="Estimated Value" ng-model="donation.value">
       </label>

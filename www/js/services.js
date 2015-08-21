@@ -49,12 +49,27 @@ app.service('needService', function($http){
                    url: '/api/needs'})
       .success( function( data )
       {
-        console.log('Return Data From Service get to Api:', data)
+        console.log('Return Data From Service get to Api:', data);
         success(data);
       })
       .error( function( data)
       {
       error(data);
       }); //--End of return statement
+    }
+});
+
+app.service('donationCategoryService', function($http){
+  this.getCategories = function(){
+    return $http({method: 'GET',
+                  url: '/api/categories'})
+      .success(function(data)
+      {
+        console.log('Donation Categories data from api: ', data);
+      })
+      .error(function(data)
+      {
+        error(data);
+      });
     }
 });

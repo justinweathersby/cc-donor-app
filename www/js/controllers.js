@@ -68,27 +68,18 @@ app.controller('DonationController', function($scope, $stateParams, Donation){
   // });
 });
 
-app.controller('DonationCreateController', function($scope, $stateParams, Donation) {
+app.controller('DonationCreateController', function($scope, $state, $stateParams, Donation, donationCategoryService) {
   $scope.donation = new Donation();  //create new donation instance. Properties will be set via ng-model on UI
   $scope.categories = [{ 'id': '1', 'name': 'Parking1' },{ 'id': '2', 'name': 'Parking2' }];
+
+  $scope.callbackMethod = function (query) {
+    return donationCategoryService.getCategories();
+  }
+
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
     console.log('Inside add donation function in controller')
     $scope.donation.$save(function() {
       $state.go('donations'); // on success go back to home i.e. donations state.
     });
   }
-});
-
-app.controller('DonateController', function($scope, camera) {
-  $scope.getPhoto = function(){
-    Camera.getPicture().then(function(imageURI) {
-      console.log(imageURI); //--TODO: Test and remove
-      $scope.lastPhoto = imageURI;
-    }, function(err) {
-      console.err(err);
-    }, {
-      quality: 100,
-      saveToPhotoAlbum: false
-    });
-  };
 });
