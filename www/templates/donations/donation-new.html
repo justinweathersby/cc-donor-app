@@ -11,9 +11,6 @@
         Item not listed? Email
         <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
       </div>
-      <label class="item item-input">
-        <ion-autocomplete ng-model="donation.category_id" items-method="callbackMethod(query)" item-value-key="id" item-view-value-key="name"/>
-      </label>
       <!-- <select ng-model="donation.category_id" ng-options="category.id as category.name for category in categories"></select> -->
       <label class="item item-input">
         <input type="number" placeholder="Estimated Value" ng-model="donation.value">
@@ -45,7 +42,7 @@
       </li>
       <div class="padding" style="text-align:center;">
         View our
-        <a href='#/terms_and_conditions'>Terms and Conditions</a>
+        <!-- <a href='#/terms_and_conditions'>Terms and Conditions</a> -->
         <a ng-click='openModal()'>Terms and Conditions</a>
       </div>
     </div>
@@ -57,6 +54,8 @@
         Reset
       </button>
     </div>
+  </ion-content>
+</ion-view>
 
 <script id="contact-modal.html" type="text/ng-template">
   <div class="modal">
@@ -64,12 +63,8 @@
       <h1 class="title">Modal</h1>
     </ion-header-bar>
     <ion-content>
-      
+
       <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
     </ion-content>
   </div>
 </script>
-
-
-  </ion-content>
-</ion-view>

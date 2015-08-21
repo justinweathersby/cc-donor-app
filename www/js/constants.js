@@ -5,7 +5,7 @@ app.constant('AUTH_EVENTS', {
 
 app.constant('USER_ROLES', {
   admin : 'admin_role',
-  public: 'public'
+  public: 'public',
   vendor: 'Vendor'
 });
 //
