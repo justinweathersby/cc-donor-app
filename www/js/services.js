@@ -10,7 +10,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 
   this.login = function(user){
     return  $http({method: 'POST',
-                   url: 'api/login',
+                   url: 'http://staging.creativechatter.com/api/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
       .success( function( data )
       {
@@ -26,7 +26,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
       });
   }; //--End of login function
   this.logout = function(user){
-    return  $http({method: 'POST', url: '/api/logout', headers: {'Authorization' : user.token}});
+    return  $http({method: 'POST', url: 'api/logout', headers: {'Authorization' : user.token}});
     //--End of return statement
   };// --End of logout function
 

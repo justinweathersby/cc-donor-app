@@ -14,5 +14,6 @@ app.constant('USER_ROLES', {
 // });
 
 app.constant('CHATTER_API', {
-    url:'http://localhost:3000/api'
+    // url:'http://staging.creativechatter.com/api'
+    url: '/api'
 });

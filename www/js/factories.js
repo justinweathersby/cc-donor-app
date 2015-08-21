@@ -3,5 +3,5 @@ app.factory('Need', function($resource) {
 });
 
 app.factory('Donation', function($resource) {
-  return $resource('/api/resources/:id');
+  return $resource('http://staging.creativechatter.com/api/resources/:id');
 });
