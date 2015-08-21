@@ -8,5 +8,7 @@ app.constant('USER_ROLES', {
   public: 'public',
   vendor: 'Vendor'
 });
-//
-// app.constant('ChatterApiUrl', 'http://localhost:8100/api');
+
+app.constant('CHATTER_API', {
+    url:'http://staging.creativechatter.com/api'
+});

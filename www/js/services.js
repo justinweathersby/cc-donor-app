@@ -6,11 +6,11 @@ app.service('currentUserService', function(){
 });
 
 //-- This service handles all authentication between app and Chatter API
-app.service('authService', function($http, currentUserService){
+app.service('authService', function($http, currentUserService, CHATTER_API){
 
   this.login = function(user){
     return  $http({method: 'POST',
-                   url: '/api/login',
+                   url: CHATTER_API.url + '/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
       .success( function( data )
       {
