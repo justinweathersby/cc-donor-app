@@ -10,7 +10,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 
   this.login = function(user){
     return  $http({method: 'POST',
-                   url: CHATTER_API.url + '/login',
+                   url: 'api/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
       .success( function( data )
       {
