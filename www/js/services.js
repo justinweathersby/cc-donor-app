@@ -26,7 +26,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
       });
   }; //--End of login function
   this.logout = function(user){
-    return  $http({method: 'POST', url: '/api/logout', headers: {'Authorization' : user.token}});
+    return  $http({method: 'POST', url: 'api/logout', headers: {'Authorization' : user.token}});
     //--End of return statement
   };// --End of logout function
 
