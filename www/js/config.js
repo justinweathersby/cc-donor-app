@@ -49,7 +49,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'donate-tab' : { //--name of view
         templateUrl: 'templates/donations/donation-new.html',
-        controller: 'DonationCreateController'
+        controller: 'CreateDonationController'
         }
       }
     })

@@ -32,16 +32,20 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 
 });
 
-//-- This service handles all calls to Items (vendor's) through the Chatter API
-// app.service('vendorItemService', function($http, currentUserService){
-//   this.getItems = function(){
-//     return $http({method: 'GET', url: '/api/items'})
-//     .success(function(data)
-//   {
-//
-//   });
-//   };
-// });
+app.service('donationCategoryService', function($http){
+  this.getCategories = function(){
+    return $http({method: 'GET',
+                  url: '/api/categories'})
+      .success(function(data)
+      {
+        console.log('Donation Categories data from api: ', data);
+      })
+      .error(function(data)
+      {
+        error(data);
+      });
+    }
+});
 
 app.service('needService', function($http){
   this.getNeeds = function(){
