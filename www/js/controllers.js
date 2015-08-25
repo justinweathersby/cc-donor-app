@@ -68,7 +68,7 @@ app.controller('DonationController', function($scope, $state, $stateParams, Dona
   // });
 });
 
-app.controller('CreateDonationController', function($scope, $state, $stateParams, $ionicPopup, $ionicModal, $cordovaCamera, donationCategoryService, Donation) {
+app.controller('CreateDonationController', function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $ionicModal, $cordovaCamera, donationCategoryService, Donation) {
   $scope.donation = new Donation();
   //--TODO: Can i put this in the factory?
   $scope.donation.location_attributes = {
@@ -88,7 +88,7 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
         $state.go('viewDonation', {id :resp.id}); // on success go back to home i.e. donations state.
       })
       .catch(function(resp){
-        console.log("REsponse: ", resp)
+        console.log("REsponse: ", resp.data)
         var alertPopup = $ionicPopup.alert({
           title: 'Failed',
           // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
@@ -108,24 +108,48 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
 
   $scope.takePicture = function() {
     console.log("take picture function")
-    var options = {
-        quality : 75,
-        destinationType : Camera.DestinationType.DATA_URL,
-        sourceType : Camera.PictureSourceType.CAMERA,
-        allowEdit : true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
-    };
 
-    $cordovaCamera.getPicture(options).then(function(imageData) {
-        $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        console.log("Camera URi")
-    }, function(err) {
-        console.log("CAMERA ERROr")
+    $ionicPlatform.ready(function() {
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+
+        $scope.takePicture = function() {
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.imgSrc = "data:image/jpeg;base64," + imageData;
+            }, function(err) {
+                console.log(err);
+            });
+        }
+
     });
+    // var options = {
+    //     quality : 75,
+    //     destinationType : Camera.DestinationType.DATA_URL,
+    //     sourceType : Camera.PictureSourceType.CAMERA,
+    //     allowEdit : true,
+    //     encodingType: Camera.EncodingType.JPEG,
+    //     targetWidth: 300,
+    //     targetHeight: 300,
+    //     popoverOptions: CameraPopoverOptions,
+    //     saveToPhotoAlbum: false
+    // };
+    //
+    // $cordovaCamera.getPicture(options).then(function(imageData) {
+    //     console.log("inside cordovaCamera" + imageData)
+    //     $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    //     console.log(imageData)
+    // }, function(err) {
+    //     console.log("CAMERA ERROr")
+    // });
     }
 
 
