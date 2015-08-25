@@ -55,7 +55,7 @@ app.controller('NeedController', function($scope, Need){
   // });
 });
 
-//--Handles User API Resources
+//--Handles User Resources
 app.controller('DonationController', function($scope, $state, $stateParams, Donation){
   $scope.donations = Donation.query();
   $scope.donation = Donation.get({ id: $stateParams.id });
@@ -63,9 +63,12 @@ app.controller('DonationController', function($scope, $state, $stateParams, Dona
   $scope.viewDonation = function(id){
     $state.go('viewDonation({id:id})')
   }
+  // var entries = Need.query(function() {
+  //   console.log(entries);
+  // });
 });
 
-app.controller('CreateDonationController', function($scope, $state, $stateParams, $ionicPopup, $ionicModal, donationCategoryService, Donation) {
+app.controller('CreateDonationController', function($scope, $state, $stateParams, $ionicPopup, $ionicModal, $cordovaCamera, donationCategoryService, Donation) {
   $scope.donation = new Donation();
   //--TODO: Can i put this in the factory?
   $scope.donation.location_attributes = {
@@ -74,33 +77,24 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
     city: "",
     state: ""
   };
-  $scope.form_errors = {};
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
     $scope.donation.$save()
       .then(function(resp) {
         var alertPopup = $ionicPopup.alert({
-          title: 'Successfully Donated',
+          title: 'Success',
           template: "Your donation has been successfully uploaded to Creative Chatter. Check notifications for a match."
         });
         $state.go('viewDonation', {id :resp.id}); // on success go back to home i.e. donations state.
       })
       .catch(function(resp){
-        //--TODO: REMOVE FROM TESTING
-        console.log("REsponse: ", resp.data);
-        angular.forEach(resp.data, function(value, key){
-          console.log(value, ' : ', key);
-          $scope.form_erros.push(key[0] + ': ' + value);
-        });
-
+        console.log("REsponse: ", resp)
         var alertPopup = $ionicPopup.alert({
-          title: 'Failed to Donate',
-          //template: $scope.form_errors[0]
-          template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
+          title: 'Failed',
+          // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
         });
       });
   }
-
 
   //-- This method handles select field values for donation title (category)
   $scope.callbackMethod = function (query) {
@@ -110,7 +104,30 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
   //-- Method is called when an item is selected inside the category modal
   $scope.categorySelected = function (callback) {
     $scope.donation.title  = callback.item.name;
-}
+  }
+
+  $scope.takePicture = function() {
+    console.log("take picture function")
+    var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 300,
+        targetHeight: 300,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+        $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        console.log("Camera URi")
+    }, function(err) {
+        console.log("CAMERA ERROr")
+    });
+    }
+
 
   $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {
     scope: $scope,
