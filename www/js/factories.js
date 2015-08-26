@@ -1,8 +1,8 @@
-app.factory('Need', function($resource) {
+app.factory('Need', function($resource, CHATTER_API) {
   return $resource(CHATTER_API.url +'/needs/:id');
 });
 
-app.factory('Donation', function($resource) {
+app.factory('Donation', function($resource, CHATTER_API) {
   return $resource(CHATTER_API.url +'/resources/:id');
 });
 

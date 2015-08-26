@@ -90,17 +90,17 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
           // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
         });
       });
-  }
+  };
 
   //-- This method handles select field values for donation title (category)
   $scope.callbackMethod = function (query) {
     return donationCategoryService.getCategories();
-  }
+  };
 
   //-- Method is called when an item is selected inside the category modal
   $scope.categorySelected = function (callback) {
     $scope.donation.title  = callback.item.name;
-  }
+  };
 
   $scope.takePicture = function() {
     console.log("take picture function")
@@ -126,7 +126,7 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
             });
         }
     });
-  }
+  };
 
 
   $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {
