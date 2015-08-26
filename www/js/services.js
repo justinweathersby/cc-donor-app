@@ -35,7 +35,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 app.service('donationCategoryService', function($http){
   this.getCategories = function(){
     return $http({method: 'GET',
-                  url: '/api/categories'})
+                  url: CHATTER_API.url +'/categories'})
       .success(function(data)
       {
         console.log('Donation Categories data from api: ', data);

@@ -11,17 +11,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/signup.html',
       controller: 'LoginController'
     })
+
+    // --- Terms and Co for making a donation
     .state('terms-and-conditions', {
       url: '/terms_and_conditions',
       templateUrl: 'templates/terms_and_conditions.html'
     })
 
+    // --- Page listing all the users donations
     .state('donations', {
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
       controller: 'DonationController'
     })
 
+    // --- Page displaying just 1 of the users donations
     .state('viewDonation', {
       url: '/donations/:id/view',
       templateUrl: 'templates/donations/donation-view.html',
@@ -47,25 +51,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
       views: {
-        'donate-tab' : { //--name of view
+        'donate-tab' : { 
         templateUrl: 'templates/donations/donation-new.html',
         controller: 'CreateDonationController'
         }
       }
     })
-    .state('tabs.shop', { //--child template of tabs
+    .state('tabs.shop', {
       url: '/shop',
       views: {
-        'shop-tab' : { //--name of view
+        'shop-tab' : {
         templateUrl: 'templates/shop.html'
         //controller: 'DashboardController'
         }
       }
     })
-    .state('tabs.settings', { //--child template of tabs
+    .state('tabs.settings', {
       url: '/settings',
       views: {
-        'settings-tab' : { //--name of view
+        'settings-tab' : {
         templateUrl: 'templates/settings.html'
         //controller: 'DashboardController'
         }
