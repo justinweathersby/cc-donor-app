@@ -9,12 +9,12 @@ app.constant('USER_ROLES', {
   vendor: 'Vendor'
 });
 
+//-- Staging API Url
 app.constant('CHATTER_API', {
-    url:'api'
+    url:'http://staging.creativechatter.com/api'
 });
 
-//-- Local Testing API Url
-// api
-
-//-- Staging API Url
-// http://staging.creativechatter.com/api
+// //-- Local Testing API Url
+// app.constant('CHATTER_API', {
+//     url:'api'
+// });

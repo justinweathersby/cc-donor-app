@@ -49,10 +49,6 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
 
 app.controller('NeedController', function($scope, Need){
   $scope.needs = Need.query();
-
-  // var entries = Need.query(function() {
-  //   console.log(entries);
-  // });
 });
 
 //--Handles User Resources
@@ -129,28 +125,8 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
                 console.log(err);
             });
         }
-
     });
-    // var options = {
-    //     quality : 75,
-    //     destinationType : Camera.DestinationType.DATA_URL,
-    //     sourceType : Camera.PictureSourceType.CAMERA,
-    //     allowEdit : true,
-    //     encodingType: Camera.EncodingType.JPEG,
-    //     targetWidth: 300,
-    //     targetHeight: 300,
-    //     popoverOptions: CameraPopoverOptions,
-    //     saveToPhotoAlbum: false
-    // };
-    //
-    // $cordovaCamera.getPicture(options).then(function(imageData) {
-    //     console.log("inside cordovaCamera" + imageData)
-    //     $scope.imgURI = "data:image/jpeg;base64," + imageData;
-    //     console.log(imageData)
-    // }, function(err) {
-    //     console.log("CAMERA ERROr")
-    // });
-    }
+  }
 
 
   $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {

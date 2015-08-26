@@ -1,9 +1,9 @@
 app.factory('Need', function($resource) {
-  return $resource('/api/needs/:id');
+  return $resource(CHATTER_API.url +'/needs/:id');
 });
 
 app.factory('Donation', function($resource) {
-  return $resource('/api/resources/:id');
+  return $resource(CHATTER_API.url +'/resources/:id');
 });
 
 app.factory('Camera', ['$q', function($q) {
