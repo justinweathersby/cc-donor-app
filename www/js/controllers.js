@@ -91,6 +91,7 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
 
   //-- This method handles select field values for donation title (category)
   $scope.callbackMethod = function (query) {
+    console.log("query: ", query)
     return donationCategoryService.getCategories();
   }
 
