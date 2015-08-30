@@ -30,16 +30,18 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
   };// --End of logout function
 });
 
-app.service('donationCategoryService', function($http){
+app.service('donationCategoryService', function($http, CHATTER_API){
   this.getCategories = function(){
+    console.log('Inside getCategories function')
     return $http({method: 'GET',
-                  url: CHATTER_API.url +'/categories'})
+                  url: CHATTER_API.url + '/categories'})
       .success(function(data)
       {
         console.log('Donation Categories data from api: ', data);
       })
       .error(function(data)
       {
+        console.log('Error:', data)
         error(data);
       });
     }
