@@ -7,7 +7,6 @@ app.service('currentUserService', function(){
 
 //-- This service handles all authentication between app and Chatter API
 app.service('authService', function($http, currentUserService, CHATTER_API){
-
   this.login = function(user){
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
@@ -25,11 +24,10 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 
       });
   }; //--End of login function
+
   this.logout = function(user){
     return  $http({method: 'POST', url: 'api/logout', headers: {'Authorization' : user.token}});
-    //--End of return statement
   };// --End of logout function
-
 });
 
 app.service('donationCategoryService', function($http){

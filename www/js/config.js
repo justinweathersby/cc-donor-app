@@ -51,7 +51,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
       views: {
-        'donate-tab' : { 
+        'donate-tab' : {
         templateUrl: 'templates/donations/donation-new.html',
         controller: 'CreateDonationController'
         }
@@ -75,7 +75,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-
 
     $urlRouterProvider.otherwise('/login'); //--default go to page
 });
