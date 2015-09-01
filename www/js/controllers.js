@@ -72,6 +72,7 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
   };
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
+    console.log($scope.gLocation);
     $scope.donation.$save()
       .then(function(resp) {
         var alertPopup = $ionicPopup.alert({
