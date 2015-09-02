@@ -26,7 +26,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
   }; //--End of login function
 
   this.logout = function(user){
-    return  $http({method: 'POST', url: CHATTER_API + '/logout', headers: {'Authorization' : user.token}});
+    return  $http({method: 'POST', url: CHATTER_API.url + '/logout', headers: {'Authorization' : user.token}});
   };// --End of logout function
 });
 
@@ -44,21 +44,5 @@ app.service('donationCategoryService', function($http, CHATTER_API){
         console.log('Error:', data)
         error(data);
       });
-    }
-});
-
-app.service('needService', function($http){
-  this.getNeeds = function(){
-    return  $http({method: 'GET',
-                   url: '/api/needs'})
-      .success( function( data )
-      {
-        console.log('Return Data From Service get to Api:', data)
-        success(data);
-      })
-      .error( function( data)
-      {
-      error(data);
-      }); //--End of return statement
     }
 });
