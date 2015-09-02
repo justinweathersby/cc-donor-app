@@ -70,6 +70,11 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
     city: "",
     state: ""
   };
+  // $scope.categories = {};
+  //
+  // donationCategoryService.getCategories().success(data){
+  //   $scope.categories = data;
+  // };
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
     $scope.donation.$save()
@@ -92,6 +97,7 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
   //-- This method handles select field values for donation title (category)
   $scope.callbackMethod = function (query) {
     console.log("query: ", query)
+    //--TODO find method to search categories
     return donationCategoryService.getCategories();
   };
 
