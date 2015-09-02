@@ -35,7 +35,7 @@
 
 <!-- Estimated Value Input -->
         <label class="item item-input"
-               ng-class="{ 'has-error' : donationForm.donation_value.$invalid  && donationForm.donation_value.$touched">
+               ng-class="{ 'has-error' : donationForm.donation_value.$invalid  && donationForm.donation_value.$touched}">
           <input type="number"
                  name ="donation_value"
                  placeholder="Estimated Value"
@@ -50,19 +50,40 @@
         </div>
 
 <!-- Qty. Input -->
-        <label class="item item-input">
-          <input type="number" placeholder="Quantity" ng-model="donation.quantity">
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.donation_qty.$invalid  && donationForm.donation_qty.$touched}">
+          <input type="number"
+                 name="donation_qty"
+                 placeholder="Quantity"
+                 ng-model="donation.quantity"
+                 required>
         </label>
+        <div class="form-errors"
+             ng-show="donationForm.donation_qty.$touched"
+             ng-messages="donationForm.donation_qty.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
 
 <!-- Description Input -->
-        <label class="item item-input">
-          <input type="text" placeholder="Brief description of item" ng-model="donation.description">
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.description.$invalid  && donationForm.description.$touched}">
+          <input type="text"
+                 name="description"
+                 placeholder="Brief description of item"
+                 ng-model="donation.description"
+                 required>
         </label>
+        <div class="form-errors"
+             ng-show="donationForm.description.$touched"
+             ng-messages="donationForm.description.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
       </div>
 
       <div class="list">
 <!-- Street Name Input -->
-        <label class="item item-input" ng-class="{ 'has-error' : donationForm.street_name.$invalid}">
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.street_name.$invalid}">
           <input name ="street_name"
                  type="text"
                  placeholder="Street Address"
@@ -76,27 +97,53 @@
         </div>
 
 <!-- City Input -->
-        <label class="item item-input">
-          <input type="text" placeholder="City" ng-model="donation.location_attributes.city">
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.city.$invalid}">
+          <input type="text"
+                 name="city"
+                 placeholder="City"
+                 ng-model="donation.location_attributes.city"
+                 required>
         </label>
+        <div class="form-errors"
+             ng-show="donationForm.city.$touched"
+             ng-messages="donationForm.city.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
 
 <!-- Zipcode Input -->
-        <label class="item item-input">
-          <input type="text" placeholder="Zipcode" ng-model="donation.location_attributes.postal_code">
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.zipcode.$invalid}">
+          <input type="text"
+                 name="zipcode"
+                 placeholder="Zipcode"
+                 ng-model="donation.location_attributes.postal_code"
+                 required>
         </label>
+        <div class="form-errors"
+             ng-show="donationForm.zipcode.$touched"
+             ng-messages="donationForm.zipcode.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
 
-        <!-- State Input -->
+<!-- State Input -->
         <div class="list">
-          <label class="item item-input item-select">
+          <label class="item item-input item-select"
+                 ng-class="{ 'has-error' : donationForm.state.$invalid && donationForm.state.$touched}">
             <div class="input-label">
               State
             </div>
-            <select ng-model="donation.location_attributes.state">
+            <select name="state" ng-model="donation.location_attributes.state" required>
               <option>Blue</option>
               <option>Green</option>
               <option>Red</option>
             </select>
           </label>
+          <div class="form-errors"
+               ng-show="donationForm.state.$touched"
+               ng-messages="donationForm.state.$error"
+               ng-messages-include="templates/form-errors.html">
+          </div>
         </div>
       </div>
 
@@ -112,29 +159,24 @@
         </a>
         <li class="item item-checkbox">
           <label class="checkbox">
-            <input type="checkbox">
+            <input type="checkbox" ng-disabled="true">
           </label>
-          Flag For Driver Pickup (optional)
+          Flag For Driver Pickup - COMING SOON!
         </li>
-        <li class="item item-checkbox">
-          <label class="checkbox">
-            <input type="checkbox">
-          </label>
-          Accept terms and conditions
-        </li>
+        <div>
+          <ion-checkbox ng-model="termsCheckbox">
+            Accept terms and conditions
+          </ion-checkbox>
+        </div>
         <div class="padding" style="text-align:center;">
           View our
           <a href='#' ng-click='openModal()'>Terms and Conditions</a>
         </div>
       </div>
-      <input type="hidden" value="title" ng-model="donation.title">
       <div>
-        <button type="submit" class="button button-block button-positive" ng-disabled="donationForm.$invalid" ng-click="addDonation()">
+        <button type="submit" class="button button-block button-positive" ng-disabled="donationForm.$invalid || termsCheckbox==false" ng-click="addDonation()">
           Post Item
         </button>
-        <!-- <button class="button button-block button-positive" ng-click="login(data)">
-          Reset
-        </button> -->
       </div>
 
     </ion-content>
