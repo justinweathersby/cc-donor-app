@@ -129,7 +129,7 @@
       </div>
       <input type="hidden" value="title" ng-model="donation.title">
       <div>
-        <button type="submit" class="button button-block button-positive" ng-click="addDonation()">
+        <button type="submit" class="button button-block button-positive" ng-disabled="donationForm.$invalid" ng-click="addDonation()">
           Post Item
         </button>
         <!-- <button class="button button-block button-positive" ng-click="login(data)">
