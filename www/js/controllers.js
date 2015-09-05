@@ -58,7 +58,7 @@ app.controller('NeedController', function($scope, Need){
 //--Handles User Resources
 app.controller('DonationController', function($scope, $stateParams, Donation){
   $scope.donations = Donation.query();
-  $scope.donation = Donation.get({ id: $stateParams.id });
+  $scope.donation = Donation.query({ id: $stateParams.id });
 
   $scope.viewDonation = function(id){
     $state.go('viewDonation({id:id})')
