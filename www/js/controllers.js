@@ -47,14 +47,14 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   };
 });
 
-app.controller('NeedController', function($scope, Need){
-  $scope.needs = Need.query();
-});
+// app.controller('NeedController', function($scope, Need){
+//   $scope.needs = Need.query();
+// });
 
 //--Handles User Resources
 app.controller('DonationController', function($scope, $state, $stateParams, Donation){
   $scope.donations = Donation.query();
-  $scope.donation = Donation.get({ id: $stateParams.id });
+  //$scope.donation = Donation.get({ id: $stateParams.id });
 
   $scope.viewDonation = function(id){
     $state.go('viewDonation({id:id})')
