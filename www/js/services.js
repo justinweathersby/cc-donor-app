@@ -32,7 +32,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 
 app.service('donationCategoryService', function($http, CHATTER_API){
   this.getCategories = function(){
-    console.log('Inside getCategories function')
+    console.log('Inside getCategories function...')
     return $http({method: 'GET',
                   url: CHATTER_API.url + '/categories'})
       .success(function(data)
@@ -45,4 +45,22 @@ app.service('donationCategoryService', function($http, CHATTER_API){
         error(data);
       });
     }
+});
+
+app.service('s3SigningService', function($http, CHATTER_API){
+  this.getSignature = function(fileName){
+    console.log('Contacting s3 signing service from api...')
+    return $http({method: 'GET',
+                  url: CHATTER_API.url + '/s3_access_signature',
+                  headers: {'X-API-FILENAME' : fileName})
+    .success(function(data)
+    {
+      console.log('Successfully got s3 Signature from API')
+    })
+    .error(function(data)
+    {
+      console.log('Failure to get s3 Signature from API')
+      error(data);
+    });
+  }
 });
