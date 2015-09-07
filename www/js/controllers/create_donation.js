@@ -1,67 +1,10 @@
 'use strict'
 
-app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPopup, authService) {
-
-  // $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
-  //   var alertPopup = $ionicPopup.alert({
-  //     title: 'Unathorized',
-  //     template: 'You are not allowed to acces this resource.'
-  //   });
-  // });
-  //
-  // //--When not authorized event is broadcast..
-  // $scope.$on(AUTH_EVENTS.notAuthenticated, function(event){
-  //   authService.logout();
-  //   $state.go('login');
-  //   var alertPopup = $ionicPopup.alert({
-  //     title: 'Session lost',
-  //     template: 'Sorry, You must log in again.'
-  //   });
-  // });
-
-});
-
-app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
-  $scope.login = function(user) {
-    if ($scope.loginForm.$valid){
-      authService.login(user).success(function(){
-        console.log('Login Success, Token: ', currentUserService.token);
-        console.log('Sign-In', user);
-        $state.go('tabs.dashboard');
-      }).error(function()
-      {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Login Unsuccessful',
-          template: "Email and password did not match Chatter's records."
-        });
-      });
-    }
-  }; //end of login function
-
-  $scope.goToSignUp = function() {
-    $state.go('signup');
-  };
-
-  $scope.goToLogin = function() {
-    $state.go('login');
-  };
-});
-
-// app.controller('NeedController', function($scope, Need){
-//   $scope.needs = Need.query();
-// });
-
-//--Handles User Resources
-app.controller('DonationController', function($scope, $state, $stateParams, Donation){
-  $scope.donations = Donation.query();
-  //$scope.donation = Donation.get({ id: $stateParams.id });
-
-  $scope.viewDonation = function(id){
-    $state.go('viewDonation({id:id})')
-  }
-});
-
-app.controller('CreateDonationController', function($scope, $state, $stateParams, $ionicPopup, $ionicPlatform, $ionicModal, $cordovaCamera, donationCategoryService, Donation) {
+app.controller('CreateDonationController', function($scope,
+                                                    $state, $stateParams,
+                                                    $ionicPopup, $ionicPlatform, $ionicModal,
+                                                    $cordovaCamera,
+                                                    donationCategoryService, Donation) {
   $scope.donation = new Donation();
   //--TODO: Can i put this in the Donation factory?
   $scope.donation.location_attributes = {
@@ -134,8 +77,8 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
 $scope.takePicture = function(imageURI) {
 //uploadToS3
       var signingURI = API_URL + "/s3_access_signature"; //--Path to call post and get signed s3 uri back
-      var fileName = $scope.user.id + new Date().getTime() + ".jpg"; //--Name the file
-      $scope.item.picture = 'https://s3-eu-west-1.amazonaws.com/bucket-name/' + fileName;
+      var fileName = new Date().getTime() + ".jpg"; //--Name the file
+      //$scope.item.picture = 'https://s3-eu-west-1.amazonaws.com/bucket-name/' + fileName;
       console.log('Uploading ' + fileName + ' to S3');
 
       $http.post(signingURI, { //--Params:
@@ -154,7 +97,7 @@ $scope.takePicture = function(imageURI) {
           Uoptions.params = {
               "key": fileName,
               "AWSAccessKeyId": data.awsKey,
-              "acl": "private",
+              "acl": "public-read",
               "policy": data.policy,
               "signature": data.signature,
               "Content-Type": "image/jpeg"

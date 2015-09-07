@@ -22,14 +22,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('donations', {
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
-      controller: 'DonationController'
+      controller: 'ViewDonationController'
     })
 
     // --- Page displaying just 1 of the users donations
     .state('viewDonation', {
       url: '/donations/:id/view',
       templateUrl: 'templates/donations/donation-view.html',
-      controller: 'DonationController'
+      controller: 'ViewDonationController'
     })
 
     //--Routes for tabs
