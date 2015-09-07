@@ -106,32 +106,100 @@ app.controller('CreateDonationController', function($scope, $state, $stateParams
     $scope.donation.title  = callback.item.name;
   };
 
-  $scope.takePicture = function() {
-    console.log("take picture function")
+  // $scope.takePicture = function() {
+  //   console.log("take picture function")
+  //
+  //   $ionicPlatform.ready(function() {
+  //       var options = {
+  //           quality: 50,
+  //           destinationType: Camera.DestinationType.DATA_URL,
+  //           sourceType: Camera.PictureSourceType.CAMERA,
+  //           allowEdit: true,
+  //           encodingType: Camera.EncodingType.JPEG,
+  //           targetWidth: 100,
+  //           targetHeight: 100,
+  //           popoverOptions: CameraPopoverOptions,
+  //           saveToPhotoAlbum: false
+  //       };
+  //
+  //       $scope.takePicture = function() {
+  //           $cordovaCamera.getPicture(options).then(function(imageData) {
+  //               $scope.imgSrc = "data:image/jpeg;base64," + imageData;
+  //           }, function(err) {
+  //               console.log(err);
+  //           });
+  //       }
+  //     });
+  //   }
+$scope.takePicture = function(imageURI) {
+//uploadToS3
+      var signingURI = API_URL + "/s3_access_signature"; //--Path to call post and get signed s3 uri back
+      var fileName = $scope.user.id + new Date().getTime() + ".jpg"; //--Name the file
+      $scope.item.picture = 'https://s3-eu-west-1.amazonaws.com/bucket-name/' + fileName;
+      console.log('Uploading ' + fileName + ' to S3');
 
-    $ionicPlatform.ready(function() {
-        var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
+      $http.post(signingURI, { //--Params:
+          "fileName": fileName
+      }).success(function(data, status, headers, config) {
 
-        $scope.takePicture = function() {
-            $cordovaCamera.getPicture(options).then(function(imageData) {
-                $scope.imgSrc = "data:image/jpeg;base64," + imageData;
+          console.log('Got signed doc: ' + JSON.stringify(data));
+          var Uoptions = {};
+          Uoptions.fileKey = "file";
+          Uoptions.fileName = fileName;
+          Uoptions.mimeType = "image/jpeg";
+          Uoptions.chunkedMode = false;
+          Uoptions.headers = {
+              connection: "close"
+          };
+          Uoptions.params = {
+              "key": fileName,
+              "AWSAccessKeyId": data.awsKey,
+              "acl": "private",
+              "policy": data.policy,
+              "signature": data.signature,
+              "Content-Type": "image/jpeg"
+          };
+
+        $scope.selectPicture = function() {
+        document.addEventListener('deviceready', function() {
+
+            var options = {
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.CAMERA,
+            };
+            $cordovaCamera.getPicture(options).then(function(imageURI) {
+                $scope.imageSrc = imageURI;
+                $scope.img = imageURI;
+
             }, function(err) {
-                console.log(err);
+                alert(err);
             });
-        }
-      });
-    }
 
+        }, false); // device ready
+    }; // Select picture
+
+    $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/", imageURI, Uoptions)
+        .then(function(result) {
+            // Success!
+            // Let the user know the upload is completed
+            $ionicLoading.show({template : 'Upload Success!!', duration: 3000});
+            console.log('upload to s3 succeed ', result);
+
+        }, function(err) {
+            // Error
+            // Uh oh!
+            $ionicLoading.show({template : 'Upload Failed', duration: 3000});
+            console.log('upload to s3 fail ', err);
+        }, function(progress) {
+
+            // constant progress updates
+        });
+
+      }).error(function(data, status, headers, config) {
+
+        console.log(' didnt Got signed doc: ' + JSON.stringify(data));
+      });
+  } // upload to Amazon s3 bucket
 
   $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {
     scope: $scope,
