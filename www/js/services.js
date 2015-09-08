@@ -52,10 +52,10 @@ app.service('s3SigningService', function($http, CHATTER_API){
     console.log('Contacting s3 signing service from api...')
     return $http({method: 'GET',
                   url: CHATTER_API.url + '/s3_access_signature',
-                  headers: {'X-API-FILENAME' : fileName})
+                  headers: {'X-API-FILENAME' : fileName}})
     .success(function(data)
     {
-      console.log('Successfully got s3 Signature from API')
+      console.log('Successfully got s3 Signature from API', data)
     })
     .error(function(data)
     {

@@ -1,10 +1,12 @@
 'use strict'
 
 app.controller('CreateDonationController', function($scope,
-                                                    $state, $stateParams,
+                                                    $state, $stateParams, $http, $cordovaFileTransfer,
                                                     $ionicPopup, $ionicPlatform, $ionicModal,
                                                     $cordovaCamera,
-                                                    donationCategoryService, Donation) {
+                                                    donationCategoryService, s3SigningService, currentUserService,
+                                                    Donation,
+                                                    CHATTER_API) {
   $scope.donation = new Donation();
   //--TODO: Can i put this in the Donation factory?
   $scope.donation.location_attributes = {
@@ -74,71 +76,92 @@ app.controller('CreateDonationController', function($scope,
   //       }
   //     });
   //   }
+
 $scope.takePicture = function(imageURI) {
 //uploadToS3
-      var signingURI = API_URL + "/s3_access_signature"; //--Path to call post and get signed s3 uri back
-      var fileName = new Date().getTime() + ".jpg"; //--Name the file
+      // var fileName = currentUserService.id + new Date().getTime() + ".jpg"; //--Name the file
+      var fileName = "ionic.png";
       //$scope.item.picture = 'https://s3-eu-west-1.amazonaws.com/bucket-name/' + fileName;
-      console.log('Uploading ' + fileName + ' to S3');
+      console.log('Uploading ' + fileName + ' to S3...');
 
-      $http.post(signingURI, { //--Params:
-          "fileName": fileName
-      }).success(function(data, status, headers, config) {
+      $http({method: 'GET',
+                    url: CHATTER_API.url + '/s3_access_signature',
+                    headers: {'X-API-FILENAME' : fileName}})
+      .success(function(data, status, headers, config) {
 
-          console.log('Got signed doc: ' + JSON.stringify(data));
+          console.log('Got signed doc: ', data);
           var Uoptions = {};
           Uoptions.fileKey = "file";
           Uoptions.fileName = fileName;
           Uoptions.mimeType = "image/jpeg";
           Uoptions.chunkedMode = false;
+          Uoptions.httpMethod = "PUT";
           Uoptions.headers = {
               connection: "close"
           };
           Uoptions.params = {
               "key": fileName,
-              "AWSAccessKeyId": data.awsKey,
+              "AWSAccessKeyId": data.key,
               "acl": "public-read",
               "policy": data.policy,
               "signature": data.signature,
               "Content-Type": "image/jpeg"
           };
+        //
+        // $scope.selectPicture = function() {
+        // document.addEventListener('deviceready', function() {
+            // console.log("Device is ready..")
+            // var options = {
+            //     destinationType: Camera.DestinationType.FILE_URI,
+            //     sourceType: Camera.PictureSourceType.CAMERA,
+            // };
+            // $cordovaCamera.getPicture(options).then(function(imageURI) {
+            //     $scope.imageSrc = imageURI;
+            //     $scope.img = imageURI;
+            //
+            // }, function(err) {
+            //     console.log("Did not get image from camera")
+            //     alert(err);
+            // });
+        //
+        // }, false); // device ready
+    //}; // Select picture
+    console.log(Uoptions)
+    console.log($cordovaFileTransfer)
+    //objReturned = $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", "www/img/ionic.png", Uoptions);
+  //  console.log(objReturned);
 
-        $scope.selectPicture = function() {
-        document.addEventListener('deviceready', function() {
 
-            var options = {
-                destinationType: Camera.DestinationType.FILE_URI,
-                sourceType: Camera.PictureSourceType.CAMERA,
-            };
-            $cordovaCamera.getPicture(options).then(function(imageURI) {
-                $scope.imageSrc = imageURI;
-                $scope.img = imageURI;
+    var win = function (r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+    }
 
-            }, function(err) {
-                alert(err);
-            });
+    var fail = function (error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
 
-        }, false); // device ready
-    }; // Select picture
+    $cordovaFileTransfer.upload("www/img/ionic.png", "https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", win, fail, Uoptions);
+        // .then(function(result) {
+        //     // Success!
+        //     // Let the user know the upload is completed
+        //     $ionicLoading.show({template : 'Upload Success!!', duration: 3000});
+        //     console.log('upload to s3 succeed ', result);
+        //
+        // }, function(err) {
+        //     // Error
+        //     // Uh oh!
+        //     $ionicLoading.show({template : 'Upload Failed', duration: 3000});
+        //     console.log('upload to s3 fail ', err);
+        // }, function(progress) {
+        //     console.log("Progress..")
+        //     // constant progress updates
+        // });
 
-    $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/", imageURI, Uoptions)
-        .then(function(result) {
-            // Success!
-            // Let the user know the upload is completed
-            $ionicLoading.show({template : 'Upload Success!!', duration: 3000});
-            console.log('upload to s3 succeed ', result);
-
-        }, function(err) {
-            // Error
-            // Uh oh!
-            $ionicLoading.show({template : 'Upload Failed', duration: 3000});
-            console.log('upload to s3 fail ', err);
-        }, function(progress) {
-
-            // constant progress updates
-        });
-
-      }).error(function(data, status, headers, config) {
+      }).error(function(data, status, headers, config) { //--End of Success s3 Signing
 
         console.log(' didnt Got signed doc: ' + JSON.stringify(data));
       });
