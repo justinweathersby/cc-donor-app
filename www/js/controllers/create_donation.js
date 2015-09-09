@@ -79,8 +79,8 @@ app.controller('CreateDonationController', function($scope,
 
 $scope.takePicture = function(imageURI) {
 //uploadToS3
-      // var fileName = currentUserService.id + new Date().getTime() + ".jpg"; //--Name the file
-      var fileName = "ionic.png";
+      var fileName = currentUserService.id + new Date().getTime() + ".jpg"; //--Name the file
+      //var fileName = "ionic.png";
       //$scope.item.picture = 'https://s3-eu-west-1.amazonaws.com/bucket-name/' + fileName;
       console.log('Uploading ' + fileName + ' to S3...');
 
