@@ -107,30 +107,26 @@ $scope.takePicture = function(imageURI) {
               "signature": data.signature,
               "Content-Type": "image/jpeg"
           };
-        //
-        // $scope.selectPicture = function() {
-        // document.addEventListener('deviceready', function() {
-            // console.log("Device is ready..")
-            // var options = {
-            //     destinationType: Camera.DestinationType.FILE_URI,
-            //     sourceType: Camera.PictureSourceType.CAMERA,
-            // };
-            // $cordovaCamera.getPicture(options).then(function(imageURI) {
-            //     $scope.imageSrc = imageURI;
-            //     $scope.img = imageURI;
-            //
-            // }, function(err) {
-            //     console.log("Did not get image from camera")
-            //     alert(err);
-            // });
-        //
-        // }, false); // device ready
-    //}; // Select picture
-    console.log(Uoptions)
-    console.log($cordovaFileTransfer)
-    //objReturned = $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", "www/img/ionic.png", Uoptions);
-  //  console.log(objReturned);
 
+        $scope.selectPicture = function() {
+        document.addEventListener('deviceready', function() {
+            console.log("Device is ready..")
+            var options = {
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.CAMERA,
+            };
+            $cordovaCamera.getPicture(options).then(function(imageURI) {
+                $scope.imageSrc = imageURI;
+                $scope.img = imageURI;
+
+            }, function(err) {
+                console.log("Did not get image from camera")
+                alert(err);
+            });
+
+        }, false); // device ready
+    }; // Select picture
+    console.log(Uoptions)
 
     var win = function (r) {
     console.log("Code = " + r.responseCode);
@@ -144,27 +140,11 @@ $scope.takePicture = function(imageURI) {
         console.log("upload error target " + error.target);
     }
 
-    $cordovaFileTransfer.upload("www/img/ionic.png", "https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", win, fail, Uoptions);
-        // .then(function(result) {
-        //     // Success!
-        //     // Let the user know the upload is completed
-        //     $ionicLoading.show({template : 'Upload Success!!', duration: 3000});
-        //     console.log('upload to s3 succeed ', result);
-        //
-        // }, function(err) {
-        //     // Error
-        //     // Uh oh!
-        //     $ionicLoading.show({template : 'Upload Failed', duration: 3000});
-        //     console.log('upload to s3 fail ', err);
-        // }, function(progress) {
-        //     console.log("Progress..")
-        //     // constant progress updates
-        // });
+    $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", imageURI, Uoptions);
 
-      }).error(function(data, status, headers, config) { //--End of Success s3 Signing
-
+    }).error(function(data, status, headers, config) { //--End of Success s3 Signing
         console.log(' didnt Got signed doc: ' + JSON.stringify(data));
-      });
+    });
   } // upload to Amazon s3 bucket
 
   $ionicModal.fromTemplateUrl('templates/terms_and_conditions.html', {
