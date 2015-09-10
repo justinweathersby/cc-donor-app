@@ -9,7 +9,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('signup',{
       url: '/signup',
       templateUrl: 'templates/signup.html',
-      controller: 'LoginController'
+      controller: 'CreateUserController'
     })
 
     // --- Terms and Co for making a donation

@@ -5,40 +5,40 @@
   <ion-content class="padding">
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="email" placeholder="Email" ng-model="data.email">
+        <input type="email" placeholder="Email" ng-model="user.email">
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="data.password">
+        <input type="password" placeholder="Password" ng-model="user.password">
       </label>
-      <label class="item item-input">
+      <!-- <label class="item item-input">
         <input type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
-      </label>
+      </label> -->
     </div>
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" placeholder="First Name" ng-model="data.username">
+        <input type="text" placeholder="First Name" ng-model="user.first_name">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Last Name" ng-model="data.username">
+        <input type="text" placeholder="Last Name" ng-model="user.last_name">
+      </label>
+      <!-- <label class="item item-input">
+        <input type="text" placeholder="Street Address" ng-model="data.location_attributes.street">
+      </label> -->
+      <!-- <label class="item item-input">
+        <input type="text" placeholder="City" ng-model="data.location_attributes.city">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Street Address" ng-model="data.username">
+        <input type="text" placeholder="State" ng-model="data.location_attributes.state">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="City" ng-model="data.username">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="State" ng-model="data.username">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Zipcode" ng-model="data.username">
-      </label>
+        <input type="text" placeholder="Zipcode" ng-model="data.location_attributes.postal_code">
+      </label> -->
     </div>
-    <button class="button button-block button-positive" ng-click="login(data)">
+    <button class="button button-block button-positive" ng-click="createNewUser()">
       Sign Up
     </button>
-    <button class="button button-block button-positive" ng-click="goToLogin()">
+    <!-- <button class="button button-block button-positive" ng-click="goToLogin()">
       Back
-    </button>
+    </button> -->
   </ion-content>
 </ion-view>

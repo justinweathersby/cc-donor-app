@@ -12,6 +12,14 @@ app.factory('Donation', function($resource, CHATTER_API) {
   );
 });
 
+app.factory('User', function($resource, CHATTER_API){
+  return $resource(CHATTER_API.url + '/users/:id',
+  {
+    'get': {method: 'GET'},
+    'save': {method: 'POST'}
+  })
+});
+
 // app.factory('Camera', ['$q', function($q) {
 //
 //   return {
