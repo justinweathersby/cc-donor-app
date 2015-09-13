@@ -3,7 +3,7 @@
 app.controller('CreateUserController', function($scope,
                                                 $state, $stateParams,
                                                 $ionicPopup,
-                                                User)
+                                                User, authService)
 {
   $scope.user = new User();
   //--TODO: Can i put this in the Donation factory?
@@ -14,22 +14,23 @@ app.controller('CreateUserController', function($scope,
     state: ""
   };
 
-  $scope.createNewUser = function()
-  { //create a new user. Issues a POST to /api/users
+  $scope.createNewUser = function(){
     $scope.user.$save()
-      .then(function(resp) {
+      .then(function(data){
+        //--Success Handler
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
           template: "Thank you for signing up with Creative Chatter. Happy Donating!"
         });
-        $state.go('login'); // on success go to dashboard.
-      })
-      .catch(function(resp){
-        console.log("Error Response: ", resp.data)
-        var alertPopup = $ionicPopup.alert({
-          title: 'Failed',
-          // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
-        });
+        authService.login($scope.user);
+        console.log('Sign-In', $scope.user);
+        $state.go('tabs.dashboard');
+    }).catch(function(error) {
+      console.log("Error Response: ", error.data)
+      var alertPopup = $ionicPopup.alert({
+        title: 'Failed',
+        template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
       });
-  };
-)};
+    });
+  }; //-- End createNewUser function
+}); //-- End CreateUserController

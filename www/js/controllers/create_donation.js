@@ -1,9 +1,9 @@
 'use strict'
 
 app.controller('CreateDonationController', function($scope,
-                                                    $state, $stateParams, $http, $cordovaFileTransfer,
+                                                    $state, $stateParams, $http,
                                                     $ionicPopup, $ionicPlatform, $ionicModal,
-                                                    $cordovaCamera,
+                                                    $cordovaCamera, $cordovaFileTransfer,
                                                     donationCategoryService, s3SigningService, currentUserService,
                                                     Donation,
                                                     CHATTER_API) {
@@ -90,7 +90,7 @@ $scope.takePicture = function(imageURI) {
       .success(function(data, status, headers, config) {
 
           console.log('Got signed doc: ', data);
-          var Uoptions = {};
+          var Uoptions = new FileUploadOptions();
           Uoptions.fileKey = "file";
           Uoptions.fileName = fileName;
           Uoptions.mimeType = "image/jpeg";
@@ -140,6 +140,8 @@ $scope.takePicture = function(imageURI) {
         console.log("upload error target " + error.target);
     }
 
+    //var ft = new FileTransfer();
+    //ft.upload(fileURL, encodeURI("http://some.server.com/upload.php"), win, fail, Uoptions);
     $cordovaFileTransfer.upload("https://" + data.bucket + ".s3.amazonaws.com/" + "resources/", imageURI, Uoptions);
 
     }).error(function(data, status, headers, config) { //--End of Success s3 Signing

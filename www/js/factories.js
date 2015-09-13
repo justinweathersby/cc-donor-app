@@ -17,7 +17,7 @@ app.factory('User', function($resource, CHATTER_API){
   {
     'get': {method: 'GET'},
     'save': {method: 'POST'}
-  })
+  });
 });
 
 // app.factory('Camera', ['$q', function($q) {
