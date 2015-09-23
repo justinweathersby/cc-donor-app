@@ -2,14 +2,42 @@
   <ion-header-bar class="bar-positive">
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
   </ion-header-bar>
+  <form name="signupForm" novalidate>
   <ion-content class="padding">
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="email" placeholder="Email" ng-model="user.email">
+
+      <!-- Email Field -->
+      <label class="item item-input"
+             ng-class="{ 'has-error' : signupForm.user_email_text.$invalid && signupForm.user_email_text.$touched}">
+
+         <input type="email"
+                name="user_email_text"
+                ng-model="user.email"
+                placeholder="Email"
+                required>
       </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="user.password">
+      <div class="form-errors"
+           ng-show="signupForm.user_email_text.$touched"
+           ng-messages="signupForm.user_email_text.$error"
+           ng-messages-include="templates/form-errors.html">
+      </div>
+
+      <!-- Password Fields -->
+      <label class="item item-input"
+             ng-class="{ 'has-error' : signupForm.user_password_text.$invalid && signupForm.user_password_text.$touched}">
+
+        <input type="password"
+               name="user_password_text"
+               placeholder="Password"
+               ng-model="user.password"
+               ng-minlength="8"
+               required>
       </label>
+      <div class="form-errors"
+           ng-show="signupForm.user_password_text.$touched"
+           ng-messages="signupForm.user_password_text.$error"
+           ng-messages-include="templates/form-errors.html">
+      </div>
       <!-- <label class="item item-input">
         <input type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
       </label> -->
@@ -41,4 +69,10 @@
       Back
     </button> -->
   </ion-content>
+</form>
 </ion-view>
+
+<script id="templates/form-errors.html" type="text/ng-template">
+  <div class="form-error" ng-message="required">This field is required.</div>
+  <div class="form-error" ng-message="minlength">This field is must be at least 8 characters.</div>
+</script>
