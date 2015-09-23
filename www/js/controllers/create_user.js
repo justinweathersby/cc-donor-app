@@ -3,7 +3,7 @@
 app.controller('CreateUserController', function($scope,
                                                 $state, $stateParams,
                                                 $ionicPopup,
-                                                User, authService)
+                                                User, authService, currentUserService)
 {
   $scope.user = new User();
   //--TODO: Can i put this in the Donation factory?
@@ -22,9 +22,11 @@ app.controller('CreateUserController', function($scope,
           title: 'Success',
           template: "Thank you for signing up with Creative Chatter. Happy Donating!"
         });
-        authService.login($scope.user);
-        console.log('Sign-In', $scope.user);
-        $state.go('tabs.dashboard');
+
+        //authService.login($scope.user);
+        console.log('User has been saved... trying to Sign-In', $scope.user);
+        $state.go('login');
+        //$state.go('tabs.dashboard');
     }).catch(function(error) {
       console.log("Error Response: ", error.data)
       var alertPopup = $ionicPopup.alert({

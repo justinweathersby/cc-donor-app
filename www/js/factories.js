@@ -3,20 +3,21 @@ app.factory('Need', function($resource, CHATTER_API) {
 });
 
 app.factory('Donation', function($resource, CHATTER_API) {
-  return $resource(CHATTER_API.url +'/resources/:id',
-  { 'get':    {method:'GET', isArray:false},
-    'save':   {method:'POST'},
-    'query':  {method:'GET'},
-    'remove': {method:'DELETE'},
-    'delete': {method:'DELETE'} }
-  );
+  return $resource(CHATTER_API.url +'/resources/:id', {},
+  {
+    get:    {method:'GET', isArray:false},
+    save:   {method:'POST'},
+    query:  {method:'GET', isArray:true},
+    remove: {method:'DELETE'},
+    delete: {method:'DELETE'}
+  });
 });
 
 app.factory('User', function($resource, CHATTER_API){
-  return $resource(CHATTER_API.url + '/users/:id',
+  return $resource(CHATTER_API.url + '/users/:id', {},
   {
-    'get': {method: 'GET'},
-    'save': {method: 'POST'}
+    get: {method: 'GET'},
+    save: {method: 'POST'}
   });
 });
 
