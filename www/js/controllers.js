@@ -47,6 +47,46 @@ app.controller('ShopCtrl', function ($scope, $http) {
 
 });
 
+app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, stripeService) {
+
+  //console.log($stateParams);
+  $scope.shop = [];
+  $scope.items = [];
+  var name = $stateParams.shop;
+  $scope.shopname = name;
+
+  $http.get('shop.json')
+  .success( function(data) {
+
+for(var i = 0; i < data.length ; i++)
+{
+    
+    if(name == data[i].title)
+    {
+      $scope.shop.push(data[i]);
+    }
+    
+}
+
+$scope.items = $scope.shop[0].items;
+
+  }); 
+
+$scope.buy = function(item)
+{
+  console.log(item);
+  stripeService.get(name, item.image, item.name, item.price);
+}
+
+$scope.back = function()
+{
+  console.log('back');
+  $state.go('tabs.shop');
+}
+
+
+});
+
 
 app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
   $scope.login = function(user) {

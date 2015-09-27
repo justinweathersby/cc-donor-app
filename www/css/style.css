@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+.content
+{
+	text-align: center;
+}
+.shop-image
+{
+	width: 90%;
+}
+.btn
+{
+	background-color: transparent;
+	border-color: transparent;
+}

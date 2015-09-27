@@ -23,7 +23,11 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
         //--Set header for all subsequent requests
         $http.defaults.headers.common['Authorization'] = data.auth_token;
 
-      });
+      }.error( function(error) {
+
+          
+
+      }));
   }; //--End of login function
   this.logout = function(user){
     return  $http({method: 'POST', url: '/api/logout', headers: {'Authorization' : user.token}});
@@ -42,6 +46,46 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 //   });
 //   };
 // });
+
+
+app.service('stripeService',['$http',function ($http) {
+
+var name = "";
+var price = "";
+var shopname = "";
+               return{
+
+                    get: function(shopname, image, name, price)
+                    {
+                    name  = name;
+                    price = price;
+                    shopname = shopname;
+                    console.log(name);
+                    var handler = StripeCheckout.configure({
+                        // test key
+                         key: 'pk_test_QTWZlzwsA6mjhPbwoYQNAnRa',
+                        image: image,
+                        token: function(token) {
+
+            // make charge api call
+
+//app.use('/charge/:token/:amount', api.charge);
+
+                }
+           
+                }); // end of get function                    
+                            handler.open({
+                                  name: shopname,
+                                  description: name,
+                                  amount: parseInt(price) * 100
+                                });
+                    }
+
+}
+
+}]);
+
+
 
 app.service('needService', function($http){
   this.getNeeds = function(){

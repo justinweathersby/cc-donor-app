@@ -1,0 +1,28 @@
+ <ion-view>
+ <ion-nav-bar class="header-bar">
+ <ion-nav-title>
+   <h4 id="header-title">{{shopname}}</h4>
+  </ion-nav-title>
+  </ion-nav-bar>
+       <ion-nav-buttons side="left" >
+        <button class="btn" ng-click="back()">
+          <
+        </button>
+    </ion-nav-buttons>
+
+
+  <ion-content  class="content">
+
+  
+  <div ng-repeat="i in items">
+    <div class="col col-50 card">
+      <img class="shop-image" ng-src="{{i.image}}">
+      <h3>{{i.name}}</h3>
+      <h3>$ {{i.price}}</h3>
+    </div>
+    <button ng-click="buy(i)" class="button button-calm">Buy</button>
+  </div>
+    
+ 
+  </ion-content>
+</ion-view>
