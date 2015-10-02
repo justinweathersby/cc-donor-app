@@ -3,9 +3,10 @@
     <h1 class="title">Shop Creative Chatter</h1>
   </ion-header-bar>
   <ion-content class="padding">
-
+<input placeholder="Search" class="field" ng-model="query">
     <!-- First Card -->
-    <div ng-repeat="s in shops">
+    <div ng-repeat="s in shops | filter: { title: query} |
+  orderBy: 'title' "
     <div class="list card">
       <div class="item item-avatar">
         <img ng-src="{{s.icon}}">

@@ -12,3 +12,44 @@
 	background-color: transparent;
 	border-color: transparent;
 }
+.field
+{
+	width: 95%;
+	
+}
+#shop
+{
+	margin-left: 17%;
+	width: 100px;
+	border-color: #2979FF;
+	border-width: 1px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	padding: 10px;
+}
+#customer
+{
+	width: 100px;
+	margin-left: -5px;
+	border-color: #2979FF;
+	border-width: 1px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,13 +6,17 @@
     <ion-content class="padding">
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="email" placeholder="Email" ng-model="user.email" required>
+        <input id="email" type="email" placeholder="Email" ng-model="user.email" required>
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="user.password" required>
+        <input id="password" type="password" placeholder="Password" ng-model="user.password" required>
       </label>
     </div>
     </form>
+  
+    <button ng-click="shop()" id="shop" class="btn">Vendor</button>
+    <button ng-click="customer()" id="customer" class="btn">Customer</button>
+   
     <button class="button button-block button-positive" ng-click="login(user)">
       Login
     </button>

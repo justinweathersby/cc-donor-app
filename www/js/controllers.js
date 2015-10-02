@@ -24,12 +24,13 @@ app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPo
 app.controller('ShopCtrl', function ($scope, $http) {
 
 
-    $http.get('shop.json').success(function (data) {
+    $http.get('shops.json').success(function (data) {
 
 
         $scope.shops = data;
-
     });
+
+    $scope.query = "";
 
     $scope.like = function(shop)
     {
@@ -55,7 +56,7 @@ app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, str
   var name = $stateParams.shop;
   $scope.shopname = name;
 
-  $http.get('shop.json')
+  $http.get('shops.json')
   .success( function(data) {
 
 for(var i = 0; i < data.length ; i++)
@@ -88,9 +89,39 @@ $scope.back = function()
 });
 
 
-app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
+app.controller('LoginController', function($scope, $state, $http, $ionicPopup, authService, currentUserService) {
+  
+
+  $scope.customer = function()
+  {
+    var e = document.getElementById('customer');
+    e.style.color = 'white';
+    e.style.backgroundColor = '#2979FF';
+
+    var s = document.getElementById('shop');
+    s.style.color = 'black';
+    s.style.backgroundColor = 'transparent';
+
+    localStorage.setItem('type',"customer");
+  }
+
+  $scope.shop = function()
+  {
+    var e = document.getElementById('shop');
+    e.style.color = 'white';
+    e.style.backgroundColor = '#2979FF';
+
+    var c = document.getElementById('customer');
+    c.style.color = 'black';
+    c.style.backgroundColor = 'transparent';
+
+    localStorage.setItem('type',"vendor");
+  }
+
   $scope.login = function(user) {
+    console.log(localStorage.getItem('type'));
     $state.go('tabs.shop');
+
     // if ($scope.loginForm.$valid){
     //   authService.login(user).success(function(){
     //     console.log('Login Success, Token: ', currentUserService.token);
@@ -115,6 +146,16 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   };
 });
 
+app.controller('TabCtrl', function($scope, $state, $http) {
+
+  console.log('tab');
+  $scope.donateTab = true;
+
+
+
+});
+
+
 app.controller('NeedController', function($scope, Need){
   $scope.needs = Need.query();
 
@@ -122,6 +163,19 @@ app.controller('NeedController', function($scope, Need){
   //   console.log(entries);
   // });
 });
+
+
+app.controller('SettingsController', function($scope, $state, $http) {
+
+  $scope.logout = function()
+  {
+    $state.go('login');
+  }
+
+
+
+});
+
 
 //--Handles User Resources
 app.controller('DonationController', function($scope, $stateParams, Donation){

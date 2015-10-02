@@ -1,0 +1,30 @@
+[
+{
+	"username": "bob",
+	"email":"bob@gmail.com",
+	"password": "happy",
+	"address": "2880 atlantic blvd",
+	"city": "jacksonville",
+	"state": "Flordia",
+	"zipcode": "32257",
+	"items": [
+	{
+		"item": "nice soap",
+		"price": 3.00
+	}
+	]
+},
+{
+	"username": "sam",
+	"email": "sam@gmail.com",
+	"password": "happy",
+	"items": [
+	{
+		"item": "nice soap",
+		"price": 3.00
+	}
+	]
+}
+
+
+]
