@@ -32,8 +32,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs', {
       url: '/tab', //-- actual address
       abstract: true, //--never actualy going to navagate away from this template
-      templateUrl: 'templates/tabs.html'
-
+      templateUrl: 'templates/tabs.html',
+      controller: 'TabCtrl'
     })
     .state('tabs.dashboard', { //--child template of tabs
       url: '/dashboard',
@@ -72,12 +72,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+         .state('tabs.checkout', { //--child template of tabs
+      url: '/checkout/:category/:item/:price/:quantity/:shipping',
+      views: {
+        'shop-tab' : { //--name of view
+        templateUrl: 'templates/checkout.html',
+        controller: 'CheckoutCtrl'
+        }
+      }
+    })
     .state('tabs.settings', { //--child template of tabs
       url: '/settings',
       views: {
         'settings-tab' : { //--name of view
-        templateUrl: 'templates/settings.html'
-        //controller: 'DashboardController'
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsController'
         }
       }
     })

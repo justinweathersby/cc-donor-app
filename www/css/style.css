@@ -11,10 +11,11 @@
 {
 	background-color: transparent;
 	border-color: transparent;
+	color: white;
 }
 .field
 {
-	width: 95%;
+	width: 100%;
 	
 }
 #shop
@@ -37,19 +38,65 @@
 	border-bottom-right-radius: 6px;
 	padding: 10px;
 }
+.icon
+{
+	font-size: 24px;
+	padding-right: 10px;
+}
+.cat-name, .icon
+{
+	display: inline-block;
+}
+.buy-button
+{
+	width: 90%;
+	background-color: transparent;
 
+	color: #2979FF;
+}
+.header-bar
+{
+	background-color: #2979FF;
+	width: 110%;
+}
+#header-title
+{
+	color: white;
+	font-size: 24px;
+	margin-top: 10px;
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
+.tag
+{
+	text-decoration: none;
+}
+.checkout-item
+{
+	line-height: 25px;
+	text-align: left;
+}
+.select, .quantity-label
+{
+	display: inline-block;
+}
+.select
+{
+	width: 60%;
+	font-size: 88px;
+}
+.pay-button
+{
+	margin-top: 20px;
+	width: 80%;
+	background:  #2979FF;
+	border-color: transparent;
+	border-radius: 6px;
+	color: white;
+}
+.stripe-logo
+{
+	margin-top: 50px;
+	border-radius: 6px;
+}
 
 

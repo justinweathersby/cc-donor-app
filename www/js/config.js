@@ -72,6 +72,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+         .state('tabs.checkout', { //--child template of tabs
+      url: '/checkout/:category/:item/:price/:quantity/:shipping',
+      views: {
+        'shop-tab' : { //--name of view
+        templateUrl: 'templates/checkout.html',
+        controller: 'CheckoutCtrl'
+        }
+      }
+    })
     .state('tabs.settings', { //--child template of tabs
       url: '/settings',
       views: {

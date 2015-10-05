@@ -1,5 +1,7 @@
 'use strict'
 
+var baseUrl = "http://staging.creativechatter.com";
+
 app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPopup, authService) {
 
   // $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
@@ -23,64 +25,58 @@ app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPo
 
 app.controller('ShopCtrl', function ($scope, $http) {
 
+$scope.query = "";
+var token = localStorage.getItem('token');
+//console.log(baseUrl);
+//console.log(token);
 
-    $http.get('shop.json').success(function (data) {
+  $http({method: 'GET',
+                   url:'/api/item_categories',
+                  // headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   headers: {'Authorization': token}})
+      .success( function( data )
+      {
+        $scope.categories = data;
 
-
-        $scope.shops = data;
-
-    });
-
-    $scope.like = function(shop)
-    {
-      console.log(shop);
-    }
-        $scope.comment = function(shop)
-    {
-      console.log(shop);
-    }
-        $scope.share = function(shop)
-    {
-      console.log(shop);
-    }
+      }
+      ).error( function(error) {
+        console.log(error);
+      });
 
 
 });
 
 app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, stripeService) {
 
-  //console.log($stateParams);
+ // console.log($stateParams);
   $scope.shop = [];
   $scope.items = [];
   var name = $stateParams.shop;
   $scope.shopname = name;
+var token = localStorage.getItem('token');
 
-  $http.get('shop.json')
-  .success( function(data) {
-
-for(var i = 0; i < data.length ; i++)
-{
-    
-    if(name == data[i].title)
-    {
-      $scope.shop.push(data[i]);
-    }
-    
-}
-
-$scope.items = $scope.shop[0].items;
-
-  }); 
-
-$scope.buy = function(item)
-{
-  console.log(item);
-  stripeService.get(name, item.image, item.name, item.price);
-}
+$http({method: 'GET',
+                   url:'/api/items',
+                  // headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   headers: {'Authorization': token}})
+      .success( function( data )
+      {
+        
+        for(var i = 0; i < data.length; i++)
+        {
+          if(data[i].item_category.name == name)
+          {
+            console.log('match');
+            $scope.items.push(data[i]);
+          }
+        }
+      }
+      ).error( function(error) {
+        console.log(error);
+      });
 
 $scope.back = function()
 {
-  console.log('back');
   $state.go('tabs.shop');
 }
 
@@ -88,23 +84,73 @@ $scope.back = function()
 });
 
 
-app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
+app.controller('CheckoutCtrl', function($scope, stripeService, $stateParams, $http) {
+
+
+      console.log($stateParams);
+      var cat = $stateParams.category;
+      $scope.quantity = [];
+      $scope.item = $stateParams;
+
+      for(var i = 0; i < parseInt($stateParams.quantity); i++ )
+      {
+        $scope.quantity.push(i+1);
+      }
+
+      var n = parseFloat($scope.item.price)+parseFloat($scope.item.shipping);
+      $scope.totalPrice = n.toFixed(2);
+
+
+      $scope.buy = function()
+{
+ var n = parseFloat($scope.item.price)+parseFloat($scope.item.shipping);
+      var total= n.toFixed(2);
+
+ 
+  stripeService.get($scope.item.image_url, $scope.item.item, total);
+}
+
+      $scope.back = function()
+      {
+        window.location.href = '/#/tab/shop/'+cat;
+      }
+
+});
+
+
+app.controller('LoginController', function($scope, $state, $http, $ionicPopup, authService, currentUserService) {
+  
+  var user = localStorage.getItem('user');
+  console.log(user);
+
+  if(user !== null)
+  {
+    $state.go('tabs.dashboard');
+  }
+
   $scope.login = function(user) {
-    $state.go('tabs.shop');
-    // if ($scope.loginForm.$valid){
-    //   authService.login(user).success(function(){
-    //     console.log('Login Success, Token: ', currentUserService.token);
-    //     console.log('Sign-In', user);
-    //     $state.go('tabs.dashboard');
-    //   }).error(function()
-    //   {
-    //     var alertPopup = $ionicPopup.alert({
-    //       title: 'Login Unsuccessful',
-    //       template: "Email and password did not match Chatter's records."
-    //     });
-    //   });
-    // }
+
+    if ($scope.loginForm.$valid){
+      console.log('valid');
+      authService.login(user).success(function(){
+        console.log('Login Success, Token: ', currentUserService.token);
+        console.log('Sign-In', user);
+        localStorage.setItem('user', user.email);
+        localStorage.setItem('token', currentUserService.token);
+        $state.go('tabs.dashboard');
+      }).error(function(error)
+      {
+        console.log(error)
+        var alertPopup = $ionicPopup.alert({
+          title: 'Login Unsuccessful',
+          template: "Email and password did not match Chatter's records."
+        });
+      });
+    }
   }; //end of login function
+
+
+
 
   $scope.goToSignUp = function() {
     $state.go('signup');
@@ -115,6 +161,16 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   };
 });
 
+app.controller('TabCtrl', function($scope, $state, $http) {
+
+  console.log('tab');
+  $scope.donateTab = true;
+
+
+
+});
+
+
 app.controller('NeedController', function($scope, Need){
   $scope.needs = Need.query();
 
@@ -122,6 +178,32 @@ app.controller('NeedController', function($scope, Need){
   //   console.log(entries);
   // });
 });
+
+
+app.controller('SettingsController', function($scope, $ionicActionSheet, $state, $http) {
+
+  $scope.logout = function()
+  {
+      $ionicActionSheet.show({
+     buttons: [
+       { text: 'Logout' }
+     ],
+     titleText: 'Logout ? ',
+     cancelText: 'Cancel',
+     buttonClicked: function(index) {
+
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      $state.go('login');  
+       return true;
+     }
+   });
+  }
+
+
+
+});
+
 
 //--Handles User Resources
 app.controller('DonationController', function($scope, $stateParams, Donation){

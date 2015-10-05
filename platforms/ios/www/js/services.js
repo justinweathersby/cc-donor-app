@@ -12,6 +12,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     return  $http({method: 'POST',
                    url: 'api/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   //headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
@@ -23,11 +24,8 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
         //--Set header for all subsequent requests
         $http.defaults.headers.common['Authorization'] = data.auth_token;
 
-      }.error( function(error) {
-
-          
-
-      }));
+      }
+      );
   }; //--End of login function
   this.logout = function(user){
     return  $http({method: 'POST', url: '/api/logout', headers: {'Authorization' : user.token}});
@@ -55,8 +53,10 @@ var price = "";
 var shopname = "";
                return{
 
-                    get: function(shopname, image, name, price)
+                    get: function(image, name, price)
                     {
+                      var q = document.getElementById('quantity-select').value;
+                      console.log(q);
                     name  = name;
                     price = price;
                     shopname = shopname;
@@ -77,9 +77,10 @@ var shopname = "";
                             handler.open({
                                   name: shopname,
                                   description: name,
-                                  amount: parseInt(price) * 100
+                                  amount: (price * 100) * parseInt(q)
                                 });
-                    }
+                    
+                    } // end of function
 
 }
 
