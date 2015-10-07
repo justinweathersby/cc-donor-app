@@ -7,10 +7,9 @@ app.service('currentUserService', function(){
 
 //-- This service handles all authentication between app and Chatter API
 app.service('authService', function($http, currentUserService, CHATTER_API){
-
   this.login = function(user){
     return  $http({method: 'POST',
-                   url: 'api/login',
+                   url: CHATTER_API.url + '/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
                   // headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
@@ -27,11 +26,25 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
       }
       );
   }; //--End of login function
-  this.logout = function(user){
-    return  $http({method: 'POST', url: '/api/logout', headers: {'Authorization' : user.token}});
-    //--End of return statement
-  };// --End of logout function
 
+  this.logout = function(user){
+    return  $http({method: 'POST', url: CHATTER_API.url + '/logout', headers: {'Authorization' : user.token}});
+  };// --End of logout function
+});
+
+
+app.service('donationCategoryService', function($http, CHATTER_API){
+  this.getCategories = function(){
+    console.log('Inside getCategories function...')
+    return $http({method: 'GET',
+                  url: CHATTER_API.url + '/categories'})
+      .success(function(data){
+        console.log(data)
+        }
+      ).error( function(error) {
+        console.log(error);
+      });
+    }
 });
 
 //-- This service handles all calls to Items (vendor's) through the Chatter API
@@ -46,7 +59,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 // });
 
 
-app.service('stripeService',['$http', '$state',function ($http, $state) {
+app.service('stripeService',['$http', '$state',function ($http, $state, CHATTER_API) {
 var baseUrl = "http://staging.creativechatter.com";
 var name = "";
 var price = "";
@@ -70,13 +83,13 @@ var shopname = "";
 
                         console.log(token.id);
             // make charge api call
-var url = "/api/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
             $http({method: 'POST',
                    url: url,
                    headers: {'Authorization': access_token}})
       .success( function( data )
       {
-        
+
         swal("Order Complete", "your order is processing", "success")
         window.location.href = '/#/tab/shop';
       }
@@ -87,14 +100,14 @@ var url = "/api/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&st
 
 
                 }
-           
-                }); // end of get function                    
+
+                }); // end of get function
                             handler.open({
                                   name: shopname,
                                   description: name,
                                   amount: (price * 100) * parseInt(q)
                                 });
-                    
+
                     } // end of function
 
 }
@@ -103,18 +116,36 @@ var url = "/api/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&st
 
 
 
-app.service('needService', function($http){
-  this.getNeeds = function(){
-    return  $http({method: 'GET',
-                   url: '/api/needs'})
-      .success( function( data )
-      {
-        console.log('Return Data From Service get to Api:', data)
-        success(data);
-      })
-      .error( function( data)
-      {
+// app.service('needService', function($http, CHATTER_API){
+//   this.getNeeds = function(){
+//     return  $http({method: 'GET',
+//                    url: CHATTER_API + '/needs'})
+//       .success( function( data )
+//       {
+//         console.log('Donation Categories data from api: ', data);
+//       })
+//       .error(function(data)
+//       {
+//         console.log('Error:', data)
+//         error(data);
+//       });
+//     }
+// });
+
+app.service('s3SigningService', function($http, CHATTER_API){
+  this.getSignature = function(fileName){
+    console.log('Contacting s3 signing service from api...')
+    return $http({method: 'GET',
+                  url: CHATTER_API.url + '/s3_access_signature',
+                  headers: {'X-API-FILENAME' : fileName}})
+    .success(function(data)
+    {
+      console.log('Successfully got s3 Signature from API', data)
+    })
+    .error(function(data)
+    {
+      console.log('Failure to get s3 Signature from API')
       error(data);
-      }); //--End of return statement
-    }
+    });
+  }
 });

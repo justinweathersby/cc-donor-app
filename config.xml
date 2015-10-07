@@ -5,8 +5,8 @@
         An Ionic Framework and Cordova project.
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+      Creative Chatter Development
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>

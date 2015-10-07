@@ -11,21 +11,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/signup.html',
       controller: 'LoginController'
     })
+
+    // --- Terms and Co for making a donation
     .state('terms-and-conditions', {
       url: '/terms_and_conditions',
       templateUrl: 'templates/terms_and_conditions.html'
     })
 
+    // --- Page listing all the users donations
     .state('donations', {
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
-      controller: 'DonationController'
+      controller: 'ViewDonationController'
     })
 
+    // --- Page displaying just 1 of the users donations
     .state('viewDonation', {
       url: '/donations/:id/view',
       templateUrl: 'templates/donations/donation-view.html',
-      controller: 'DonationController'
+      controller: 'ViewDonationController'
     })
 
     //--Routes for tabs
@@ -47,13 +51,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
       views: {
-        'donate-tab' : { //--name of view
+        'donate-tab' : {
         templateUrl: 'templates/donations/donation-new.html',
-        controller: 'DonationCreateController'
+        controller: 'CreateDonationController'
         }
       }
     })
-    .state('tabs.shop', { //--child template of tabs
+    .state('tabs.shop', {
       url: '/shop',
       views: {
         'shop-tab' : { //--name of view
@@ -72,7 +76,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-         .state('tabs.checkout', { //--child template of tabs
+      .state('tabs.checkout', { //--child template of tabs
       url: '/checkout/:category/:item/:price/:quantity/:shipping',
       views: {
         'shop-tab' : { //--name of view
@@ -81,7 +85,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tabs.settings', { //--child template of tabs
+    .state('tabs.settings', {
       url: '/settings',
       views: {
         'settings-tab' : { //--name of view
@@ -90,7 +94,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-
 
     $urlRouterProvider.otherwise('/login'); //--default go to page
 });
