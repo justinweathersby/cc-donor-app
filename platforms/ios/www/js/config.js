@@ -68,7 +68,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
       .state('tabs.shopDetail', { //--child template of tabs
-      url: '/shop/:shop',
+      url: '/shop/:shop/:id',
       views: {
         'shop-tab' : { //--name of view
         templateUrl: 'templates/shop-detail.html',

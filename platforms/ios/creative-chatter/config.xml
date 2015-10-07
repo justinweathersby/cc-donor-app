@@ -14,8 +14,8 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="Console">
-        <param name="ios-package" value="CDVLogger" />
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
     </feature>
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />

@@ -89,6 +89,7 @@ label.item.valid-bt {
 .header-bar
 {
 	background-color: #2979FF;
+	text-align: center;
 	width: 110%;
 }
 #header-title
@@ -96,7 +97,7 @@ label.item.valid-bt {
 	color: white;
 	font-size: 24px;
 	margin-top: 10px;
-
+	margin-left: -30px;
 }
 .tag
 {
@@ -114,7 +115,7 @@ label.item.valid-bt {
 .select
 {
 	width: 60%;
-	font-size: 88px;
+	
 }
 .pay-button
 {

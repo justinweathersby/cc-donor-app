@@ -10,8 +10,12 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   }
 
   $scope.login = function(user) {
+      var spinner = new Spinner().spin()
+var target = document.getElementById('spinner');
+target.appendChild(spinner.el);
     if ($scope.loginForm.$valid){
       authService.login(user).success(function(){
+        spinner.stop();
         console.log('Login Success, Token: ', currentUserService.token);
         console.log('Sign-In', user);
         localStorage.setItem('user', user.email);
@@ -19,6 +23,7 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
         $state.go('tabs.dashboard');
       }).error(function()
       {
+        spinner.stop();
         var alertPopup = $ionicPopup.alert({
           title: 'Login Unsuccessful',
           template: "Email and password did not match Chatter's records."

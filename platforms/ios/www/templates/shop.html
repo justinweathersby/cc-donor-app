@@ -4,10 +4,10 @@
   </ion-header-bar>
   <ion-content class="padding">
 
-
+<div id="spinner"></div>
 <ul ng-repeat="c in categories">
 
-<a href="#/tab/shop/{{c.name}}">
+<a href="#/tab/shop/{{c.name}}/{{c.id}}">
   <li class="item">
     <i class="icon ion-tshirt-outline"></i><h3 class="cat-name">{{c.name}}</h3>
   </li>

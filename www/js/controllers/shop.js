@@ -6,16 +6,27 @@ app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
   //var baseUrl = CHATTER_API.url + "/item_categories";
   //console.log(baseUrl);
   //console.log(token);
+
+
+
+
+
+  var spinner = new Spinner().spin()
+var target = document.getElementById('spinner');
+target.appendChild(spinner.el);
     $http({method: 'GET',
                      url: CHATTER_API.url + "/item_categories",
+                    //url:"api/item_categories",
                     // headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
                      headers: {'Authorization': token}})
         .success( function( data )
         {
+          spinner.stop();
           $scope.categories = data;
 
         }
       ).error( function(error) {
+        spinner.stop();
           console.log(error);
         });
 });
