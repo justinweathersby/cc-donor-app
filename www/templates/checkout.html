@@ -1,0 +1,50 @@
+ <ion-view>
+  
+ <ion-nav-bar class="header-bar">
+ <ion-nav-title>
+   <h4 id="header-title">Checkout</h4>
+  </ion-nav-title>
+
+       <ion-nav-buttons side="left" >
+        <button class="btn" ng-click="back()">
+          <
+        </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  
+  <ion-content  class="content">
+
+
+<div class="card">
+  <div class="item item-divider">
+    {{item.item}}
+  </div>
+  <div class="checkout-item item item-text-wrap">
+   Price $ {{item.price}}
+   <br>
+   Quantity 1
+   <br>
+   Shipping $ {{item.shipping}}
+   <br>
+   Taxes $
+   <br>
+   Total $ {{totalPrice}}
+  </div>
+<!--   <div class="item item-divider">
+    I'm a Footer in a Card!
+  </div> -->
+</div>
+<p class="quantity-label" >Quantity</p>
+<select id="quantity-select" class="select">
+  <option ng-repeat="q in quantity">
+  {{q}}
+  </option>
+</select>
+
+<button ng-click="buy()" class="pay-button">Pay</button>
+ 
+<img class="stripe-logo" src="img/stripe.jpg">
+
+  </ion-content>
+</ion-view>

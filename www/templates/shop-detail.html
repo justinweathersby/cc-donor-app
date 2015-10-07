@@ -1,0 +1,80 @@
+ <ion-view>
+  
+ <ion-nav-bar class="header-bar">
+ <ion-nav-title>
+   <h4 id="header-title">{{shopname}}</h4>
+  </ion-nav-title>
+
+       <ion-nav-buttons side="left" >
+        <button class="btn" ng-click="back()">
+          <
+        </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  
+  <ion-content  class="content">
+<h1></h1>
+  <input placeholder="Search" class="field" ng-model="query">
+<h1></h1>
+
+  <div ng-repeat="i in items | filter: { name: query}">
+  <!--  url: '/checkout/:category/:item/:price/:quanity/:shipping', -->
+<a id="cardy" href="#/tab/checkout/{{i.item_category.name}}/{{i.name}}/{{i.price}}/{{i.quantity}}/{{i.shipping}}">
+  <div class="list card">
+
+  <div class="item item-avatar">
+    <img src="img/1.jpg">
+    <h2>{{i.vendor.name}}</h2>
+    <p>{{i.name}}</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" ng-src="{{i.image_url}}">
+    <p>
+     {{i.description}}
+    </p>
+    <p>
+      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">5 Comments</a>
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-thumbsup"></i>
+      Like
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  
+  </div>
+
+</div></a>
+
+  <!--   <div class="card">
+      <img class="shop-image" ng-src="{{i.image_url}}">
+      <h3>{{i.name}}</h3>
+      <h3>$ {{i.price}}</h3>
+        <a ng-click="like('{{s.title}}')" class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <a ng-click="comment('{{s.title}}')" class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+        </a>
+        <a ng-click="share('{{s.title}}')" class="tab-item" href="#">
+          <i class="icon ion-share"></i>
+          Share
+        </a>
+        <button ng-click="buy(i)" class="buy-button">Buy</button>
+    </div> -->
+    
+  </div>
+    
+ 
+  </ion-content>
+</ion-view>
