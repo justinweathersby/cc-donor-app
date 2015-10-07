@@ -95,7 +95,7 @@ var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmoun
       {
 
         swal("Order Complete", "your order is processing", "success")
-        window.location.href = '/#/tab/shop';
+        $state.go('tabs.shop');
       }
       ).error( function(error) {
         console.log(error);

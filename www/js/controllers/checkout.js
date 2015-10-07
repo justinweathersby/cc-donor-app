@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('CheckoutCtrl', function($scope, stripeService, $stateParams, $http) {
+app.controller('CheckoutCtrl', function($scope, $state, stripeService, $stateParams, $http) {
 
       console.log($stateParams);
       var cat = $stateParams.category;
@@ -25,6 +25,6 @@ app.controller('CheckoutCtrl', function($scope, stripeService, $stateParams, $ht
 
       $scope.back = function()
       {
-        window.location.href = '/#/tab/shop/'+cat;
+        $state.go('tabs.shop');
       }
 });

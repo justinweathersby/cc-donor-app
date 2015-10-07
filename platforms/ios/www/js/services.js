@@ -8,13 +8,17 @@ app.service('currentUserService', function(){
 //-- This service handles all authentication between app and Chatter API
 app.service('authService', function($http, currentUserService, CHATTER_API){
   this.login = function(user){
+      var spinner = new Spinner().spin()
+var target = document.getElementById('spinner');
+target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                 //  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                   headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                 //  headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
+        spinner.stop();
         console.log('Return Data From Login Post to Api:', data)
         currentUserService.token = data.auth_token;
         currentUserService.id = data.id;
@@ -91,7 +95,7 @@ var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmoun
       {
 
         swal("Order Complete", "your order is processing", "success")
-        window.location.href = '/#/tab/shop';
+        $state.go('tabs.shop');
       }
       ).error( function(error) {
         console.log(error);

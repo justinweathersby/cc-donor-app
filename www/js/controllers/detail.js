@@ -27,13 +27,13 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
 function getItems(lat,lng)
 {
- //var u ="/items?latitude=32.8873&longitude=-79.9833&item_category_id="+id;
+ var u ="/items?latitude=32.8873&longitude=-79.9833&item_category_id="+id;
   var spinner = new Spinner().spin()
 var target = document.getElementById('spinner');
 target.appendChild(spinner.el);
   $http({method: 'GET',
 
-url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_id='+id,
+url: CHATTER_API.url + '/items?latitude='+'32.8873'+'&longitude='+'-79.9833'+'&item_category_id='+id,
         //staging.creativechatter.com/api/items?latitude=32.8873&longitude=-79.9833&item_category_id=1
          headers: {'Authorization': token}})
           .success( function( data )
