@@ -12,7 +12,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     return  $http({method: 'POST',
                    url: 'api/login',
                    headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                   //headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                  // headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
@@ -46,8 +46,8 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
 // });
 
 
-app.service('stripeService',['$http',function ($http) {
-
+app.service('stripeService',['$http', '$state',function ($http, $state) {
+var baseUrl = "http://staging.creativechatter.com";
 var name = "";
 var price = "";
 var shopname = "";
@@ -56,20 +56,35 @@ var shopname = "";
                     get: function(image, name, price)
                     {
                       var q = document.getElementById('quantity-select').value;
-                      console.log(q);
+                    console.log(localStorage.getItem('token'));
                     name  = name;
                     price = price;
                     shopname = shopname;
                     console.log(name);
                     var handler = StripeCheckout.configure({
                         // test key
-                         key: 'pk_test_QTWZlzwsA6mjhPbwoYQNAnRa',
+                         key: 'pk_test_tslqI9coii8qKhuEkZI4ZlV6',
                         image: image,
                         token: function(token) {
+                        var access_token = localStorage.getItem('token');
 
+                        console.log(token.id);
             // make charge api call
+var url = "/api/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+            $http({method: 'POST',
+                   url: url,
+                   headers: {'Authorization': access_token}})
+      .success( function( data )
+      {
+        
+        swal("Order Complete", "your order is processing", "success")
+        window.location.href = '/#/tab/shop';
+      }
+      ).error( function(error) {
+        console.log(error);
+      });
 
-//app.use('/charge/:token/:amount', api.charge);
+
 
                 }
            

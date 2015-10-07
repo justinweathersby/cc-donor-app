@@ -14,11 +14,13 @@
 
   
   <ion-content  class="content">
+<h1></h1>
+  <input placeholder="Search" class="field" ng-model="query">
+<h1></h1>
 
-  
-  <div ng-repeat="i in items">
+  <div ng-repeat="i in items | filter: { name: query}">
   <!--  url: '/checkout/:category/:item/:price/:quanity/:shipping', -->
-<a href="#/tab/checkout/{{i.item_category.name}}/{{i.name}}/{{i.price}}/{{i.quantity}}/{{i.shipping}}">
+<a id="cardy" href="#/tab/checkout/{{i.item_category.name}}/{{i.name}}/{{i.price}}/{{i.quantity}}/{{i.shipping}}">
   <div class="list card">
 
   <div class="item item-avatar">

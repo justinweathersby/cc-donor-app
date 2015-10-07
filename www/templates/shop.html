@@ -4,9 +4,8 @@
   </ion-header-bar>
   <ion-content class="padding">
 
-<input placeholder="Search" class="field" ng-model="query">
-<h1></h1>
-<ul ng-repeat="c in categories | filter: { name: query}">
+
+<ul ng-repeat="c in categories">
 
 <a href="#/tab/shop/{{c.name}}">
   <li class="item">

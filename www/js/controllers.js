@@ -25,7 +25,7 @@ app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPo
 
 app.controller('ShopCtrl', function ($scope, $http) {
 
-$scope.query = "";
+
 var token = localStorage.getItem('token');
 //console.log(baseUrl);
 //console.log(token);
@@ -48,6 +48,7 @@ var token = localStorage.getItem('token');
 
 app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, stripeService) {
 
+ $scope.query = "";
  // console.log($stateParams);
   $scope.shop = [];
   $scope.items = [];
@@ -67,6 +68,7 @@ $http({method: 'GET',
           if(data[i].item_category.name == name)
           {
             console.log('match');
+
             $scope.items.push(data[i]);
           }
         }
@@ -77,6 +79,7 @@ $http({method: 'GET',
 
 $scope.back = function()
 {
+
   $state.go('tabs.shop');
 }
 
@@ -106,7 +109,7 @@ app.controller('CheckoutCtrl', function($scope, stripeService, $stateParams, $ht
  var n = parseFloat($scope.item.price)+parseFloat($scope.item.shipping);
       var total= n.toFixed(2);
 
- 
+
   stripeService.get($scope.item.image_url, $scope.item.item, total);
 }
 
