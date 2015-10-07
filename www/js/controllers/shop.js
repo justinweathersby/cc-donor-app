@@ -1,14 +1,13 @@
 'use strict'
 
-app.controller('ShopCtrl', function ($scope, $http) {
+app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
 
   var token = localStorage.getItem('token');
-  var baseUrl = "http://staging.creativechatter.com";
+  //var baseUrl = CHATTER_API.url + "/item_categories";
   //console.log(baseUrl);
   //console.log(token);
-
     $http({method: 'GET',
-                     url:'/api/item_categories',
+                     url: CHATTER_API.url + "/item_categories",
                     // headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
                      headers: {'Authorization': token}})
         .success( function( data )
@@ -16,7 +15,7 @@ app.controller('ShopCtrl', function ($scope, $http) {
           $scope.categories = data;
 
         }
-        ).error( function(error) {
+      ).error( function(error) {
           console.log(error);
         });
 });

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, stripeService) {
+app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
 
   $scope.query = "";
   // console.log($stateParams);
@@ -11,7 +11,7 @@ app.controller('DetailCtrl', function($scope, $state,  $http,  $stateParams, str
   var token = localStorage.getItem('token');
 
   $http({method: 'GET',
-         url:'/api/items',
+         url: CHATTER_API.url + '/items',
          headers: {'Authorization': token}})
           .success( function( data )
           {

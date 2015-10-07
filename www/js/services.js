@@ -59,7 +59,7 @@ app.service('donationCategoryService', function($http, CHATTER_API){
 // });
 
 
-app.service('stripeService',['$http', '$state',function ($http, $state) {
+app.service('stripeService',['$http', '$state',function ($http, $state, CHATTER_API) {
 var baseUrl = "http://staging.creativechatter.com";
 var name = "";
 var price = "";
@@ -83,7 +83,7 @@ var shopname = "";
 
                         console.log(token.id);
             // make charge api call
-var url = "/api/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
             $http({method: 'POST',
                    url: url,
                    headers: {'Authorization': access_token}})
