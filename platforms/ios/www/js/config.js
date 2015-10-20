@@ -1,5 +1,5 @@
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
@@ -96,4 +96,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
     $urlRouterProvider.otherwise('/login'); //--default go to page
+
+    //--Cordova white list plugin
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
