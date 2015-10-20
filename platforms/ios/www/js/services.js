@@ -86,11 +86,17 @@ var shopname = "";
                         var access_token = localStorage.getItem('token');
 
                         console.log(token.id);
-            // make charge api call
-var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
-            $http({method: 'POST',
-                   url: url,
-                   headers: {'Authorization': access_token}})
+      // make charge api call
+      var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+      $http({method: 'POST',
+             url: url,
+            //  data: {
+            //             stripeToken: token.id,
+            //             stripeVendor: shopname,
+            //             itemId: name,
+            //             quantity: quantity
+            //         },
+             headers: {'Authorization': access_token}})
       .success( function( data )
       {
 

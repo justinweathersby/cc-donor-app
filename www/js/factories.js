@@ -11,22 +11,3 @@ app.factory('Donation', function($resource, CHATTER_API) {
     'delete': {method:'DELETE'} }
   );
 });
-
-// app.factory('Camera', ['$q', function($q) {
-//
-//   return {
-//     getPicture: function(options) {
-//       var q = $q.defer();
-//       console.log("get Picture function")
-//       navigator.camera.getPicture(function(result) {
-//         console.log("Camera Magic")
-//         q.resolve(result);
-//       }, function(err) {
-//         q.reject(err);
-//         console.log("Error")
-//       }, options);
-//
-//       return q.promise;
-//     }
-//   }
-// }]);

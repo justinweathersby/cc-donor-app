@@ -150,11 +150,23 @@
       <!-- Upload Image Input -->
       <div class="list">
         <!-- TODO Testing for showing image -->
-        <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
-        <a class="item item-icon-left item-icon-right" href="#" ng-click="takePicture()">
+        <div class="row">
+          <div class="col col-offset-25 col-50">
+            <img style="width:100%;" ng-show="imageSrc !== undefined" ng-src="{{imageSrc}}">
+            <img style="width:100%;" ng-show="imageSrc === undefined" ng-src="http://placehold.it/300x300">
+          </div>
+        </div>
+        <a class="item item-icon-left item-icon-right" href="#" ng-click="selectPicture()">
           <i class="icon ion-plus-round"></i>
-            Upload Image Of Item
+            Select Image Of Item
+          <i class="icon ion-camera"></i>
+        </a>
+        <a id="upload_image_button"
+           class="item item-icon-left item-icon-right"
+           href="#"
+           ng-click="uploadPicture()">
+          <i class="icon ion-plus-round"></i>
+            Upload Image
           <i class="icon ion-camera"></i>
         </a>
         <li class="item item-checkbox">
