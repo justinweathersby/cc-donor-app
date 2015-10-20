@@ -136,8 +136,13 @@ label.item.valid-bt {
 {
 	text-decoration: none;
 }
-
-
+.map {
+  height: 100%;
+  width: 100%;
+}
+.scroll {
+  height: 100%;
+}
 
 
 

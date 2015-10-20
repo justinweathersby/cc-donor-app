@@ -13,8 +13,8 @@ var target = document.getElementById('spinner');
 target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                 //  headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                 //  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
@@ -37,11 +37,12 @@ target.appendChild(spinner.el);
 });
 
 
+
 app.service('donationCategoryService', function($http, CHATTER_API){
   this.getCategories = function(){
     console.log('Inside getCategories function...')
     return $http({method: 'GET',
-                  url: CHATTER_API.url + '/categories'})
+                  url: 'http://staging.creativechatter.com/api' + '/categories'})
       .success(function(data){
         console.log(data)
         }
@@ -87,7 +88,9 @@ var shopname = "";
 
                         console.log(token.id);
       // make charge api call
-      var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+    //  var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+  var url = 'http://staging.creativechatter.com/api' + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+
       $http({method: 'POST',
              url: url,
             //  data: {
@@ -99,15 +102,13 @@ var shopname = "";
              headers: {'Authorization': access_token}})
       .success( function( data )
       {
-
-        swal("Order Complete", "your order is processing", "success")
-        $state.go('tabs.shop');
+       
+        $state.go('tabs.map');
+      
       }
       ).error( function(error) {
         console.log(error);
       });
-
-
 
                 }
 

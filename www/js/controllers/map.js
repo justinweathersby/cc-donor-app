@@ -1,11 +1,21 @@
 'use strict'
 
-app.controller('MapCtrl', function($scope, $state, $stateParams, $http) {
+app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeolocation, $stateParams, $http) {
 
-	 var lat = 30.294608;
-	var lng = -81.653581;
 
-var mapOptions = {
+
+  // get user location
+       var posOptions = {timeout: 20000, enableHighAccuracy: true};
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            var lat  = position.coords.latitude
+            var lng = position.coords.longitude
+            console.log("location = "+lat+","+lng);
+
+            //getLocation(lat,lng);
+
+            var mapOptions = {
         //28.373113, -80.747651
          center: {lat: lat, lng: lng},
          zoom: 15,
@@ -21,11 +31,48 @@ var mapOptions = {
           style: google.maps.ZoomControlStyle.SMALL
         }
       };
+ var  map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+            getLocation(map, lat, lng);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          }, function(err) {
+            $ionicPopup.alert({
+                        title: "no location",
+                        content: "please enable location services"
+                    });
+           
+          });
+
  var geocoder = new google.maps.Geocoder();
-
-	getLocation(0,0);
 
 	var showLocation = function(lat, lng, address)
 {
@@ -41,8 +88,12 @@ var mapOptions = {
       animation: "slide-from-top"
 	 }, 
 		function(){   
-swal("Great", "Delivery will be on the way shortly", "success");
-		});
+
+swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
+		
+    $state.go('tabs.shop');
+
+    });
 
 };
 
@@ -59,9 +110,33 @@ swal("Great", "Delivery will be on the way shortly", "success");
   map.setCenter(location);
     }
 
-	 google.maps.event.addListener(map, 'click', function(event) {
-	 	console.log('hey');
-      placeMarker(event.latLng);
+	
+
+	function getLocation(map, lat , lng)
+{
+
+	 console.log("Not initialize");
+    google.maps.event.addDomListener(window, 'load', initialize());
+     var image = "img/point.png";
+    function initialize() {
+      console.log("Initialize");
+      
+
+      $scope.map = map;
+
+
+  var marker = new google.maps.Marker({
+    position: {lat: lat, lng: lng}
+    
+});
+
+// To add the marker to the map, call setMap();
+marker.setMap(map);
+
+
+ google.maps.event.addListener(map, 'click', function(event) {
+    console.log('hey');
+    //  placeMarker(event.latLng);
       var myLatLng = event.latLng;
       var lat = myLatLng.lat();
       var lng = myLatLng.lng();
@@ -87,27 +162,6 @@ swal("Great", "Delivery will be on the way shortly", "success");
       });
      });
 
-	function getLocation(lat , lng)
-{
-
-	 console.log("Not initialize");
-	 lat = 30.294608;
-	lng = -81.653581;
-    google.maps.event.addDomListener(window, 'load', initialize());
-     var image = "img/point.png";
-    function initialize() {
-      console.log("Initialize");
-      
-      $scope.map = map;
-
-
-            var marker = new google.maps.Marker({
-    position: {lat: lat, lng: lng}
-    
-});
-
-// To add the marker to the map, call setMap();
-marker.setMap(map);
 
 
     }
