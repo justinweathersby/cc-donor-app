@@ -15,7 +15,7 @@ app.controller('CreateDonationController', function($scope,
     city: "",
     state: ""
   };
-
+  $scope.donation.image_file_name = "";
   $scope.s3_upload_image = false;
   // $scope.categories = {};
   //
@@ -24,12 +24,18 @@ app.controller('CreateDonationController', function($scope,
   // };
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
+    var time = new Date().getTime();
+    var fileName = currentUserService.id + "-" + time + ".jpg"; //--Name the file
+    $scope.donation.image_file_name = fileName;
+
+    console.log('Donation Save - filename: ' + $scope.donation.image_file_name);
     $scope.donation.$save()
       .then(function(resp) {
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
           template: "Your donation has been successfully uploaded to Creative Chatter. Check notifications for a match."
         });
+        $scope.uploadPicture(resp.id, fileName);
         $state.go('viewDonation', {id :resp.id}); // on success go back to home i.e. donations state.
       })
       .catch(function(resp){
@@ -57,7 +63,7 @@ app.controller('CreateDonationController', function($scope,
     document.addEventListener('deviceready', function() {
         console.log("Device is ready..")
         var options = {
-            quality: 10,
+            quality: 60,
             targetWidth: 256,
             targetHeight: 256,
             destinationType: Camera.DestinationType.FILE_URI,
@@ -79,10 +85,11 @@ app.controller('CreateDonationController', function($scope,
 
   }; // Select picture
 
-$scope.uploadPicture = function() {
-//uploadToS3
-      var time = new Date().getTime();
-      var fileName = currentUserService.id + "-" + time + ".jpg"; //--Name the file
+
+//--Upload to s3
+//--Called from addDonation function
+$scope.uploadPicture = function(itemId, fileName) {
+      // var fileName = $scope.donation.image_file_name
 
       console.log('Uploading ' + fileName + ' to S3...');
 
@@ -104,13 +111,12 @@ $scope.uploadPicture = function() {
             //    title: 'Successful Upload',
             //    template: 'Thank you for attaching an image.'
             //  });
-             $ionicPopup.alert({
-                title: 'Success',
-                content: 'Thank you for attaching an image'
-              }).then(function(res) {
-                document.getElementById('upload_image_button').disabled = true;
-                console.log('Test Alert Box');
-            });
+            //  $ionicPopup.alert({
+            //     title: 'Success',
+            //     content: 'Thank you for attaching an image'
+            //   }).then(function(res) {
+                //document.getElementById('upload_image_button').disabled = true;
+            // });
           }//--End win
 
           var fail = function (error) {
@@ -132,7 +138,7 @@ $scope.uploadPicture = function() {
 
             var uri = encodeURI("https://" + data.bucket + ".s3.amazonaws.com/");
             var params = {
-              "key": "resources/" + fileName,
+              "key": "resources/images/000/000/" + itemId + "/medium/" + fileName,
               "AWSAccessKeyId": data.key,
               "acl": "public-read",
               "policy": data.policy,
