@@ -38,29 +38,22 @@ target.appendChild(spinner.el);
 
 
 app.service('donationCategoryService', function($http, CHATTER_API){
-  this.getCategories = function(){
+  var token = localStorage.getItem('token');
+  this.getCategories = function(q){
     console.log('Inside getCategories function...')
+    console.log(q)
     return $http({method: 'GET',
-                  url: CHATTER_API.url + '/categories'})
+                  url: CHATTER_API.url + '/categories?query=' + q,
+                  headers: {'Authorization':  token}})
       .success(function(data){
-        console.log(data)
+        console.log("CategoriesService: ", data)
         }
       ).error( function(error) {
-        console.log(error);
+        console.log("CategoriesServiceError: ", error);
       });
     }
 });
 
-//-- This service handles all calls to Items (vendor's) through the Chatter API
-// app.service('vendorItemService', function($http, currentUserService){
-//   this.getItems = function(){
-//     return $http({method: 'GET', url: '/api/items'})
-//     .success(function(data)
-//   {
-//
-//   });
-//   };
-// });
 
 
 app.service('stripeService',['$http', '$state',function ($http, $state, CHATTER_API) {

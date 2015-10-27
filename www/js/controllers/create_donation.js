@@ -2,13 +2,14 @@
 
 app.controller('CreateDonationController', function($scope,
                                                     $state, $stateParams, $http,
-                                                    $ionicPopup, $ionicPlatform, $ionicModal, $ionicLoading,
+                                                    $ionicPopup, $ionicPlatform, $ionicModal,
                                                     $cordovaCamera, $cordovaFileTransfer,
                                                     donationCategoryService, s3SigningService, currentUserService,
                                                     Donation,
                                                     CHATTER_API) {
-  $scope.donation = new Donation();
-  //--TODO: Can i put this in the Donation factory?
+
+
+  $scope.donation = new Donation;
   $scope.donation.location_attributes = {
     street: "",
     postal_code: "",
@@ -25,10 +26,13 @@ app.controller('CreateDonationController', function($scope,
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
     var time = new Date().getTime();
+    var token = localStorage.getItem('token');
     var fileName = currentUserService.id + "-" + time + ".jpg"; //--Name the file
-    $scope.donation.image_file_name = fileName;
 
-    console.log('Donation Save - filename: ' + $scope.donation.image_file_name);
+    if ($scope.s3_upload_image == true){
+      $scope.donation.image_file_name = fileName;
+    }
+
     $scope.donation.$save()
       .then(function(resp) {
         var alertPopup = $ionicPopup.alert({
@@ -36,7 +40,7 @@ app.controller('CreateDonationController', function($scope,
           template: "Your donation has been successfully uploaded to Creative Chatter. Check notifications for a match."
         });
         $scope.uploadPicture(resp.id, fileName);
-        $state.go('viewDonation', {id :resp.id}); // on success go back to home i.e. donations state.
+        $state.go('showDonation', {id :resp.id}); // on success go back to home i.e. donations state.
       })
       .catch(function(resp){
         console.log("REsponse: ", resp.data)
@@ -51,7 +55,7 @@ app.controller('CreateDonationController', function($scope,
   $scope.callbackMethod = function (query) {
     console.log("query: ", query)
     //--TODO find method to search categories
-    return donationCategoryService.getCategories();
+    return donationCategoryService.getCategories(query);
   };
 
   //-- Method is called when an item is selected inside the category modal
@@ -71,8 +75,8 @@ app.controller('CreateDonationController', function($scope,
         };
         $cordovaCamera.getPicture(options).then(function(imageURI) {
             $scope.imageSrc = imageURI;
-            //var image = document.getElementById('myImage');
             image.src = imageURI;
+            $scope.s3_upload_image = true;
 
         }, function(err) {
             console.log("Did not get image from camera")
@@ -99,24 +103,11 @@ $scope.uploadPicture = function(itemId, fileName) {
       .success(function(data, status, headers, config) {
 
           console.log('Got signed doc: ', data.bucket);
-          //console.log('Uoptions: ', Uoptions);
-
 
           var win = function (r) {
             console.log("Code = " + r.responseCode);
             console.log("Response = " + r.response);
             console.log("Sent = " + r.bytesSent);
-            //angular.element(document.getElementById('upload_image_button'))[0].disabled = true;
-            // alert({
-            //    title: 'Successful Upload',
-            //    template: 'Thank you for attaching an image.'
-            //  });
-            //  $ionicPopup.alert({
-            //     title: 'Success',
-            //     content: 'Thank you for attaching an image'
-            //   }).then(function(res) {
-                //document.getElementById('upload_image_button').disabled = true;
-            // });
           }//--End win
 
           var fail = function (error) {
@@ -124,8 +115,7 @@ $scope.uploadPicture = function(itemId, fileName) {
               console.log("upload error source " + error.source);
               console.log("upload error target " + error.target);
           }
-          //'data:image/jpeg;base64,'
-          console.log($scope.imageSrc);
+
           var imgURI =  $scope.imageSrc;
 
           document.addEventListener('deviceready', function(){

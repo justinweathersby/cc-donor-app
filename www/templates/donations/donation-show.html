@@ -1,28 +1,38 @@
 <ion-view>
   <ion-header-bar class="bar-positive">
-    <button class="button icon ion-arrow-left-c" ng-click="$ionicGoBack()"> Back </button>
+    <button class="button icon ion-arrow-left-c" ng-click="back()">Back</button>
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
   </ion-header-bar>
   <ion-content class="padding">
   <div class="list card">
     <div class="item item-avatar">
-      <img src="http://placehold.it/140x100.jpg">
+      <img src="img/cc-logo-circle.png">
+      <button class="button button-outline button-assertive"
+              style="float:right"
+              ng-hide="donation.workflow_state == 'closed'"
+              ng-click="destroy()">Delete</button>
       <h2>{{donation.title}}</h2>
-      <p>November 05, 1955</p>
-    </div>
+      <p>{{donation.category.name}}</p>
 
+      <!-- <p>November 05, 1955</p> -->
+    </div>
     <div class="item item-body">
-      <img class="full-image" src="{{donation.image_url}}">
+      <div class="row">
+        <div class="col col-offset-25 col-50">
+          <img style="width:100%;" ng-src="{{donation.image_url}}">
+        </div>
+      </div>
       <p>
         {{donation.description}}
       </p>
-      <p>
+      <p>Currently Match Status is <b>{{donation.workflow_state}}</b></p>
+      <!-- <p>
         <a href="#" class="subdued">1 Like</a>
         <a href="#" class="subdued">5 Comments</a>
-      </p>
+      </p> -->
     </div>
 
-    <div class="item tabs tabs-secondary tabs-icon-left">
+    <!-- <div class="item tabs tabs-secondary tabs-icon-left">
       <a class="tab-item" href="#">
         <i class="icon ion-thumbsup"></i>
         Like
@@ -35,7 +45,7 @@
         <i class="icon ion-share"></i>
         Share
       </a>
-    </div>
+    </div> -->
   </div>
 </ion-content>
 </ion-view>

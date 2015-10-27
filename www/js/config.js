@@ -26,10 +26,10 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
     })
 
     // --- Page displaying just 1 of the users donations
-    .state('viewDonation', {
-      url: '/donations/:id/view',
-      templateUrl: 'templates/donations/donation-view.html',
-      controller: 'ViewDonationController'
+    .state('showDonation', {
+      url: '/donations/:id',
+      templateUrl: 'templates/donations/donation-show.html',
+      controller: 'ShowDonationController'
     })
 
     //--Routes for tabs

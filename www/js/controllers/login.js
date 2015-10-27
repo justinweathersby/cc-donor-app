@@ -20,6 +20,7 @@ target.appendChild(spinner.el);
         console.log('Sign-In', user);
         localStorage.setItem('user', user.email);
         localStorage.setItem('token', currentUserService.token);
+        localStorage.setItem('id', currentUserService.id);
         $state.go('tabs.dashboard');
       }).error(function()
       {
