@@ -1,5 +1,8 @@
 
-app.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionicConfigProvider) {
+  
+   $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
   $stateProvider
     .state('login', {
       url: '/login',
@@ -63,6 +66,16 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
         'shop-tab' : { //--name of view
         templateUrl: 'templates/shop.html',
         controller: 'ShopCtrl'
+        }
+      }
+    })
+
+     .state('tabs.map', {
+      url: '/map',
+      views: {
+        'shop-tab' : { //--name of view
+        templateUrl: 'templates/map.html',
+        controller: 'MapCtrl'
         }
       }
     })

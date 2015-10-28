@@ -13,8 +13,8 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                 //  headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                 //  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
@@ -35,6 +35,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     return  $http({method: 'POST', url: CHATTER_API.url + '/logout', headers: {'Authorization' : user.token}});
   };// --End of logout function
 });
+
 
 
 app.service('donationCategoryService', function($http, CHATTER_API){
@@ -80,7 +81,9 @@ var shopname = "";
 
                         console.log(token.id);
       // make charge api call
-      var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+    //  var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+  var url = 'http://staging.creativechatter.com/api' + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+
       $http({method: 'POST',
              url: url,
             //  data: {
@@ -93,14 +96,12 @@ var shopname = "";
       .success( function( data )
       {
 
-        swal("Order Complete", "your order is processing", "success")
-        $state.go('tabs.shop');
+        $state.go('tabs.map');
+
       }
       ).error( function(error) {
         console.log(error);
       });
-
-
 
                 }
 

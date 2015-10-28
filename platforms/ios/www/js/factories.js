@@ -7,3 +7,6 @@
 //     'delete': {method:'DELETE'} }
 //   );
 // });
+app.factory('Donation', function($resource, CHATTER_API) {
+  return $resource(CHATTER_API.url + '/resources/:id'); // Note the full endpoint address
+});
