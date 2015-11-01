@@ -45,7 +45,7 @@ app.controller('CheckoutCtrl', function($scope, $state, stripeService, $statePar
 
         var s = $stateParams;
 
-        var names = [{"vendor":s.vendor, "phone":9049998388,"item":s.item, "lat": s.lat,
+        var names = [{"vendor":s.vendor, "phone":s.phone,"item":s.item, "lat": s.lat,
         "lng":s.lng, "total": total, "shipping": s.shipping, "image": localStorage.getItem('image')}];
         localStorage["names"] = JSON.stringify(names);
         var storedNames = JSON.parse(localStorage["names"]);

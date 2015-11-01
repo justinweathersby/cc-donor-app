@@ -20,7 +20,7 @@
 <div id="spinner"></div>
   <div ng-repeat="i in items | filter: { name: query}">
    <!-- url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng', -->
-<a id="cardy" href="#/tab/checkout/{{i.name}}/{{i.price}}/{{i.shipping}}/{{i.vendor.name}}/{{i.vendor.location.latitude}}/{{i.vendor.location.longitude}}" ng-click="saveImage(i.image_url)">
+<a id="cardy" href="#/tab/checkout/{{i.name}}/{{i.vendor.phone}}/{{i.price}}/{{i.shipping}}/{{i.vendor.name}}/{{i.vendor.location.latitude}}/{{i.vendor.location.longitude}}" ng-click="saveImage(i.image_url)">
   <div class="list card">
 
   <div class="item item-avatar">

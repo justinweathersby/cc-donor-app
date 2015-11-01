@@ -95,7 +95,7 @@ swal("Order Complete", "your order is processing and delivery will be on the way
     var url = "http://driver-53731.onmodulus.net/api/delivery";
     var fromArray =  [{"name":soldItem.vendor, "phone":soldItem.phone, "lat": soldItem.lat, "lng": soldItem.lng}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
-    $http.post(url, {"to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item, "pickupStatus": "processing","deliveryStatus":"none"})
+    $http.post(url, {"to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item,"deliveryStatus":"processing"})
     .success( function (data) {
 
       console.log(data);

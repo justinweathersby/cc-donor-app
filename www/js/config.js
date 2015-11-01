@@ -91,7 +91,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     })
         // <!-- url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng', -->
       .state('tabs.checkout', { //--child template of tabs
-      url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng',
+      url: '/checkout/:item/:phone/:price/:shipping/:vendor/:lat/:lng',
       views: {
         'shop-tab' : { //--name of view
         templateUrl: 'templates/checkout.html',
