@@ -143,7 +143,10 @@ label.item.valid-bt {
 .scroll {
   height: 100%;
 }
-
+.blank
+{
+	color: transparent;
+}
 
 
 

@@ -4,6 +4,12 @@ app.controller('DetailCtrl', function($scope, $cordovaGeolocation, $state,  $htt
 
   $scope.query = "";
 
+$scope.saveImage = function(url)
+{
+  localStorage.setItem('image', url);
+  console.log(localStorage.getItem('image'));
+}
+
 
 var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
@@ -48,7 +54,9 @@ url: CHATTER_API.url + '/items?latitude='+'32.8873'+'&longitude='+'-79.9833'+'&i
                
                 $scope.items.push(data[i]);
               }
+              
             }
+            console.log($scope.items[0]);
               if($scope.items.length == 0)
                 {
                    swal("", "no items found", "warning");

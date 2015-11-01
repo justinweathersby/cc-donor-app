@@ -77,6 +77,8 @@ var shopname = "";
                     price = price;
                     shopname = shopname;
                     console.log(name);
+                    console.log(price);
+                    console.log(shopname);
                     var handler = StripeCheckout.configure({
                         // test key
                          key: 'pk_test_tslqI9coii8qKhuEkZI4ZlV6',

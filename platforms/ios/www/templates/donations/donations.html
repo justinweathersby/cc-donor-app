@@ -5,10 +5,13 @@
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
   </ion-header-bar>
   <ion-content class="padding">
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="getDonations()">
+   </ion-refresher>
     <div class="list">
       <ion-item collection-repeat="donation in donations"
       <a class="item item-avatar" href="#/donations/{{donation.id}}">
         <img src="img/cc-logo-circle.png">
+        <h3 style="float:right"><b>{{donation.workflow_state}}</b></h3>
         <h2>{{donation.title}}</h2>
         <p>{{donation.description}}</p>
       </a>

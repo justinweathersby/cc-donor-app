@@ -13,7 +13,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                 //  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                //   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
                    headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
@@ -28,7 +28,12 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
         $http.defaults.headers.common['Authorization'] = data.auth_token;
 
       }
-      );
+    )
+    .error( function(error)
+    {
+      console.log(error);
+      spinner.stop();
+    });
   }; //--End of login function
 
   this.logout = function(user){
@@ -72,6 +77,8 @@ var shopname = "";
                     price = price;
                     shopname = shopname;
                     console.log(name);
+                    console.log(price);
+                    console.log(shopname);
                     var handler = StripeCheckout.configure({
                         // test key
                          key: 'pk_test_tslqI9coii8qKhuEkZI4ZlV6',

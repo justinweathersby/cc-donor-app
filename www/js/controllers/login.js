@@ -4,6 +4,7 @@ app.controller('LoginController', function($scope, $state, $ionicPopup, authServ
   var user = localStorage.getItem('user');
   console.log(user);
 
+
   if(user !== null)
   {
     $state.go('tabs.dashboard');

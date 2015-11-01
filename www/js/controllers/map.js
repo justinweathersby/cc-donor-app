@@ -2,7 +2,8 @@
 
 app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeolocation, $stateParams, $http) {
 
-
+  var soldItem = JSON.parse(localStorage["names"])[0];
+  console.log(soldItem);
 
   // get user location
        var posOptions = {timeout: 20000, enableHighAccuracy: true};
@@ -12,7 +13,7 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
             var lat  = position.coords.latitude
             var lng = position.coords.longitude
             console.log("location = "+lat+","+lng);
-
+          
             //getLocation(lat,lng);
 
             var mapOptions = {
@@ -91,7 +92,16 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
 
 swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
 		
-    $state.go('tabs.shop');
+    var url = "http://driver-53731.onmodulus.net/api/delivery";
+    var fromArray =  [{"name":soldItem.vendor, "phone":soldItem.phone, "lat": soldItem.lat, "lng": soldItem.lng}];
+     var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
+    $http.post(url, {"id": Math.random(),"to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item, "pickupStatus": "processing","deliveryStatus":"none"})
+    .success( function (data) {
+
+      console.log(data);
+
+      $state.go('tabs.shop');
+    })
 
     });
 
