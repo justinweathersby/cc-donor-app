@@ -13,8 +13,8 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                 //  headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                 // headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:

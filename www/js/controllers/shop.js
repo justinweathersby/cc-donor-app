@@ -9,8 +9,6 @@ app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
 
 
 
-
-
   var spinner = new Spinner().spin()
 var target = document.getElementById('spinner');
 target.appendChild(spinner.el);
