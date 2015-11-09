@@ -51,6 +51,17 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
         }
       }
     })
+
+     .state('tabs.delivery', { //--child template of tabs
+      url: '/delivery',
+      views: {
+        'dashboard-tab' : { //--name of view
+        templateUrl: 'templates/delivery.html',
+        controller: 'DeliveryCtrl'
+        }
+      }
+    })
+
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
       views: {

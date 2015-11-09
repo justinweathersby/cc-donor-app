@@ -18,3 +18,5 @@ app.constant('USER_ROLES', {
 // app.constant('CHATTER_API', {
 //    url:'api'
 // });
+
+SOCKET_URL = "http://driver-53731.onmodulus.net/";
