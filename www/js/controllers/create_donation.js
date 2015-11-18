@@ -46,7 +46,7 @@ app.controller('CreateDonationController', function($scope,
         console.log("REsponse: ", resp.data)
         var alertPopup = $ionicPopup.alert({
           title: 'Failed',
-          // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
+          template: "Sorry something went wrong. Please try to log out then back in. If this problem continues please contact Creative Chatter at support@creativechatter.com"
         });
       });
   };
