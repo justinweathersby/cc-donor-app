@@ -20,8 +20,11 @@ target.appendChild(spinner.el);
         console.log('Login Success, Token: ', currentUserService.token);
         console.log('Sign-In', user);
         localStorage.setItem('user', user.email);
+        //alert(user.email);
+        //alert(localStorage.getItem('user'));
         localStorage.setItem('token', currentUserService.token);
         localStorage.setItem('id', currentUserService.id);
+        window.location.reload();
         $state.go('tabs.dashboard');
       }).error(function()
       {

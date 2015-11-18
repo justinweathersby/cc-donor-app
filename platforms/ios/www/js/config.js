@@ -53,11 +53,21 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     })
 
      .state('tabs.delivery', { //--child template of tabs
-      url: '/delivery',
+      url: '/delivery/:status/:id',
       views: {
         'dashboard-tab' : { //--name of view
         templateUrl: 'templates/delivery.html',
         controller: 'DeliveryCtrl'
+        }
+      }
+    })
+
+.state('tabs.delivery-list', { //--child template of tabs
+      url: '/delivery-list',
+      views: {
+        'dashboard-tab' : { //--name of view
+        templateUrl: 'templates/delivery-list.html',
+        controller: 'DeliveryListCtrl'
         }
       }
     })

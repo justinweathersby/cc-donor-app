@@ -8,6 +8,7 @@ app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
   //console.log(token);
 
 
+  $scope.icons = ICONS;
 
   var spinner = new Spinner().spin()
 var target = document.getElementById('spinner');

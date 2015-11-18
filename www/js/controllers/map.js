@@ -38,33 +38,6 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
             getLocation(map, lat, lng);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           }, function(err) {
             $ionicPopup.alert({
                         title: "no location",
@@ -95,7 +68,7 @@ swal("Order Complete", "your order is processing and delivery will be on the way
     var url = "http://driver-53731.onmodulus.net/api/delivery";
     var fromArray =  [{"name":soldItem.vendor, "phone":soldItem.phone, "lat": soldItem.lat, "lng": soldItem.lng}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
-    $http.post(url, {"to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item,"deliveryStatus":"processing"})
+    $http.post(url, {"customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item,"status":"processing"})
     .success( function (data) {
 
       console.log(data);

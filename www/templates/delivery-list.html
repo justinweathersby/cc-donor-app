@@ -1,0 +1,25 @@
+<ion-view>
+  <ion-header-bar class="bar-positive">
+  <button class="button icon ion-arrow-left-c" ui-sref="tabs.dashboard"> Back </button>
+    <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+   
+
+  <ion-list ng-repeat="d in deliveries">
+   <div ui-sref="tabs.delivery({status: d.status, id: d._id})" class="list card">
+
+  <div class="item item-avatar" >
+    <img ng-src="img/1.jpg">
+    <h2>{{d.item}}</h2>
+    <p>{{d.from[0].name}}</p>
+    <p>order is {{d.status}}</p>
+  </div>
+
+
+</div>
+  </ion-list>
+
+
+  </ion-content>
+</ion-view>

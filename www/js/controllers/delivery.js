@@ -1,75 +1,81 @@
+app.controller('DeliveryCtrl', function($scope, $state, $cordovaGeolocation, $stateParams, $http) {
 
 
-
-app.controller('DeliveryCtrl', function ($scope, $http) {
-
-
-// //37.35357644, -122.10818206
-    var map = new GMaps({
-      div: '#map',
-      lat: 37.35357644,
-      lng: -122.10818206,
-      zoom: 17
-    });
-//-122.10818206
-  var myMarker = map.addMarker({
-  lat: 37.35357644,
-  lng: -122.10818206,
-  title: "me"
-});
-
-
-//client side
- var socket = io.connect(SOCKET_URL);
-
- socket.on('moving', function(location) {
-
-  var lat  = location[0].lat;
-  var lng = location[0].lng;
-  console.log("location from socket = "+lat+", "+lng);
-
- map.setCenter(lat, lng);
-  //update map marker
- var latlng = new google.maps.LatLng(lat, lng);
-myMarker.setPosition(latlng);
-
- });
-
-$scope.watch = function()
+    //console.log($stateParams);
+if($stateParams.status == "onway") //onway
 {
-var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-
-      map.setCenter(lat, long);
-
-    var watchOptions = {
-    timeout : 3000,
-    enableHighAccuracy: false // may cause errors if true
-  };
-
-  var watch = $cordovaGeolocation.watchPosition(watchOptions);
-  watch.then(
-    null,
-    function(err) {
-      // error
-    },
-    function(position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-        var location = [{lat: lat, lng: long}];
-        socket.emit('moving', location);
-  });
-
-    }, function(err) {
-      // error
+    var deliveryMap = new GMaps({
+        div: '#map',
+        lat: 0.0,
+        lng: 0.0,
+        zoom: 17
     });
 
-        }
+    var deliveryMarker = deliveryMap.addMarker({
+        lat: 0.0,
+        lng: 0.0
+
+    });
+
+    var meMarker = deliveryMap.addMarker({
+        lat: 0.0,
+        lng: 0.0
+
+    });
+
+    //if you have deliveries than watch the driver
+    var socket = io.connect(SOCKET_URL);
+
+    socket.on('moving', function(location) {
+
+    console.log(location);
+      if(location[0].id == $stateParams.id)
+      {
+        var lat = location[0].lat;
+        var lng = location[0].lng;
+        console.log("location from socket = " + lat + ", " + lng);
+        //update map marker
+        var latlng = new google.maps.LatLng(lat, lng);
+        deliveryMarker.setPosition(latlng);
+         deliveryMap.setCenter(lat, lng);
+      }
+
+    });
+
+
+
+    var posOptions = {
+        timeout: 10000,
+        enableHighAccuracy: false
+    };
+    $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function(position) {
+            var lat = position.coords.latitude
+            var long = position.coords.longitude
+
+            //deliveryMap.setCenter(lat, long);
+            var latlng = new google.maps.LatLng(lat, long);
+            meMarker.setPosition(latlng);
+
+            var watchOptions = {
+                timeout: 3000,
+                enableHighAccuracy: false // may cause errors if true
+            };
+
+            // start watching yourself
+
+
+        });
+}
+else
+{
+  alert('your order has not been picked up yet');
+  $state.go('tabs.delivery-list');
+}
+
 
 
 
 });
+//client side

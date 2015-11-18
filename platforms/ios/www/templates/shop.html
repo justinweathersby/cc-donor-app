@@ -5,11 +5,11 @@
   <ion-content class="padding">
 
 <div id="spinner"></div>
-<ul ng-repeat="c in categories">
+<ul ng-repeat="c in categories track by $index">
 
 <a href="#/tab/shop/{{c.name}}/{{c.id}}">
   <li class="item">
-    <i class="icon ion-tshirt-outline"></i><h3 class="cat-name">{{c.name}}</h3>
+    <i class="icon {{icons[$index]}}"></i><h3 class="cat-name">{{c.name}}</h3>
   </li>
  </a>
   
