@@ -224,12 +224,13 @@
           View our
           <a href='#' ng-click='openModal()'>Terms and Conditions</a>
         </div>
-      </div>
-      <div>
-        <button type="submit" class="button button-block button-positive" ng-disabled="donationForm.$invalid && termsCheckbox==false" ng-click="addDonation()">
+
+        <button type="submit" class="button button-block button-positive" style="margin-bottom: 80px;" ng-disabled="donationForm.$invalid || termsCheckbox==false" ng-click="addDonation()">
           Post Item
         </button>
       </div>
+
+
 
     </ion-content>
   </form>

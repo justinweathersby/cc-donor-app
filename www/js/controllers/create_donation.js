@@ -25,25 +25,33 @@ app.controller('CreateDonationController', function($scope,
   // };
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
+    console.log('Adding donation...');
     var time = new Date().getTime();
     var token = localStorage.getItem('token');
-    var fileName = currentUserService.id + "-" + time + ".jpg"; //--Name the file
+    var user_id = localStorage.getItem('id');
+    var fileName = user_id + "-" + time + ".jpg"; //--Name the file
 
-    if ($scope.s3_upload_image == true){
+    $http.defaults.headers.common['Authorization'] = token;
+
+    if ($scope.s3_upload_image){
       $scope.donation.image_file_name = fileName;
+      console.log('Upload image: ', fileName);
     }
+    console.log('Image filename?: ', $scope.donation.image_file_name);
 
     $scope.donation.$save()
       .then(function(resp) {
+        console.log('successly donated item');
+        $scope.uploadPicture(resp.id, fileName);
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
           template: "Your donation has been successfully uploaded to Creative Chatter. Check notifications for a match."
         });
-        $scope.uploadPicture(resp.id, fileName);
+
         $state.go('showDonation', {id :resp.id}); // on success go back to home i.e. donations state.
       })
       .catch(function(resp){
-        console.log("REsponse: ", resp.data)
+        console.log("REsponse: ", resp.data);
         var alertPopup = $ionicPopup.alert({
           title: 'Failed',
           template: "Sorry something went wrong. Please try to log out then back in. If this problem continues please contact Creative Chatter at support@creativechatter.com"
@@ -64,19 +72,21 @@ app.controller('CreateDonationController', function($scope,
   };
 
   $scope.selectPicture = function() {
+    console.log('Selected option to upload a picture...setting s3_upload_image to true');
+    $scope.s3_upload_image = true;
+
     document.addEventListener('deviceready', function() {
         console.log("Device is ready..")
         var options = {
-            quality: 60,
-            targetWidth: 256,
-            targetHeight: 256,
+            quality: 100,
+            targetWidth: 300,
+            targetHeight: 300,
             destinationType: Camera.DestinationType.FILE_URI,
             sourceType: Camera.PictureSourceType.CAMERA,
         };
         $cordovaCamera.getPicture(options).then(function(imageURI) {
             $scope.imageSrc = imageURI;
             image.src = imageURI;
-            $scope.s3_upload_image = true;
 
         }, function(err) {
             console.log("Did not get image from camera")
@@ -94,12 +104,14 @@ app.controller('CreateDonationController', function($scope,
 //--Called from addDonation function
 $scope.uploadPicture = function(itemId, fileName) {
       // var fileName = $scope.donation.image_file_name
+      var token = localStorage.getItem('token');
+      $http.defaults.headers.common['Authorization'] = token;
 
       console.log('Uploading ' + fileName + ' to S3...');
 
       $http({method: 'GET',
                     url: CHATTER_API.url + '/s3_access_signature',
-                    headers: {'X-API-FILENAME' : fileName}})
+                    headers:{'X-API-FILENAME': fileName}})
       .success(function(data, status, headers, config) {
 
           console.log('Got signed doc: ', data.bucket);
@@ -122,7 +134,7 @@ $scope.uploadPicture = function(itemId, fileName) {
             var Uoptions = new FileUploadOptions();
             //var Uoptions = {};
             Uoptions.fileKey="file";
-            Uoptions.fileName = fileName;
+            Uoptions.fileName = fileName; //--fileName is the param from function
             Uoptions.mimeType ="image/jpeg";
             Uoptions.chunkedMode = false;
 
@@ -138,6 +150,8 @@ $scope.uploadPicture = function(itemId, fileName) {
             Uoptions.params = params;
 
             var ft = new FileTransfer();
+            //-- if imgURI is nil try $scope.imageSrc
+            console.log('File upload: ', imgURI);
             ft.upload(imgURI, uri, win, fail, Uoptions);
 
           }, false); // device ready

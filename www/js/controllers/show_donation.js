@@ -19,6 +19,7 @@ app.controller('ShowDonationController', function($scope, $state, $stateParams, 
     {
       // spinner.stop();
       $scope.donation = data;
+      console.log('image url: ', $scope.donation.image_url);
     }
     ).error( function(error) {
       // spinner.stop();
