@@ -46,8 +46,8 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
       url: '/dashboard',
       views: {
         'dashboard-tab' : { //--name of view
-        templateUrl: 'templates/dashboard.html'
-        //controller: 'DashboardController'
+        templateUrl: 'templates/dashboard.html',
+        controller: 'DashController'
         }
       }
     })

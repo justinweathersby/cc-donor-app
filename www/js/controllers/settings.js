@@ -12,8 +12,8 @@ app.controller('SettingsController', function($scope, $ionicActionSheet, $state,
 
       localStorage.removeItem('user');
       localStorage.removeItem('token');
+      localStorage.removeItem('first');
       
-      //alert('logged out '+localStorage.getItem('user'));
 
       $state.go('login');
        return true;

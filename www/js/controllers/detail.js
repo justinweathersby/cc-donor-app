@@ -19,7 +19,8 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
       var long = position.coords.longitude
       getItems(lat, long);
     }, function(err) {
-      swal("", "enable location services", "warning");
+     window.plugins.toast.showLongCenter("Enable location services");
+
     });
 
 
@@ -59,7 +60,8 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
             console.log($scope.items[0]);
               if($scope.items.length == 0)
                 {
-                   swal("", "no items found", "warning");
+    window.plugins.toast.showShortCenter("no items found");
+
                 }
           }
           ).error( function(error) {

@@ -24,15 +24,15 @@
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
-    <feature name="Console">
-        <param name="ios-package" value="CDVLogger" />
+    <feature name="BackgroundMode">
+        <param name="ios-package" value="APPBackgroundMode" />
     </feature>
-    <feature name="File">
-        <param name="ios-package" value="CDVFile" />
+    <feature name="LocalNotification">
+        <param name="ios-package" onload="true" value="APPLocalNotification" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="FileTransfer">
-        <param name="ios-package" value="CDVFileTransfer" />
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
     </feature>
     <icon height="60" src="www/icons/ios/icon-60.png" width="60" />
     <icon height="120" src="www/icons/ios/icon-60@2x.png" width="120" />

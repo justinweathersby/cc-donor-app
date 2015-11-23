@@ -11,7 +11,8 @@ $http.get(DELIVERY_API, {params: {customer: user}}).success( function (data) {
 
 	if(data.length == 0)
 	{
-		alert('you have no orders');
+	 window.plugins.toast.showShortBottom("You have no orders");
+
 	}
 	else
 	{

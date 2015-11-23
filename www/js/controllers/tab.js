@@ -30,7 +30,9 @@ socket.on('canceled', function(data) {
   //  console.log('server user '+data.customer);
     	if(data.customer == customer)
     	{
-		addMessage("Your delivery has been canceled please wait for another driver");       
+		addMessage("Your delivery has been canceled please wait for another driver");
+        window.plugins.toast.showLongCenter("Your delivery has been canceled please wait for another driver");
+       
 		}
     });
 
@@ -40,7 +42,9 @@ socket.on('pickedup', function(data) {
   //  alert('server user '+data.customer);
     	if(data.customer == customer)
     	{
-		addMessage("Your order is on the way");       
+		addMessage("Your order is on the way");
+        window.plugins.toast.showLongCenter("Your order is on the way");
+
 		}
     });
 
@@ -50,7 +54,9 @@ socket.on('pickedup', function(data) {
 
     if(data.customer == customer)
     {
-       addMessage("Your order has been delivered");   
+       addMessage("Your order has been delivered");
+window.plugins.toast.showLongCenter("Your order has been delivered");
+ 
    }
     });
 

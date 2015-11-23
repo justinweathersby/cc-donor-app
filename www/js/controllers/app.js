@@ -20,3 +20,35 @@ app.controller('AppController', function($state, $scope, $ionicHistory, $ionicPo
   // });
 
 });
+
+app.controller('DashController', function($scope) {
+var user = localStorage.getItem('user');
+var first = localStorage.getItem('first');
+
+if(first == null)
+{
+setTimeout( function() {
+window.plugins.toast.showShortTop('Welcome back '+user);
+}, 1000);
+localStorage.setItem('first', true);
+}
+
+var bounce = new Bounce();
+bounce.scale({
+  from: { x: 0.8, y: 0.8 },
+  to: { x: 1, y: 1 }
+});
+var btn = document.getElementById('shop-button');
+
+$scope.drivers = 0;
+var numAnim = new CountUp("counter", 24.02,Math.floor((Math.random() * 10) + 1));
+numAnim.start();
+
+setTimeout( function() {
+bounce.applyTo(btn);
+
+}, 2000)
+
+});
+
+

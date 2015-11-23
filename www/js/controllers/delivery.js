@@ -70,7 +70,7 @@ if($stateParams.status == "onway") //onway
 }
 else
 {
-  alert('your order has not been picked up yet');
+  window.plugins.toast.showLongCenter('Your order has not been picked up yet');
   $state.go('tabs.delivery-list');
 }
 
