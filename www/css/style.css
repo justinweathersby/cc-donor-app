@@ -32,7 +32,7 @@ label.item.valid-bt {
     src: url("font/Brandon_bld.otf");
     format(“true type”);
 }
-#shop-button
+#shop-button, .donate-button
 {
 	width: 80%;
 	height: 60px;

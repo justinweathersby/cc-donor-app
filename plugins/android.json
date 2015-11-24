@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -126,6 +130,9 @@
             "PACKAGE_NAME": "com.ionicframework.creativechatter946491"
         },
         "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.gold.square.donor"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.gold.square.donor"
         }
     },

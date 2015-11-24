@@ -40,7 +40,6 @@ bounce.scale({
 });
 var btn = document.getElementById('shop-button');
 
-$scope.drivers = 0;
 var numAnim = new CountUp("counter", 24.02,Math.floor((Math.random() * 10) + 1));
 numAnim.start();
 
@@ -48,6 +47,15 @@ setTimeout( function() {
 bounce.applyTo(btn);
 
 }, 2000)
+
+
+$scope.goDrive = function()
+{
+  var url = "https://itunes.apple.com/us/app/candy-crush-saga/id553834731?mt=8";
+    open(url, "_blank","location=yes");
+
+}
+
 
 });
 
