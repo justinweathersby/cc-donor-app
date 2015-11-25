@@ -1,31 +1,8 @@
 'use strict'
 
-/*
-var DeliverySchema = new mongoose.Schema({
-      id: {type:  Number},
-      to: [{
-      name: {type: String},
-      address: {type: String },
-      lat: {type: Number },
-      lng: {type: Number }
-      }],
-      from: [{
-      name: {type: String},
-      address: {type: String },
-      lat: {type: Number },
-      lng: {type: Number }
-      }],  
-      item: {type: String },
-      ready: {type: Boolean},
-      status: {type: String},
-  date: {type: Date, default: Date.now}
-});
-
-*/
-
 app.controller('CheckoutCtrl', function($scope, $state, stripeService, $stateParams, $http) {
 
-      console.log($stateParams);
+      //console.log($stateParams);
       var cat = $stateParams.category;
       $scope.quantity = [];
       $scope.item = $stateParams;

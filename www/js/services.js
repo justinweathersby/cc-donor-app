@@ -89,6 +89,7 @@ var shopname = "";
                         console.log(token.id);
       // make charge api call
     //  var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+  // pass item is and quantity
   var url = 'http://staging.creativechatter.com/api' + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
 
       $http({method: 'POST',

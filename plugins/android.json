@@ -39,6 +39,10 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -48,7 +52,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -133,6 +137,9 @@
             "PACKAGE_NAME": "com.gold.square.donor"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.gold.square.donor"
+        },
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.gold.square.donor"
         }
     },

@@ -113,6 +113,13 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -126,7 +133,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.background-mode": "0.6.4",
     "de.appplant.cordova.plugin.local-notification": "0.8.2",
     "org.apache.cordova.geolocation": "0.3.12",
-    "cordova-plugin-inappbrowser": "1.1.0"
+    "cordova-plugin-inappbrowser": "1.1.0",
+    "cordova-plugin-x-socialsharing": "5.0.7"
 }
 // BOTTOM OF METADATA
 });

@@ -58,6 +58,9 @@
 		C86E532C00BA4D558E4FD67A /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B290F3B175490AA70519AE /* CDVCamera.m */; };
 		CBE2BC34365A486798D00556 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D827268869D4F36B980588B /* AVFoundation.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+		157E9F883B344467988FFDA1 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E3A18AAC444CF199858BF7 /* SocialSharing.m */; };
+		0421010AFB9248FC8FE5FE39 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E7A93541FB4E8BBE6CDC7B /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8E5B225ECD0F4E3E90861F18 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4128F17FB92D4E43AF801BC4 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +158,10 @@
 		ECFB21AB63AF443F95037716 /* UIImage+CropScaleOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+CropScaleOrientation.h"; path = "cordova-plugin-camera/UIImage+CropScaleOrientation.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "creative-chatter/config.xml"; sourceTree = "<group>"; };
 		F869653FF0A94D898048C392 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Toast+UIView.m"; path = "cordova-plugin-x-toast/Toast+UIView.m"; sourceTree = "<group>"; };
+		05E3A18AAC444CF199858BF7 /* SocialSharing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		CD5857CAC93C4AA488A1C9D3 /* SocialSharing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F7E7A93541FB4E8BBE6CDC7B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		4128F17FB92D4E43AF801BC4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +177,8 @@
 				73D12F2241D24DEA97CDA9E8 /* CoreLocation.framework in Frameworks */,
 				CBE2BC34365A486798D00556 /* AVFoundation.framework in Frameworks */,
 				976F40C19A5B496480ADA16F /* QuartzCore.framework in Frameworks */,
+				0421010AFB9248FC8FE5FE39 /* Social.framework in Frameworks */,
+				8E5B225ECD0F4E3E90861F18 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +256,8 @@
 				8CDB510D5B8C47E8AB4CE13A /* CoreLocation.framework */,
 				5D827268869D4F36B980588B /* AVFoundation.framework */,
 				C68BB2BEF09B4613A1D285BB /* QuartzCore.framework */,
+				F7E7A93541FB4E8BBE6CDC7B /* Social.framework */,
+				4128F17FB92D4E43AF801BC4 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -291,6 +302,8 @@
 				4D82051507B24CBAA6B0BBF5 /* CDVLocation.h */,
 				6595B810D2A441A285EDE275 /* CDVInAppBrowser.m */,
 				59831A041E7747B4B7556A03 /* CDVInAppBrowser.h */,
+				05E3A18AAC444CF199858BF7 /* SocialSharing.m */,
+				CD5857CAC93C4AA488A1C9D3 /* SocialSharing.h */,
 			);
 			name = Plugins;
 			path = "creative-chatter/Plugins";
@@ -490,6 +503,7 @@
 				2C0136619EFD4139B46B09A6 /* UILocalNotification+APPLocalNotification.m in Sources */,
 				8A13F14D0E4D4E05BECCF7CF /* CDVLocation.m in Sources */,
 				7D9799035DFF4C4583E8D475 /* CDVInAppBrowser.m in Sources */,
+				157E9F883B344467988FFDA1 /* SocialSharing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@ app.controller('DetailCtrl', function($scope, $cordovaGeolocation, $state,  $htt
 $scope.saveImage = function(url)
 {
   localStorage.setItem('image', url);
-  console.log(localStorage.getItem('image'));
+ // console.log(localStorage.getItem('image'));
 }
 
 
@@ -23,8 +23,6 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
     });
 
-
- 
   $scope.shop = [];
   $scope.items = [];
   var name = $stateParams.shop;
@@ -52,12 +50,14 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
               if(data[i].item_category.name == name)
               {
                 console.log('match');
-               
+                
                 $scope.items.push(data[i]);
               }
-              
+              // if no options then go to quantity
+              // in checkout pass id of item and number of items wanted
             }
-            console.log($scope.items[0]);
+            console.log($scope.items);
+            //console.log($scope.items);
               if($scope.items.length == 0)
                 {
     window.plugins.toast.showShortCenter("no items found");
@@ -71,6 +71,10 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
 
 }
 
+$scope.share = function(image)
+{
+$cordovaSocialSharing.share("sharing", "message", image, "https://beatshop.io");
+}
 
   $scope.back = function()
   {
