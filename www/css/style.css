@@ -115,13 +115,17 @@ label.item.valid-bt {
 {
 	display: inline-block;
 }
-.buy-button
-{
-	width: 90%;
-	background-color: transparent;
 
-	color: #2979FF;
+.share-button, .buy-button
+{
+	background-color: #f5f5f5;
+	border-color: transparent;
+	color: grey;
+	border-radius: 3px;
+	margin-right: 5px;	
+	font-family: Brandon;
 }
+
 .header-bar
 {
 	background-color: #2979FF;
@@ -134,6 +138,10 @@ label.item.valid-bt {
 	font-size: 24px;
 	margin-top: 10px;
 	margin-left: -30px;
+	font-family: Brandon;
+}
+.title{
+	font-family: Brandon;
 }
 .tag
 {
@@ -171,6 +179,8 @@ label.item.valid-bt {
 #cardy
 {
 	text-decoration: none;
+	font-family: Brandon;
+	color: grey;
 }
 .map {
   height: 100%;
@@ -183,6 +193,10 @@ label.item.valid-bt {
 {
 	color: transparent;
 }
+.full-image
+{
+ width: 50%;
+}
 
 
 
@@ -199,10 +213,3 @@ label.item.valid-bt {
 
 
 
-
-
-
-
-
-
->>>>>>> master

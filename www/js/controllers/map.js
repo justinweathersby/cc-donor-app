@@ -2,8 +2,9 @@
 
 app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeolocation, $stateParams, $http) {
 
-  var soldItem = JSON.parse(localStorage["names"])[0];
-  console.log(soldItem);
+ 
+  var item = JSON.parse(localStorage["item"]);
+  console.log(item);
 
   // get user location
        var posOptions = {timeout: 20000, enableHighAccuracy: true};
@@ -66,9 +67,9 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
 swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
 		
     var url = "http://driver-53731.onmodulus.net/api/delivery";
-    var fromArray =  [{"name":soldItem.vendor, "phone":soldItem.phone, "lat": soldItem.lat, "lng": soldItem.lng}];
+    var fromArray =  [{"name":item.vendor.name, "phone":item.vendor.phone, "lat": item.vendor.location.latitude, "lng": item.vendor.location.longitude}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
-    $http.post(url, {"customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":soldItem.image, "shipping": soldItem.shipping, "item": soldItem.item,"status":"processing"})
+    $http.post(url, {"customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":item.image_url, "shipping": item.shipping, "item": item.name,"status":"processing"})
     .success( function (data) {
 
       console.log(data);

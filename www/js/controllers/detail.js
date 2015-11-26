@@ -1,15 +1,16 @@
 'use strict'
 
-app.controller('DetailCtrl', function($scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
+app.controller('DetailCtrl', function($cordovaSocialSharing, $scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
 
   $scope.query = "";
 
-$scope.saveImage = function(url)
+$scope.saveImage = function(item)
 {
-  localStorage.setItem('image', url);
- // console.log(localStorage.getItem('image'));
+  
+var checkoutItem = item;
+localStorage["item"] = JSON.stringify(checkoutItem);
+$state.go('tabs.checkout');
 }
-
 
 var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
@@ -56,7 +57,7 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
               // if no options then go to quantity
               // in checkout pass id of item and number of items wanted
             }
-            console.log($scope.items);
+          //  console.log($scope.items);
             //console.log($scope.items);
               if($scope.items.length == 0)
                 {
@@ -71,9 +72,10 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
 
 }
 
-$scope.share = function(image)
+$scope.share = function(image, description)
 {
-$cordovaSocialSharing.share("sharing", "message", image, "https://beatshop.io");
+var post = "Look ! "+description+" I fouund on Creative Chatter app";
+$cordovaSocialSharing.share(post, "message", image, "https://creativechatter.com");
 }
 
   $scope.back = function()

@@ -19,29 +19,32 @@
 <h1></h1>
 <div id="spinner"></div>
   <div ng-repeat="i in items | filter: { name: query}">
-   <!-- url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng', -->
-<a id="cardy" href="#/tab/checkout/{{i.name}}/{{i.vendor.phone}}/{{i.price}}/{{i.shipping}}/{{i.vendor.name}}/{{i.vendor.location.latitude}}/{{i.vendor.location.longitude}}" ng-click="saveImage(i.image_url)">
+<a id="cardy">
   <div class="list card">
 
   <div class="item item-avatar">
     <img src="img/1.jpg">
-    <h2>{{i.vendor.name}}</h2>
+    <h2 style="color:grey;font-family:Brandon;">{{i.vendor.name}}</h2>
     <p>{{i.name}}</p>
   </div>
 
-  <div class="item item-body">
+  <div class="item-body">
     <img class="full-image" ng-src="{{i.image_url}}">
     <p>
      {{i.description}}
     </p>
-  
+  <div class="row">
+    <button ng-click="share(i.image_url, i.description)" class="share-button col-50">
+      <i class="icon ion-share"></i> share
+    </button>
+     <button class="buy-button col-50"
+   ng-click="saveImage(i)">
+     <i class="icon ion-ios-cart-outline"></i> buy
+    </button>
+  </div>
   </div>
 </div>
 </a>
-<!--      <div ng-click="share(i.image_url)" class="item tabs tabs-secondary tabs-icon-left">
-      <i class="icon ion-share"></i>
-      Share  
-  </div>  -->
   </div>
     <h1 style="color:transparent">hey</h1>
  

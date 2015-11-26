@@ -62,7 +62,7 @@ app.service('donationCategoryService', function($http, CHATTER_API){
 
 
 
-app.service('stripeService',['$http', '$state',function ($http, $state, CHATTER_API) {
+app.service('stripeService',['$http', '$state',function ($http, $state) {
 var baseUrl = "http://staging.creativechatter.com";
 var name = "";
 var price = "";
@@ -71,10 +71,12 @@ var shopname = "";
 
                     get: function(image, name, price)
                     {
+                      
                       var q = document.getElementById('quantity-select').value;
                     console.log(localStorage.getItem('token'));
                     name  = name;
                     price = price;
+
                     shopname = shopname;
                     console.log(name);
                     console.log(price);
@@ -103,12 +105,12 @@ var shopname = "";
              headers: {'Authorization': access_token}})
       .success( function( data )
       {
-
-        $state.go('tabs.map');
+       
+        $state.go('map');
 
       }
       ).error( function(error) {
-        console.log(error);
+        alert(error);
       });
 
                 }
@@ -117,7 +119,7 @@ var shopname = "";
                             handler.open({
                                   name: shopname,
                                   description: name,
-                                  amount: (price * 100) * parseInt(q)
+                                  amount: (price * 100) //* parseInt(q)
                                 });
 
                     } // end of function

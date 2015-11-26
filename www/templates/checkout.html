@@ -16,9 +16,9 @@
   <ion-content  class="content">
 
 
-<div class="card">
+<div style="color:grey;font-family:Brandon;" class="card">
   <div class="item item-divider">
-    {{item.item}}
+    {{item.name}}
   </div>
   <div class="checkout-item item item-text-wrap">
    Price ${{item.price}}
@@ -27,20 +27,20 @@
    <br>
    Delivery ${{item.shipping}}
    <br>
-   Taxes n/a
-   <br>
    Total ${{totalPrice}}
   </div>
 <!--   <div class="item item-divider">
     I'm a Footer in a Card!
   </div> -->
 </div>
-<p class="quantity-label" >Quantity</p>
+<p class="quantity-label" >Size</p>
 <select id="quantity-select" class="select">
-  <option ng-repeat="q in quantity">
-  {{q}}
+  <option ng-repeat="q in quantities">
+  {{q.name}}
   </option>
 </select>
+<br>
+
 
 <button ng-click="buy()" class="pay-button">Pay</button>
  

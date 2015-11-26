@@ -27,5 +27,6 @@ target.appendChild(spinner.el);
       ).error( function(error) {
         spinner.stop();
           console.log(error);
+          alert('logout and login again');
         });
 });
