@@ -1,10 +1,10 @@
 <!-- Template for 'My Donations Page' -->
-<ion-view style="margin-top:20px;" >
+<ion-view style="margin-top:20px;" ng-init='getDonations()'>
   <ion-header-bar class="bar-positive">
     <button class="button icon ion-arrow-left-c" ng-click="back()"> Back </button>
     <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
   </ion-header-bar>
-  <ion-content class="padding">
+  <ion-content class="padding" >
     <ion-refresher pulling-text="Pull to refresh" on-refresh="getDonations()">
    </ion-refresher>
     <div class="list">
@@ -17,6 +17,5 @@
       </a>
     </ion-item>
   </div>
-  <div id="spinner"></div>
   </ion-content>
 </ion-view>

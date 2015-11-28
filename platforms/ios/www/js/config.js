@@ -1,6 +1,6 @@
 
 app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionicConfigProvider) {
-  
+
    $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
   $stateProvider
@@ -23,6 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
     // --- Page listing all the users donations
     .state('donations', {
+      cache: false,
       url: '/donations',
       templateUrl: 'templates/donations/donations.html',
       controller: 'ViewDonationController'
@@ -30,6 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
     // --- Page displaying just 1 of the users donations
     .state('showDonation', {
+      cache: false,
       url: '/donations/:id',
       templateUrl: 'templates/donations/donation-show.html',
       controller: 'ShowDonationController'
@@ -74,6 +76,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
+      cache: false,
       views: {
         'donate-tab' : {
         templateUrl: 'templates/donations/donation-new.html',

@@ -1,6 +1,7 @@
 
 var app = angular.module('cc-donor-app', ['ionic',
                                           'ngResource',
+                                          'ion-google-place',
                                           'ngIOS9UIWebViewPatch',
                                           'ion-autocomplete',
                                           'ngMessages',
@@ -14,7 +15,7 @@ var app = angular.module('cc-donor-app', ['ionic',
 
     cordova.plugins.backgroundMode.enable();
 
-    console.log(cordova.plugins);  
+    console.log(cordova.plugins);
 
     cordova.plugins.backgroundMode.onactivate = function() {
       console.log('on background');
