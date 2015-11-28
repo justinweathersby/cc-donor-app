@@ -16,9 +16,34 @@ app.controller('CreateDonationController', function($scope,
     city: "",
     state: ""
   };
+
+  //--Used for google place autocomplete
+  $scope.location_data = {
+    location: ''
+  };
+
   $scope.donation.image_file_name = "";
   $scope.s3_upload_image = false;
 
+
+  //--Handles updates to Google-Places-Autocomplete Field
+  $scope.googlePlaceAutocompleteUpdate = function() {
+    //console.log(JSON.stringify($scope.location_data, null, 4));
+    // console.log($scope.search_data);
+    //console.log("ADDR COMP 0-0=" + $scope.location_data.location.address_components[0].long_name);
+    var full_street_name = $scope.location_data.location.address_components[0].long_name + " " + $scope.location_data.location.address_components[1].long_name;
+
+    $scope.donation.location_attributes.street = full_street_name;
+    $scope.donation.location_attributes.city   = $scope.location_data.location.address_components[2].long_name;
+    $scope.donation.location_attributes.postal_code   = $scope.location_data.location.address_components[6].long_name;
+    $scope.donation.location_attributes.state   = $scope.location_data.location.address_components[4].short_name;
+
+    console.log("Street=" + full_street_name);
+    console.log("City=" +  $scope.location_data.location.address_components[2].long_name);
+    console.log("Zip=" + $scope.location_data.location.address_components[6].long_name);
+    console.log("State=" + $scope.location_data.location.address_components[4].short_name);
+
+  }
 
   $scope.addDonation = function() { //create a new donation. Issues a POST to /api/resources/new
     $ionicLoading.show({
@@ -92,6 +117,10 @@ app.controller('CreateDonationController', function($scope,
   $scope.selectPicture = function() {
     //console.log('Selected option to upload a picture...setting s3_upload_image to true');
     $scope.s3_upload_image = true;
+    $scope.imageSrc = undefined;
+
+    console.log("gPlace ->" + $scope.donation.google_location);
+    // console.log("gPlace street->" + $scope.donation.google_location.address_components.length);
 
     document.addEventListener('deviceready', function() {
         console.log("Device is ready..")
@@ -104,14 +133,12 @@ app.controller('CreateDonationController', function($scope,
         };
         $cordovaCamera.getPicture(options).then(function(imageURI) {
             $scope.imageSrc = imageURI;
-            image.src = imageURI;
 
         }, function(err) {
             console.log("Did not get image from camera");
+            $scope.s3_upload_image = false;
             // alert(err);
         });
-
-        $cordovaCamera.cleanup();
 
       }, false); // device ready
 
@@ -119,6 +146,7 @@ app.controller('CreateDonationController', function($scope,
   $scope.takePicture = function() {
     //console.log('Selected option to upload a picture...setting s3_upload_image to true');
     $scope.s3_upload_image = true;
+    $scope.imageSrc = undefined;
 
     document.addEventListener('deviceready', function() {
         console.log("Device is ready..")
@@ -131,10 +159,10 @@ app.controller('CreateDonationController', function($scope,
         };
         $cordovaCamera.getPicture(options).then(function(imageURI) {
             $scope.imageSrc = imageURI;
-            image.src = imageURI;
 
         }, function(err) {
             console.log("Did not get image from library");
+            $scope.s3_upload_image = false;
             // alert(err);
         });
 
@@ -234,7 +262,6 @@ $scope.uploadPicture = function(itemId, fileName) {
             //-----------------------------------------------------------------
 
 
-            console.log("New key images/" +stringfyKey);
 
             var uri = encodeURI("https://" + data.bucket + ".s3.amazonaws.com/");
             var params = {

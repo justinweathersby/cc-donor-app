@@ -76,6 +76,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
     .state('tabs.donate', { //--child template of tabs
       url: '/donations/new',
+      cache: false,
       views: {
         'donate-tab' : {
         templateUrl: 'templates/donations/donation-new.html',

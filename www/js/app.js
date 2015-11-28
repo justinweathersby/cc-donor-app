@@ -1,6 +1,7 @@
 
 var app = angular.module('cc-donor-app', ['ionic',
                                           'ngResource',
+                                          'ion-google-place',
                                           'ngIOS9UIWebViewPatch',
                                           'ion-autocomplete',
                                           'ngMessages',
