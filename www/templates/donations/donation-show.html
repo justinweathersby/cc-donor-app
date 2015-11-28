@@ -19,7 +19,9 @@
     <div class="item item-body">
       <div class="row">
         <div class="col col-offset-25 col-50">
-          <img style="width:100%;" ng-src="{{donation.image_url}}">
+          <div ng-if="donation.image_url">
+            <img src="{{donation.image_url}}" style="width:100%;"/>
+          </div>
         </div>
       </div>
       <p>

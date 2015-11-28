@@ -1,6 +1,6 @@
 <ion-view>
   <ion-header-bar class="bar-positive">
-<div style="font-family:Sans;height:40px;margin-left:35%;margin-top:-5px;" class="row">   
+<div style="font-family:Sans;height:40px;margin-left:35%;margin-top:-5px;" class="row">
 <div class="col-30">
   <i style="font-size:36px;" class="ion-chatbubbles">
   </i>
@@ -21,11 +21,13 @@
 
            <ion-autocomplete name= "donation_category_select"
                              ng-model="donation.category_id"
+
                              items-method="callbackMethod(query)"
                              items-clicked-method="categorySelected(callback)"
+
                              item-view-value-key="name"
                              item-value-key="id"
-                             placeholder= "Please select the type of item..."
+                             placeholder= "Start typing to find and select your item's title.."
                              required/>
 
         </label>
@@ -87,7 +89,7 @@
              ng-messages-include="templates/form-errors.html">
         </div>
       </div>
-
+<ion-google-place placeholder="Enter an address, Apt# and ZIP" ng-model="location" />
       <div class="list">
 <!-- Street Name Input -->
         <label class="item item-input"
@@ -205,18 +207,25 @@
 
       <!-- Upload Image Input -->
       <div class="list">
-        <!-- TODO Testing for showing image -->
         <div class="row">
           <div class="col col-offset-25 col-50">
             <img style="width:100%;" ng-show="imageSrc !== undefined" ng-src="{{imageSrc}}">
             <img style="width:100%;" ng-show="imageSrc === undefined" ng-src="http://placehold.it/300x300">
           </div>
         </div>
-        <a class="item item-icon-left item-icon-right" href="#" ng-click="selectPicture()">
-          <i class="icon ion-plus-round"></i>
+        <div class="button-bar">
+          <a class="button button-icon-left" ng-click="takePicture()">
+              <i class="icon ion-camera"></i>  Take Picture</a>
+          <a class="button button-icon-left" ng-click="selectPicture()">
+              <i class="icon ion-images"></i>Select From Library
+          </a>
+        </div>
+        <br/>
+        <!-- <a class="item item-icon-left item-icon-right" href="#" ng-click="selectPicture()">
+          <i class="icon ion-images"></i>
             Select Image Of Item
           <i class="icon ion-camera"></i>
-        </a>
+        </a> -->
         <!-- <li class="item item-checkbox">
           <label class="checkbox">
             <input type="checkbox" ng-disabled="true">

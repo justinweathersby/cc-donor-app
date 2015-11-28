@@ -14,7 +14,7 @@ app.constant('CHATTER_API', {
     url:'http://staging.creativechatter.com/api'
 });
 
-// -- Local Testing API Url
+// // -- Local Testing API Url
 // app.constant('CHATTER_API', {
 //     url: 'api'
 // });

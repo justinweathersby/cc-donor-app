@@ -4,9 +4,9 @@ app.controller('ShowDonationController', function($scope, $state, $stateParams, 
 
   var token = localStorage.getItem('token');
   var id = $stateParams.id;
-  // var spinner = new Spinner().spin()
-  // var target = document.getElementById('spinner');
-  // target.appendChild(spinner.el);
+  var spinner = new Spinner().spin()
+  var target = document.getElementById('spinner');
+  target.appendChild(spinner.el);
   $scope.back = function()
   {
     $state.go('donations');
@@ -17,12 +17,13 @@ app.controller('ShowDonationController', function($scope, $state, $stateParams, 
                    headers: {'Authorization': token}})
     .success( function( data )
     {
-      // spinner.stop();
+      spinner.stop();
       $scope.donation = data;
-      console.log('image url: ', $scope.donation.image_url);
+      // $scope.s3_url = data.image_url;
+      console.log('image url:', $scope.donation.image_url);
     }
     ).error( function(error) {
-      // spinner.stop();
+      spinner.stop();
         console.log(error);
     }
   );

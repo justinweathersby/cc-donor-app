@@ -14,7 +14,7 @@ var app = angular.module('cc-donor-app', ['ionic',
 
     cordova.plugins.backgroundMode.enable();
 
-    console.log(cordova.plugins);  
+    console.log(cordova.plugins);
 
     cordova.plugins.backgroundMode.onactivate = function() {
       console.log('on background');
