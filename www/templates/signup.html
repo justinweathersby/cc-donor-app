@@ -15,19 +15,19 @@
     <div class="list list-inset">
       <label class="form-box item item-input">
         <i class="icon ion-ios-email-outline placeholder-icon"></i>
-        <input style="font-family:Brandon;color:grey;" type="email" placeholder="Email" ng-model="data.email">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="email" placeholder="Email" ng-model="data.email">
       </label>
       <label class="form-box item item-input">
         <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-        <input style="font-family:Brandon;color:grey;" type="password" placeholder="Password" ng-model="data.password">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="password" placeholder="Password" ng-model="data.password">
       </label>
     <label class="form-box item item-input">
     <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-        <input style="font-family:Brandon;color:grey;" type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
       </label>
     </div>
 
-    <button style="font-family:Brandon;" class="button button-block button-positive" ng-click="signup(data)">
+    <button style="font-family:Brandon;" class="button button-block button-positive" ng-click="createUser(data)">
       Sign Up
     </button>
     <button ui-sref="login" style="font-family:Brandon;" class="button button-block button-positive">
