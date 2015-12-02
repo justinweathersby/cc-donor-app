@@ -13,8 +13,8 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
-                  //headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
-                   headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
+                  headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
+                   //headers: {'X-API-EMAIL' : "justinweathersby@gmail.com", 'X-API-PASS' : "test1234"}})
       .success( function( data )
       {
         // TODO:
@@ -23,6 +23,9 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
         currentUserService.token = data.auth_token;
         currentUserService.id = data.id;
         currentUserService.role = 'admin';
+
+        localStorage.setItem('user', user.email);
+        localStorage.setItem('token', data.auth_token);
 
         //--Set header for all subsequent requests
         $http.defaults.headers.common['Authorization'] = data.auth_token;
@@ -71,7 +74,7 @@ var shopname = "";
 
                     get: function(image, name, price)
                     {
-                      
+
                       var q = document.getElementById('quantity-select').value;
                     console.log(localStorage.getItem('token'));
                     name  = name;
@@ -105,7 +108,7 @@ var shopname = "";
              headers: {'Authorization': access_token}})
       .success( function( data )
       {
-       
+
         $state.go('map');
 
       }
