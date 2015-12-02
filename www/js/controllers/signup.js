@@ -1,27 +1,21 @@
 
 
-app.controller('SignController', function($scope,
-                                                $state, $stateParams,
-                                                $ionicPopup)
+app.controller('SignController', function($scope,$state, $http, $stateParams,$ionicPopup, CHATTER_API)
 {
 
   $scope.createUser = function(user)
-  { //create a new user. Issues a POST to /api/users
-    $scope.user.$save()
-      .then(function(resp) {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Success',
-          template: "Thank you for signing up with Creative Chatter. Happy Donating!"
-        });
-        $state.go('login'); // on success go to dashboard.
-      })
-      .catch(function(resp){
-        console.log("Error Response: ", resp.data)
-        var alertPopup = $ionicPopup.alert({
-          title: 'Failed',
-          // template: "Sorry something went wrong. If this problem continues please contact Creative Chatter at support@creativechatter.com"
-        });
-      });
+  { 
+
+  	console.log(user);
+  	$http.post(CHATTER_API.url + "/users", {email: user.email, password: user.password})
+  	.success( function (data) {
+  		console.log(data);
+  		$http.defaults.headers.common['Authorization'] = data.auth_token;
+  		 localStorage.setItem('user', user.email);
+        localStorage.setItem('token', data.auth_token);
+  		$state.go('tabs.dashboard');
+  	})
+  
   };
 
 });
