@@ -197,8 +197,13 @@ label.item.valid-bt {
 {
  width: 50%;
 }
-
-
+.map-header
+{
+	background-color: #4c4cfd;
+	color: white;
+	text-align: center;
+	font-family: Brandon;
+}
 
 
 

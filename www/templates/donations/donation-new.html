@@ -13,9 +13,9 @@
   <form name="donationForm" novalidate>
     <ion-content class="padding">
       <div class="list list-inset">
-        <label class="item item-input"
+         <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.donation_category_select.$invalid && donationForm.donation_category_select.$touched}">
-
+        <!-- <i class="icon ion-ios-locked-outline placeholder-icon"></i> -->
            <ion-autocomplete name= "donation_category_select"
                              ng-model="donation.category_id"
 
@@ -26,7 +26,7 @@
                              item-value-key="id"
                              placeholder= "Start typing to find and select your item's title.."
                              required/>
-
+  
         </label>
         <div class="form-errors"
              ng-show="donationForm.donation_category_select.$touched"
@@ -35,13 +35,13 @@
           <!-- Overwrite errors by placing them here -->
           <!-- <div class="form-error" ng-message="maxlength">This field is must be less than 10 characters</div> -->
         </div>
-        <div class="padding" style="text-align:center;">
+        <div class="padding" style="text-align:center;color:grey;font-family:Brandon;">
           Item not listed? Email
           <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
         </div>
 
 <!-- Estimated Value Input -->
-        <label class="item item-input"
+        <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.donation_value.$invalid  && donationForm.donation_value.$touched}">
           <input type="number"
                  name ="donation_value"
@@ -57,7 +57,7 @@
         </div>
 
 <!-- Qty. Input -->
-        <label class="item item-input"
+        <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.donation_qty.$invalid  && donationForm.donation_qty.$touched}">
           <input type="number"
                  name="donation_qty"
@@ -72,7 +72,7 @@
         </div>
 
 <!-- Description Input -->
-        <label class="item item-input"
+        <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.description.$invalid  && donationForm.description.$touched}">
           <input type="text"
                  name="description"
@@ -88,7 +88,7 @@
 
 
 <!-- Google Place Autocomplete -->
-        <label class="item item-input"
+        <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.location_select.$invalid && donationForm.location_select.$touched}">
                <ion-google-place placeholder="Enter an address, Apt# and ZIP"
                                  ng-model="location_data.location"
@@ -110,21 +110,22 @@
       <div class="list">
         <div class="row">
           <div class="col col-offset-25 col-50">
-            <img style="width:100%;" ng-show="imageSrc !== undefined" ng-src="{{imageSrc}}">
-            <img style="width:100%;" ng-show="imageSrc === undefined" ng-src="http://placehold.it/300x300">
+            <img style="width:80%;" ng-show="imageSrc !== undefined" ng-src="{{imageSrc}}">
+            <img style="width:80%;" ng-show="imageSrc === undefined" ng-src="img/img.png">
+            <!-- <img style="width:100%;" ng-show="imageSrc === undefined" ng-src="http://placehold.it/300x300"> -->
           </div>
         </div>
         <div class="button-bar">
-          <a class="button button-icon-left" ng-click="takePicture()">
+          <a style="font-size:12px;" class="button button-icon-left" ng-click="takePicture()">
               <i class="icon ion-camera"></i>  Take Picture</a>
-          <a class="button button-icon-left" ng-click="selectPicture()">
+          <a style="font-size:10px;"  class="button button-icon-left" ng-click="selectPicture()">
               <i class="icon ion-images"></i>Select From Library
           </a>
         </div>
         <br/>
 
         <div>
-          <ion-checkbox ng-model="termsCheckbox">
+          <ion-checkbox class="form-box" ng-model="termsCheckbox">
             Accept terms and conditions
           </ion-checkbox>
         </div>

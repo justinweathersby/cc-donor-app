@@ -197,10 +197,21 @@ label.item.valid-bt {
 {
  width: 50%;
 }
+.map-header
+{
+	background-color: #4c4cfd;
+	color: white;
+	text-align: center;
+	font-family: Brandon;
+}
 
-
-
-
+.form-box
+{
+	margin-top: 5px;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
 
 
 

@@ -14,19 +14,21 @@
   <form name="loginForm" ng-controller="LoginController">
     <ion-content class="padding">
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="email" placeholder="Email" ng-model="user.email" required>
+      <label class="form-box item item-input">
+        <i class="icon ion-ios-email-outline placeholder-icon"></i>
+        <input style="font-family:Brandon;color:grey;"  type="email" placeholder="Email" ng-model="user.email" required>
       </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="user.password" required>
+      <label class="form-box item item-input">
+        <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+        <input style="font-family:Brandon;color:grey" type="password" placeholder="Password" ng-model="user.password" required>
       </label>
     </div>
     </form>
 <div id="spinner"></div>
-    <button class="button button-block button-positive" ng-click="login(user)">
+    <button style="font-family:Brandon;" class="button button-block button-positive" ng-click="login(user)">
       Login
     </button>
-    <button class="button button-block button-positive" ng-click="goToSignUp()">
+    <button  style="font-family:Brandon;" class="button button-block button-positive" ng-click="goToSignUp()">
       Sign Up
     </button>
     <div id="spinner"></div>

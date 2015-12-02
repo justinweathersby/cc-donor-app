@@ -4,7 +4,7 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
 
  
   var item = JSON.parse(localStorage["item"]);
-  console.log(item);
+ // console.log(item);
 
   // get user location
        var posOptions = {timeout: 20000, enableHighAccuracy: true};
@@ -52,20 +52,24 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
 	var showLocation = function(lat, lng, address)
 {
 
-	swal({   
-	  title: "Delivery to :" ,
+swal({
+      title: "Delivery to :",
       text: address,
-      confirmButtonText: 'Confirm',
+      type: "input",
       showCancelButton: true,
-      allowOutsideClick: true,
-      confirmButtonColor: "#4c4cfd",
       closeOnConfirm: false,
-      animation: "slide-from-top"
-	 }, 
-		function(){   
-
-swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
-		
+      allowOutsideClick: true,
+       confirmButtonColor: "#4c4cfd",
+      animation: "slide-from-top",
+      inputPlaceholder: "apt or suite number .. "
+  },
+  function(inputValue) {
+      if (inputValue === false)
+          return false;
+      else
+      {
+    swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
+    
     var url = "http://driver-53731.onmodulus.net/api/delivery";
     var fromArray =  [{"name":item.vendor.name, "phone":item.vendor.phone, "lat": item.vendor.location.latitude, "lng": item.vendor.location.longitude}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
@@ -73,10 +77,10 @@ swal("Order Complete", "your order is processing and delivery will be on the way
     .success( function (data) {
 
       console.log(data);
-
+      localStorage.removeItem('item');
       $state.go('tabs.shop');
     })
-
+      }
     });
 
 };

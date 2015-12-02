@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     .state('signup',{
       url: '/signup',
       templateUrl: 'templates/signup.html',
-      controller: 'LoginController'
+      controller: 'SignController'
     })
 
     // --- Terms and Co for making a donation

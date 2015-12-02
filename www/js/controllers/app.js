@@ -51,7 +51,7 @@ bounce.applyTo(btn);
 
 $scope.goDrive = function()
 {
-  var url = "https://itunes.apple.com/us/app/candy-crush-saga/id553834731?mt=8";
+  var url = "https://www.creativechatter.com/";
     open(url, "_blank","location=yes");
 
 }
