@@ -1,0 +1,54 @@
+
+[	
+{
+
+"icon":"img/2.jpg",
+"title":"Weed shop",
+"email": "weed@gmail.com",
+"password":"hey",
+"stripeAcct": "7898798787",
+"date":"November 05, 1955",
+"image":"img/2.jpg",
+"description":"weed at the best price and service.",
+"type": "medical",
+"location":[
+{
+	"latitiude": 39.587365,
+	"longitude": -104.954587
+}
+],
+"likes":10,
+"items" : [
+{
+"name": "gram",
+"image": "img/3.jpg",
+"price": 45.00
+},
+{
+"name": "quarter",
+"image": "img/4.jpg",
+"price": 25.00
+},
+{
+"name": "half",
+"image": "img/5.jpg",
+"price": 125.00
+}
+],
+"reviews" : [
+{
+"name": "john",
+"text": "good place to be",
+"rating": 4
+},
+{
+"name": "sam",
+"text": "great service",
+"rating": 4.5
+}
+]
+}
+
+
+]
+

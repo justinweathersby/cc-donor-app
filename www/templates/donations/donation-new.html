@@ -1,6 +1,8 @@
-<ion-view style="margin-top:20px;" >
-  <ion-header-bar class="bar-positive">
-<div style="font-family:Sans;height:40px;margin-left:35%;margin-top:-5px;" class="row">
+<ion-view>
+ <form name="donationForm" novalidate>
+    <ion-content class="padding" style="padding-top:20px;">
+  <div class="head-bar">
+    <div class="header-logo row">   
 <div class="col-30">
   <i style="font-size:36px;" class="ion-chatbubbles">
   </i>
@@ -9,9 +11,7 @@
 <br>
 <div style="margin-left:-45px;margin-top:-5px;position:absolute">Chatter</div>
  </div>
-  </ion-header-bar>
-  <form name="donationForm" novalidate>
-    <ion-content class="padding">
+  </div>
       <div class="list list-inset">
          <label class="form-box item item-input"
                ng-class="{ 'has-error' : donationForm.donation_category_select.$invalid && donationForm.donation_category_select.$touched}">

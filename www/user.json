@@ -1,0 +1,19 @@
+
+[	
+{
+"email": "john@gmail.com",
+"password": "test",
+"profileUrl":"img/profile.jpg",
+"messages" : [
+{
+"name": "john",
+"text": "hey I need to see you"
+},
+{
+"name": "sam",
+"text": "have a great event for you"
+}
+]
+}
+]
+

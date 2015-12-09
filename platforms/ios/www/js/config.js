@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     .state('signup',{
       url: '/signup',
       templateUrl: 'templates/signup.html',
-      controller: 'LoginController'
+      controller: 'SignController'
     })
 
     // --- Terms and Co for making a donation
@@ -110,14 +110,11 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
       }
     })
         // <!-- url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng', -->
-      .state('tabs.checkout', { //--child template of tabs
-      url: '/checkout/',
-      views: {
-        'shop-tab' : { //--name of view
+      .state('checkout', { //--child template of tabs
+      url: '/checkout',
+      cache: false,
         templateUrl: 'templates/checkout.html',
         controller: 'CheckoutCtrl'
-        }
-      }
     })
     .state('tabs.settings', {
       url: '/settings',

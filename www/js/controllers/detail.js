@@ -9,7 +9,7 @@ $scope.saveImage = function(item)
   
 var checkoutItem = item;
 localStorage["item"] = JSON.stringify(checkoutItem);
-$state.go('tabs.checkout');
+$state.go('checkout');
 }
 
 var posOptions = {timeout: 10000, enableHighAccuracy: false};
@@ -74,7 +74,7 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
 
 $scope.share = function(image, description)
 {
-var post = "Look ! "+description+" I fouund on Creative Chatter app";
+var post = "Look ! "+description+" I found on Creative Chatter app";
 $cordovaSocialSharing.share(post, "message", image, "https://creativechatter.com");
 }
 

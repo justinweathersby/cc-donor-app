@@ -1,6 +1,9 @@
-<ion-view style="margin-top:20px;" >
-  <ion-header-bar class="bar-positive">
-    <div style="font-family:Sans;height:40px;margin-left:35%;margin-top:-5px;" class="row">   
+<ion-view style="margin-top:0px;" >
+ 
+  <form name="loginForm" ng-controller="LoginController">
+    <ion-content class="padding" style="padding-top:20px;">
+     <div class="head-bar">
+    <div class="header-logo row">   
 <div class="col-30">
   <i style="font-size:36px;" class="ion-chatbubbles">
   </i>
@@ -9,24 +12,23 @@
 <br>
 <div style="margin-left:-45px;margin-top:-5px;position:absolute">Chatter</div>
  </div>
-
-  </ion-header-bar>
-  <form name="loginForm" ng-controller="LoginController">
-    <ion-content class="padding">
+  </div>
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="email" placeholder="Email" ng-model="user.email" required>
+      <label class="form-box item item-input">
+        <i class="icon ion-ios-email-outline placeholder-icon"></i>
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;"  type="email" placeholder="Email" ng-model="user.email" required>
       </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="user.password" required>
+      <label class="form-box item item-input">
+        <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey" type="password" placeholder="Password" ng-model="user.password" required>
       </label>
     </div>
     </form>
 <div id="spinner"></div>
-    <button class="button button-block button-positive" ng-click="login(user)">
+    <button style="font-family:Brandon;" class="button button-block button-positive" ng-click="login(user)">
       Login
     </button>
-    <button class="button button-block button-positive" ng-click="goToSignUp()">
+    <button  style="font-family:Brandon;" class="button button-block button-positive" ng-click="goToSignUp()">
       Sign Up
     </button>
     <div id="spinner"></div>

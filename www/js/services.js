@@ -8,9 +8,6 @@ app.service('currentUserService', function(){
 //-- This service handles all authentication between app and Chatter API
 app.service('authService', function($http, currentUserService, CHATTER_API){
   this.login = function(user){
-    var spinner = new Spinner().spin()
-    var target = document.getElementById('spinner');
-    target.appendChild(spinner.el);
     return  $http({method: 'POST',
                    url: CHATTER_API.url + '/login',
                   headers: {'X-API-EMAIL' : user.email, 'X-API-PASS' : user.password}})
@@ -18,7 +15,6 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
       .success( function( data )
       {
         // TODO:
-        spinner.stop();
         console.log('Return Data From Login Post to Api:', data)
         currentUserService.token = data.auth_token;
         currentUserService.id = data.id;
@@ -74,16 +70,11 @@ var shopname = "";
 
                     get: function(image, name, price)
                     {
-
-                      var q = document.getElementById('quantity-select').value;
-                    console.log(localStorage.getItem('token'));
+                    //console.log(localStorage.getItem('token'));
                     name  = name;
                     price = price;
-
-                    shopname = shopname;
-                    console.log(name);
-                    console.log(price);
-                    console.log(shopname);
+                    console.log('item = '+name);
+                    console.log('price = '+price);
                     var handler = StripeCheckout.configure({
                         // test key
                          key: 'pk_test_tslqI9coii8qKhuEkZI4ZlV6',
@@ -92,25 +83,15 @@ var shopname = "";
                         var access_token = localStorage.getItem('token');
 
                         console.log(token.id);
-      // make charge api call
-    //  var url = CHATTER_API.url + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
-  // pass item is and quantity
-  var url = 'http://staging.creativechatter.com/api' + "/stripe_charge?stripeToken="+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21"
+  var base  = 'http://staging.creativechatter.com/api/stripe_charge?stripeToken=';
+  var url = base+token.id+"&stripeAmount="+price+"&stripeVendor=acct_16rxjaFvAbwux3pz&stripeAppFee=21";
 
       $http({method: 'POST',
              url: url,
-            //  data: {
-            //             stripeToken: token.id,
-            //             stripeVendor: shopname,
-            //             itemId: name,
-            //             quantity: quantity
-            //         },
              headers: {'Authorization': access_token}})
       .success( function( data )
       {
-
         $state.go('map');
-
       }
       ).error( function(error) {
         alert(error);
@@ -119,9 +100,10 @@ var shopname = "";
                 }
 
                 }); // end of get function
+                    console.log(handler);
                             handler.open({
-                                  name: shopname,
-                                  description: name,
+                                  name: name,
+                                  description: "",
                                   amount: (price * 100) //* parseInt(q)
                                 });
 

@@ -1,0 +1,30 @@
+
+[	
+{
+
+"icon":"img/event.jpg",
+"title":"Weed fun festival",
+"date":"December 24, 2015",
+"description":"weed fun festival for everyone.",
+"location":[
+{
+	"latitiude": 39.587365,
+	"longitude": -104.954587
+}
+],
+"likes":10,
+"comments" : [
+{
+"name": "john",
+"text": "going to be super fun"
+},
+{
+"name": "sam",
+"text": "awesome time "
+}
+]
+}
+
+
+]
+

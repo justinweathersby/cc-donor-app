@@ -13,11 +13,12 @@ app.controller('SignController', function($scope,$state, $http, $stateParams,$io
       console.log(JSON.stringify(data, null, 4));
 
       authService.login(user);
+      window.location.reload();
   		$state.go('tabs.dashboard');
   	})
     .error( function(error)
     {
-      console.log(error);
+      window.plugins.toast.showShortCenter('username already taken');
     });
 
   };

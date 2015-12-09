@@ -1,6 +1,7 @@
-<ion-view style="margin-top:20px;" >
-  <ion-header-bar class="bar-positive">
-  <div style="font-family:Sans;height:40px;margin-left:35%;margin-top:-5px;" class="row">
+<ion-view  >
+  <ion-content class="padding" style="padding-top:20px;">
+   <div class="head-bar">
+    <div class="header-logo row">   
 <div class="col-30">
   <i style="font-size:36px;" class="ion-chatbubbles">
   </i>
@@ -9,32 +10,31 @@
 <br>
 <div style="margin-left:-45px;margin-top:-5px;position:absolute">Chatter</div>
  </div>
-  </ion-header-bar>
-  <ion-content class="padding">
+  </div>
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="email" placeholder="Email" disabled ng-model="data.username">
+      <label class="form-box item item-input">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="email" placeholder="Email" disabled ng-model="data.username">
       </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="data.password">
+ <label class="form-box item item-input">
+         <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="password" placeholder="Password" ng-model="data.password">
       </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
+     <label class="form-box item item-input">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
       </label>
     </div>
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" placeholder="First Name" ng-model="data.first_name">
+      <label class="form-box item item-input">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="text" placeholder="First Name" ng-model="data.first_name">
       </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Last Name" ng-model="data.last_name">
+       <label class="form-box item item-input">
+        <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="text" placeholder="Last Name" ng-model="data.last_name">
       </label>
 
     </div>
-    <button class="button button-block button-positive">
+    <button style="font-family:Brandon;" class="button button-block button-positive">
       Update
     </button>
-    <button ng-click="logout()" class="button button-block button-positive">
+    <button style="font-family:Brandon;"  ng-click="logout()" class="button button-block button-positive">
       Sign Out
     </button>
     <h1 class="blank">hey</h1>

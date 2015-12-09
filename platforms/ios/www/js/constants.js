@@ -25,3 +25,6 @@ ICONS = ["fa fa-heart-o", "ion-settings", 'ion-tshirt-outline', 'ion-ios-bookmar
 'ion-wand', 'fa fa-child'];
 SOCKET_URL = "http://driver-53731.onmodulus.net/";
 DELIVERY_API = "http://driver-53731.onmodulus.net/api/delivery";
+
+
+

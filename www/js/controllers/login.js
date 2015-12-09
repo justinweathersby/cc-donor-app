@@ -1,9 +1,18 @@
 'use strict'
 
-app.controller('LoginController', function($scope, $state, $ionicPopup, authService, currentUserService) {
+app.controller('LoginController', function($http, $scope, $state, $ionicPopup, authService, currentUserService) {
   var user = localStorage.getItem('user');
   console.log(user);
 
+
+  // $http.get(DELIVERY_API).success( function (data) {
+  //  for(var i = 0; i < data.length; i++)
+  //  { 
+  //   $http.delete(DELIVERY_API+"/"+data[i]._id).success( function(data) {
+  //     console.log('done');
+  //   })
+  // }
+  // })
 
   if(user !== null)
   {

@@ -78,7 +78,7 @@ swal({
 
       console.log(data);
       localStorage.removeItem('item');
-      $state.go('tabs.shop');
+      $state.go('tabs.dashboard');
     })
       }
     });
