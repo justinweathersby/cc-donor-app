@@ -37,23 +37,60 @@
   </option>
 </select>
 <br>
- <button  style="background-color:transparent;border-color:transparent;padding-left:20px;padding-right:20px;color:grey;font-family:Brandon;" ng-click="showTerms()">By completing checkout you agree to the mobile terms</button>
+ <button  style="background-color:transparent;border-color:transparent;padding-left:20px;padding-right:20px;color:grey;font-family:Brandon;" ng-click="showTerms()">By completing checkout you agree to the <p style="color:blue;">mobile terms</p></button>
   <br>
-<input id="card-form" type="text" maxlength="19" ng-model="data.card" placeholder="Card Number">
+
+<!-- <input id="card-form" type="number" maxlength="19" ng-model="data.card" placeholder="Card Number">
 <div id="second-row" class="row">
   <div class="col-50">
     <input id="card-exp" type="text" maxlength="5" ng-model="data.exp" placeholder="mm yy">
   </div>
   <div class="col-50">
-    <input id="card-cvc" type="text" maxlength="5" ng-model="data.cvc" placeholder="CVC">
+    <input id="card-cvc" type="number" maxlength="5" ng-model="data.cvc" placeholder="CVC">
   </div>
+</div> -->
+
+<button ng-click="checkout()" class="pay-button">
+  checkout</button> 
+  <br>
+ 
+ <script id="stripe.html" type="text/ng-template">
+  <ion-modal-view style="background-color:transparent;" class="share-modal">
+    <ion-content>
+  <div class="stripe-box">
+  <i ng-click="hideModal()" class="close-icon ion-close-circled" style="float:left;"></i>
+  <br>
+  <img class="checkout-icon" ng-src="{{item.image_url}}">
+  <p style="color:#101010;font-family:Brandon;">{{item.vendor.name}} </p>
+  <p style="color:grey;font-family:Brandon;">{{item.name}}</p>
+  <label class="checkout-first-row item item-input">
+    <i class="icon ion-card placeholder-icon"></i>
+    <input id="checkout-input" ng-model="data.card" type="text" placeholder="Card Number">
+  </label>
+<div class="checkout-second-row row">
+ <div class="col-50">
+   <label class="checkout-item item item-input">
+     <i class="icon ion-calendar placeholder-icon"></i>
+     <input id="checkout-input" ng-model="data.exp" type="text" placeholder="MM/YY">
+   </label>
+ </div>
+ <div class="col-50">
+   <label class="checkout-item item item-input">
+     <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+     <input id="checkout-input" ng-model="data.cvc" type="text" placeholder="CVC">
+   </label>
+ </div>
+</div>
+<button class="pay-button" ng-click="pay(data)">Pay ${{totalPrice}}</button>
+<br>
+<img class="stripe-logo" src="img/stripe.jpg">
 </div>
 
-<button ng-click="pay(data)" class="pay-button">
-  PAY</button> 
-  <br>
-<img class="stripe-logo" src="img/stripe.jpg">
- 
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
 <script id="terms.html" type="text/ng-template">
   <ion-modal-view >
     <ion-content style="padding-top:30px;">

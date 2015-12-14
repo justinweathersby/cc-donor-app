@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('LoginController', function($http, $scope, $state, $ionicPopup, authService, currentUserService) {
+app.controller('LoginController', function($http,$ionicLoading,  $scope, $state, $ionicPopup, authService, currentUserService) {
   var user = localStorage.getItem('user');
   console.log(user);
 
@@ -20,12 +20,15 @@ app.controller('LoginController', function($http, $scope, $state, $ionicPopup, a
   }
 
   $scope.login = function(user) {
-      var spinner = new Spinner().spin()
-var target = document.getElementById('spinner');
-target.appendChild(spinner.el);
+
+    $ionicLoading.show({
+     template: '<p style="font-family:Brandon;color:grey;">Logging in</p><ion-spinner icon="dots"></ion-spinner>',
+    hideOnStageChange: true
+    });
+
     if ($scope.loginForm.$valid){
       authService.login(user).success(function(){
-        spinner.stop();
+        $ionicLoading.hide();
         console.log('Login Success, Token: ', currentUserService.token);
         console.log('Sign-In', user);
         localStorage.setItem('user', user.email);

@@ -1,8 +1,13 @@
 'use strict'
 
-app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeolocation, $stateParams, $http) {
+app.controller('MapCtrl', function($scope,$ionicLoading, $state, $ionicPopup,  $cordovaGeolocation, $stateParams, $http) {
 
- 
+$ionicLoading.show({
+     template: '<p style="font-family:Brandon;color:grey;">Loading map</p><ion-spinner icon="dots"></ion-spinner>',
+    hideOnStageChange: true
+    });
+
+
   var item = JSON.parse(localStorage["item"]);
  // console.log(item);
 
@@ -15,6 +20,7 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
             var lng = position.coords.longitude
             console.log("location = "+lat+","+lng);
           
+            $ionicLoading.hide();
             //getLocation(lat,lng);
 
             var mapOptions = {
@@ -40,6 +46,7 @@ app.controller('MapCtrl', function($scope, $state, $ionicPopup,  $cordovaGeoloca
 
 
           }, function(err) {
+            $ionicLoading.hide();
             $ionicPopup.alert({
                         title: "no location",
                         content: "please enable location services"
@@ -67,14 +74,18 @@ swal({
       if (inputValue === false)
           return false;
       else
-      {
-    swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
-    
+      {    
+    $ionicLoading.show({
+     template: '<p style="font-family:Brandon;color:grey;">completing order</p><ion-spinner icon="dots"></ion-spinner>',
+    hideOnStageChange: true
+    });
     var url = "http://driver-53731.onmodulus.net/api/delivery";
     var fromArray =  [{"name":item.vendor.name, "phone":item.vendor.phone, "lat": item.vendor.location.latitude, "lng": item.vendor.location.longitude}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
     $http.post(url, {"customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":item.image_url, "shipping": item.shipping, "item": item.name,"status":"processing"})
     .success( function (data) {
+      $ionicLoading.hide();
+      swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
 
       console.log(data);
       localStorage.removeItem('item');

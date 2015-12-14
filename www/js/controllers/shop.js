@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
+app.controller('ShopCtrl', function ($scope, $http, $ionicLoading, CHATTER_API) {
 
   var token = localStorage.getItem('token');
   //var baseUrl = CHATTER_API.url + "/item_categories";
@@ -9,10 +9,11 @@ app.controller('ShopCtrl', function ($scope, $http, CHATTER_API) {
 
 
   $scope.icons = ICONS;
+$ionicLoading.show({
+     template: '<p style="font-family:Brandon;color:grey;">Loading categories</p><ion-spinner icon="dots"></ion-spinner>',
+    hideOnStageChange: true
+    });
 
-  var spinner = new Spinner().spin()
-var target = document.getElementById('spinner');
-target.appendChild(spinner.el);
     $http({method: 'GET',
                      url: CHATTER_API.url + "/item_categories",
                     //url:"api/item_categories",
@@ -20,12 +21,12 @@ target.appendChild(spinner.el);
                      headers: {'Authorization': token}})
         .success( function( data )
         {
-          spinner.stop();
+          $ionicLoading.hide();
           $scope.categories = data;
 
         }
       ).error( function(error) {
-        spinner.stop();
+      $ionicLoading.hide();
           console.log(error);
           alert('logout and login again');
         });

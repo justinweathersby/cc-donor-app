@@ -3,6 +3,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "id": "cordova-plugin-camera.Camera",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "Camera"
         ]
@@ -10,6 +11,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
         "id": "cordova-plugin-camera.CameraPopoverOptions",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverOptions"
         ]
@@ -17,6 +19,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/Camera.js",
         "id": "cordova-plugin-camera.camera",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "navigator.camera"
         ]
@@ -24,6 +27,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/ios/CameraPopoverHandle.js",
         "id": "cordova-plugin-camera.CameraPopoverHandle",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverHandle"
         ]
@@ -31,6 +35,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
         "id": "cordova-plugin-console.console",
+        "pluginId": "cordova-plugin-console",
         "clobbers": [
             "console"
         ]
@@ -38,6 +43,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
+        "pluginId": "cordova-plugin-console",
         "clobbers": [
             "cordova.logger"
         ]
@@ -45,6 +51,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
         ]
@@ -52,6 +59,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
         "clobbers": [
             "cordova.InAppBrowser.open",
             "window.open"
@@ -60,6 +68,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
             "window.plugins.socialsharing"
         ]
@@ -67,17 +76,20 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "id": "cordova-plugin-x-toast.Toast",
+        "pluginId": "cordova-plugin-x-toast",
         "clobbers": [
             "window.plugins.toast"
         ]
     },
     {
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests"
+        "id": "cordova-plugin-x-toast.tests",
+        "pluginId": "cordova-plugin-x-toast"
     },
     {
         "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
         "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
+        "pluginId": "de.appplant.cordova.plugin.background-mode",
         "clobbers": [
             "cordova.plugins.backgroundMode",
             "plugin.backgroundMode"
@@ -86,6 +98,7 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
+        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "clobbers": [
             "cordova.plugins.notification.local",
             "plugin.notification.local"
@@ -94,6 +107,7 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Core",
+        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "clobbers": [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
@@ -102,6 +116,7 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Util",
+        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "merges": [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
@@ -110,6 +125,7 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
         "id": "org.apache.cordova.geolocation.Coordinates",
+        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "Coordinates"
         ]
@@ -117,6 +133,7 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/PositionError.js",
         "id": "org.apache.cordova.geolocation.PositionError",
+        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "PositionError"
         ]
@@ -124,6 +141,7 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/Position.js",
         "id": "org.apache.cordova.geolocation.Position",
+        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "Position"
         ]
@@ -131,6 +149,7 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/geolocation.js",
         "id": "org.apache.cordova.geolocation.geolocation",
+        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "navigator.geolocation"
         ]

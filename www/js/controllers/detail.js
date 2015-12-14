@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DetailCtrl', function($cordovaSocialSharing, $scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
+app.controller('DetailCtrl', function($cordovaSocialSharing,$ionicLoading,  $scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
 
   $scope.query = "";
 
@@ -34,9 +34,10 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
 function getItems(lat,lng)
 {
  // var u ="/items?latitude=32.8873&longitude=-79.9833&item_category_id="+id;
-  var spinner = new Spinner().spin()
-var target = document.getElementById('spinner');
-target.appendChild(spinner.el);
+$ionicLoading.show({
+     template: '<p style="font-family:Brandon;color:grey;">Loading items</p><ion-spinner icon="dots"></ion-spinner>',
+    hideOnStageChange: true
+    });
   $http({method: 'GET',
 
 url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_id='+id,
@@ -44,7 +45,7 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
          headers: {'Authorization': token}})
           .success( function( data )
           {
-            spinner.stop();
+            $ionicLoading.hide();
         
             for(var i = 0; i < data.length; i++)
             {

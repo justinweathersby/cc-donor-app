@@ -2,12 +2,12 @@
  <ion-content class="padding" style="padding-top:20px;">
    <div class="head-bar">
     <div class="header-logo row">   
-<div class="col-30">
+<div class="col-10">
   <i style="font-size:36px;text-align:left;margin-right:-100px;">
   </i>
   <i style="font-size:20px"class="ion-chevron-left" ui-sref="tabs.dashboard"></i>
 </div>
-<div class="col-30">
+<div class="col-30" style="margin-right:2px;">
   <i style="font-size:36px;" class="ion-chatbubbles">
   </i>
 </div>
@@ -17,7 +17,7 @@
  </div>
   </div>
    
-
+<div id="spinner"></div>
   <ion-list ng-repeat="d in deliveries">
    <div ui-sref="tabs.delivery({status: d.status, id: d._id})" class="list card">
 
