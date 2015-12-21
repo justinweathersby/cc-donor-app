@@ -7,9 +7,10 @@ app.controller('DetailCtrl', function($cordovaSocialSharing,$ionicModal, $ionicL
 $scope.go = function(item)
 {
   $state.go('checkout', {item:JSON.stringify(item)});
+  // $state.go('map', {item:JSON.stringify(item)});
 }
 
-
+ //getItems(32.80070114135742,-79.95010375976562);
 var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -17,6 +18,7 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
       var lat  = position.coords.latitude
       var long = position.coords.longitude
       getItems(lat, long);
+     
     }, function(err) {
      window.plugins.toast.showLongCenter("Enable location services");
 
@@ -29,45 +31,6 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $scope.shopname = name;
   var token = localStorage.getItem('token');
 
-// function startZoom()
-// {
-//   var myElement = document.getElementById('image-detail');
-//   myElement.style.width = '320px';
-//   var hammertime = new Hammer(myElement);
-//     var width = parseInt(myElement.style.width),
-//     vel   = 3.0,
-//     min   = 100,
-//     max   = 800,
-//     scale;
-// console.log(myElement.style.width);
-
-// function gestureChange( e ) {
-//     e.preventDefault();
-// console.log(e.scale);
-//     scale = e.scale;
-    
-//     var tempWidth = width * scale;
-
-//     if ( tempWidth > max ) tempWidth = max;
-//     if ( tempWidth < min ) tempWidth = min;
-
-//     myElement.style.width = tempWidth+'px';
-//     myElement.style.height = tempWidth+'px';
-
-//     console.log(myElement.style.width);
-// }
-
-// function gestureEnd( e ) {
-//   console.log('done changing');
-//     e.preventDefault();
-//     width = parseInt(myElement.style.width);
-// }
-
-//    hammertime.get('pinch').set({ enable: true });
-//       hammertime.on('pinch', gestureChange);
-
-
-// }
 
 
 

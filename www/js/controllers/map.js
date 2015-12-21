@@ -9,7 +9,7 @@ $ionicLoading.show({
 
 
  var item  = JSON.parse($stateParams.item);
- // console.log(item);
+  console.log(item);
 
   // get user location
        var posOptions = {timeout: 20000, enableHighAccuracy: true};

@@ -6,7 +6,7 @@ app.controller('CheckoutCtrl', function($scope,$stateParams,  $ionicLoading, $st
     // getting item the shop detail view
 
     var item  = JSON.parse($stateParams.item);
-   
+    console.log(item);
     $scope.sizes = [];
     $scope.count = [];
     $scope.item = item;
@@ -117,6 +117,7 @@ app.controller('CheckoutCtrl', function($scope,$stateParams,  $ionicLoading, $st
     }
 
     $scope.checkout = function() {
+      
         var sizeText = $scope.size.name.text;
         var sizeID = $scope.size.name.id;
         var count = $scope.quantity.name.text;
@@ -143,22 +144,19 @@ app.controller('CheckoutCtrl', function($scope,$stateParams,  $ionicLoading, $st
                     $scope.modal.remove();
                 }
             });
-            // setTimeout(function() {
-            //     show();
-            //     $ionicLoading.hide();
-            // }, 2000);
+        
 
         }
 
     }
 
     $scope.pay = function(data) {
-        //console.log(data);
+       
         $ionicLoading.show({
             template: '<p style="font-family:Brandon;color:grey;">Processing payment please wait</p><ion-spinner icon="dots"></ion-spinner>',
             hideOnStageChange: true
         });
-        console.log(data);
+       
         if (!Stripe.card.validateCardNumber(data.card)) {
             $ionicLoading.hide();
             swal({
