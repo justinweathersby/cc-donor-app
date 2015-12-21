@@ -40,7 +40,7 @@ app.controller('LoginController', function($http,$ionicLoading,  $scope, $state,
         $state.go('tabs.dashboard');
       }).error(function()
       {
-        spinner.stop();
+        $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
           title: 'Login Unsuccessful',
           template: "Email and password did not match Chatter's records."

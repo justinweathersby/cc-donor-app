@@ -29,7 +29,10 @@
        <label class="form-box item item-input">
         <input style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;" type="text" placeholder="Last Name" ng-model="data.last_name">
       </label>
-
+        <ion-toggle ng-model="notif" ng-checked="notif" class="blank-item"
+                    ng-change="change(notif)">
+          <p style="font-size:20px;padding-top:10px;font-family:Brandon;color:grey;">Notifications</p>
+        </ion-toggle>
     </div>
     <button style="font-family:Brandon;" class="button button-block button-positive">
       Update

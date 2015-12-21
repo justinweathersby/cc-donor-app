@@ -32,6 +32,12 @@ label.item.valid-bt {
     src: url("font/Brandon_bld.otf");
     format(“true type”);
 }
+.blank-item
+{
+	border-left-color: transparent;
+	border-right-color: transparent;
+	
+}
 .header-logo
 {
 	font-family:Sans;
@@ -50,6 +56,22 @@ label.item.valid-bt {
 	padding-left: 40%;
 	margin-left: -10px;
 	width: 110%;
+}
+.image-detail
+{
+	width: 100%;
+	margin-top: 60px;
+}
+.close-button
+{
+	width: 95%;
+	background-color: #2979FF;
+	border-radius: 3px;
+	border-color: transparent;
+	color: white;
+	font-family: Brandon;
+	font-size: 20px;
+	margin-left: 10px;
 }
 #shop-button, .donate-button
 {
@@ -254,7 +276,7 @@ font-size:40px;
 {
 	margin-top: 5px;
 }
-#card-form, #card-exp, #card-cvc
+/*#card-form, #card-exp, #card-cvc
 {
 	width: 95%;
 	text-align: center;
@@ -264,7 +286,7 @@ font-size:40px;
 	border-width: 1px;
 	border-style: solid;	
 	border-radius: 3px;
-}
+}*/
 #second-row
 {
 	margin-left: 4px;
@@ -273,19 +295,23 @@ font-size:40px;
 #card-form::-webkit-input-placeholder
 {
 	text-align: center;
-	padding-top: 5px;
+	padding-top:0px;
 }
 #card-exp::-webkit-input-placeholder
 {
 	text-align: center;
-	padding-top: 5px;
+	padding-top: 0px;
+	padding-left: 10px;
 
 }
 #card-cvc::-webkit-input-placeholder
 {
 	text-align: center;
-	padding-top: 5px;
-	
+	padding-top: -5px;
+}
+#card-exp
+{
+	padding-left: 15px;
 }
 .close-icon
 {
@@ -341,11 +367,15 @@ font-size:40px;
 {
 	font-size: 15px;
 }
+#image-detail
+{
+	width: 100%;
+}
 .stripe-box
 {
 	width: 300px;
 	margin-left: 10%;
-	height: 330px;
+	height: 380px;
 	margin-top: 130px;
 	text-align: center;
 	border-radius: 3px;

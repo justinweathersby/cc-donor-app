@@ -30,6 +30,8 @@
 
   <div class="item-body">
     <img class="full-image" ng-src="{{i.image_url}}">
+    <br>
+    <button ng-click="showImageDetail(i.image_url)" style="margin-top:-20px;font-size:11px;" class="button button-clear">click to zoom</button>
     <p>
      {{i.description}}
     </p>
@@ -45,8 +47,24 @@
   </div>
 </div>
 </a>
+<script id="image-detail.html" type="text/ng-template">
+  <ion-modal-view style="background-color:transparent;" class="share-modal">
+    <ion-content>
+
+<img ng-src="{{detailImage}}" class="image-detail" id="image-detail">
+<h1></h1>
+<button ng-click="closeModal()" class="close-button">close</button>
+    </ion-content>
+  </ion-modal-view>
+
+</script>
+
   </div>
     <h1 style="color:transparent">hey</h1>
  
+
+
+
+
   </ion-content>
 </ion-view>

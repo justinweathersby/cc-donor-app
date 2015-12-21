@@ -31,7 +31,7 @@ app.service('authService', function($http, currentUserService, CHATTER_API){
     .error( function(error)
     {
       console.log(error);
-      spinner.stop();
+
     });
   }; //--End of login function
 

@@ -1,0 +1,40 @@
+ <ion-view style="margin-top:20px;" >
+  
+ <ion-nav-bar class="header-bar">
+ <ion-nav-title>
+   <h4 id="header-title">Vendor Orders</h4>
+  </ion-nav-title>
+
+       <ion-nav-buttons side="left" >
+        <button class="btn" ui-sref="tabs.dashboard">
+          <
+        </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  class="content">
+
+
+
+  <ion-list ng-repeat="o in orders">
+  
+  <div class="list card">
+
+  <div class="item item-avatar">
+    <img ng-src="{{o.itemImage}}">
+    <h2>Customer: {{o.customer}}</h2>
+    <p>Date: {{o.date}}</p>
+  </div>
+
+  <div class="item item-body">
+    <p>Item: {{o.item}}</p>
+    <p>Status: {{o.status}}</p>
+  	
+  </div>
+</div>
+
+  </ion-list>
+
+
+</ion-content>
+
+</ion-view>

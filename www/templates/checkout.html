@@ -20,22 +20,45 @@
     {{item.name}}
   </div>
   <div class="checkout-item item item-text-wrap">
-   Price ${{item.price}}
+   Price: ${{item.price}}
    <br>
-   Quantity 1
+   Quantity: {{quantity.name.text}}
    <br>
-   Delivery ${{item.shipping}}
+   Delivery: ${{item.shipping}}
    <br>
-   Total ${{totalPrice}}
+   Total: ${{totalPrice}}
   </div>
 
 </div>
-<p class="quantity-label" >Size</p>
-<select id="quantity-select" class="select">
-  <option ng-repeat="q in quantities">
-  {{q.name}}
-  </option>
-</select>
+
+<div ng-hide="showNoOptions">  
+  <div class="w-select warehouse-select" dropdown-select="count"
+    dropdown-model="quantity.name"
+    dropdown-item-label="text"
+    dropdown-onchange="add(selected)">
+
+</div>
+</div>
+
+
+<div class="row" ng-hide="showOptions">
+<div class="col-50">  
+  <div class="w-select warehouse-select" dropdown-select="sizes"
+    dropdown-model="size.name"
+    dropdown-item-label="text"
+    dropdown-onchange="get(selected)">
+</div>
+</div>
+<div class="col-50">  
+  <div class="w-select warehouse-select" dropdown-select="count"
+    dropdown-model="quantity.name"
+    dropdown-item-label="text"
+    dropdown-onchange="add(selected)">
+
+</div>
+</div>
+</div>
+
 <br>
  <button  style="background-color:transparent;border-color:transparent;padding-left:20px;padding-right:20px;color:grey;font-family:Brandon;" ng-click="showTerms()">By completing checkout you agree to the <p style="color:blue;">mobile terms</p></button>
   <br>
@@ -49,7 +72,9 @@
     <input id="card-cvc" type="number" maxlength="5" ng-model="data.cvc" placeholder="CVC">
   </div>
 </div> -->
-
+<!--  <input id="card-form" ng-model="data.card" type="hidden" placeholder="Card Number">
+  <input id="card-exp" ng-model="data.exp" type="text" maxlength="5" placeholder="MMYY">
+ -->
 <button ng-click="checkout()" class="pay-button">
   checkout</button> 
   <br>
@@ -63,21 +88,24 @@
   <img class="checkout-icon" ng-src="{{item.image_url}}">
   <p style="color:#101010;font-family:Brandon;">{{item.vendor.name}} </p>
   <p style="color:grey;font-family:Brandon;">{{item.name}}</p>
+  <div class="row">
+  <p style="color:grey;font-family:Brandon;">Quantity: {{quantity.name.text}}</p>
+  </div>
   <label class="checkout-first-row item item-input">
     <i class="icon ion-card placeholder-icon"></i>
-    <input id="checkout-input" ng-model="data.card" type="text" placeholder="Card Number">
+    <input id="card-form" ng-model="data.card" type=number maxlength="16" placeholder="Card Number">
   </label>
 <div class="checkout-second-row row">
  <div class="col-50">
    <label class="checkout-item item item-input">
      <i class="icon ion-calendar placeholder-icon"></i>
-     <input id="checkout-input" ng-model="data.exp" type="text" placeholder="MM/YY">
+     <input id="card-exp" ng-model="data.exp" type=number maxlength="4" placeholder="MMYY">
    </label>
  </div>
  <div class="col-50">
    <label class="checkout-item item item-input">
      <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-     <input id="checkout-input" ng-model="data.cvc" type="text" placeholder="CVC">
+     <input id="checkout-input" ng-model="data.cvc" type=number placeholder="CVC">
    </label>
  </div>
 </div>
@@ -85,9 +113,9 @@
 <br>
 <img class="stripe-logo" src="img/stripe.jpg">
 </div>
-
     </ion-content>
   </ion-modal-view>
+
 </script>
 
 

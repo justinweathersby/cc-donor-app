@@ -14,7 +14,6 @@ app.constant('CHATTER_API', {
     url:'http://staging.creativechatter.com/api'
 });
 
-
 // -- Local Testing API Url
 // app.constant('CHATTER_API', {
 //     url: 'api'
@@ -25,6 +24,4 @@ ICONS = ["fa fa-heart-o", "ion-settings", 'ion-tshirt-outline', 'ion-ios-bookmar
 'ion-wand', 'fa fa-child'];
 SOCKET_URL = "http://driver-53731.onmodulus.net/";
 DELIVERY_API = "http://driver-53731.onmodulus.net/api/delivery";
-
-
 

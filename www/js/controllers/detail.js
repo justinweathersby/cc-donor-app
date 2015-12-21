@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DetailCtrl', function($cordovaSocialSharing,$ionicLoading,  $scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
+app.controller('DetailCtrl', function($cordovaSocialSharing,$ionicModal, $ionicLoading,  $scope, $cordovaGeolocation, $state,  $http,  $stateParams, stripeService, CHATTER_API) {
 
   $scope.query = "";
 
@@ -30,6 +30,81 @@ var posOptions = {timeout: 10000, enableHighAccuracy: false};
   var id = $stateParams.id;
   $scope.shopname = name;
   var token = localStorage.getItem('token');
+
+// function startZoom()
+// {
+//   var myElement = document.getElementById('image-detail');
+//   myElement.style.width = '320px';
+//   var hammertime = new Hammer(myElement);
+//     var width = parseInt(myElement.style.width),
+//     vel   = 3.0,
+//     min   = 100,
+//     max   = 800,
+//     scale;
+// console.log(myElement.style.width);
+
+// function gestureChange( e ) {
+//     e.preventDefault();
+// console.log(e.scale);
+//     scale = e.scale;
+    
+//     var tempWidth = width * scale;
+
+//     if ( tempWidth > max ) tempWidth = max;
+//     if ( tempWidth < min ) tempWidth = min;
+
+//     myElement.style.width = tempWidth+'px';
+//     myElement.style.height = tempWidth+'px';
+
+//     console.log(myElement.style.width);
+// }
+
+// function gestureEnd( e ) {
+//   console.log('done changing');
+//     e.preventDefault();
+//     width = parseInt(myElement.style.width);
+// }
+
+//    hammertime.get('pinch').set({ enable: true });
+//       hammertime.on('pinch', gestureChange);
+
+
+// }
+
+
+
+ $scope.showImageDetail = function(url) {
+        // console.log('change');
+        $scope.detailImage = url;
+        $ionicModal.fromTemplateUrl('image-detail.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.openModal();
+           // startZoom();
+        });
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+        // Execute action on hide modal
+        $scope.$on('modal.hidden', function() {
+            // Execute action
+        });
+        // Execute action on remove modal
+        $scope.$on('modal.removed', function() {
+            // Execute action
+        });
+
+    }
+
 
 function getItems(lat,lng)
 {
@@ -68,6 +143,7 @@ url: CHATTER_API.url + '/items?latitude='+lat+'&longitude='+lng+'&item_category_
           }
           ).error( function(error) {
             console.log(error);
+            $ionicLoading.hide();
              swal("", "there was an error.. try again later", "error");
           });
 

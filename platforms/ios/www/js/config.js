@@ -29,6 +29,17 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
       controller: 'ViewDonationController'
     })
 
+ .state('tabs.vendor', {
+      cache: false,
+      url: '/vendor',
+        views: {
+        'dashboard-tab' : { //--name of view
+      templateUrl: 'templates/vendor.html',
+      controller: 'VendorCtrl'
+    }
+  }
+    })
+
     // --- Page displaying just 1 of the users donations
     .state('showDonation', {
       cache: false,

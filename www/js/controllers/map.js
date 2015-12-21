@@ -82,7 +82,7 @@ swal({
     var url = "http://driver-53731.onmodulus.net/api/delivery";
     var fromArray =  [{"name":item.vendor.name, "phone":item.vendor.phone, "lat": item.vendor.location.latitude, "lng": item.vendor.location.longitude}];
      var toArray =  [{"name":localStorage.getItem('user'), "phone":9049998388, "lat": lat, "lng": lng}];
-    $http.post(url, {"customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":item.image_url, "shipping": item.shipping, "item": item.name,"status":"processing"})
+    $http.post(url, {"vendor":item.vendor.name, "customer": localStorage.getItem('user'), "to": toArray, "from": fromArray,"itemImage":item.image_url, "shipping": item.shipping, "item": item.name,"status":"processing"})
     .success( function (data) {
       $ionicLoading.hide();
       swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
