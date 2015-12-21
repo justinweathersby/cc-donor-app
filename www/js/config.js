@@ -1,7 +1,8 @@
 
 app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionicConfigProvider) {
 
-   $ionicConfigProvider.tabs.position('bottom'); // other values: top
+  // $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
 
   $stateProvider
     .state('login', {
@@ -109,7 +110,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     })
 
      .state('map', {
-      url: '/map',
+      url: '/map/:item',
         templateUrl: 'templates/map.html',
         controller: 'MapCtrl'
     })
@@ -124,13 +125,12 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
         }
       }
     })
-        // <!-- url: '/checkout/:item/:price/:shipping/:vendor/:lat/:lng', -->
       .state('checkout', { //--child template of tabs
-      url: '/checkout',
+      url:'checkout/:item',
       cache: false,
         templateUrl: 'templates/checkout.html',
         controller: 'CheckoutCtrl'
-    })
+  })
     .state('tabs.settings', {
       url: '/settings',
       views: {

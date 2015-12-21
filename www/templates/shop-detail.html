@@ -35,14 +35,15 @@
     <p>
      {{i.description}}
     </p>
-  <div class="row">
-    <button ng-click="share(i.image_url, i.description)" class="share-button col-50">
-      <i class="icon ion-share"></i> share
-    </button>
-     <button class="buy-button col-50"
-   ng-click="saveImage(i)">
-     <i class="icon ion-ios-cart-outline"></i> buy
-    </button>
+  <div class="row" style="margin-left:25%;">
+ 
+    <button ng-click="share(i.image_url, i.description)" class="share-button">
+         <i class="icon ion-share"></i> share
+       </button>
+       <a class="buy-button" ng-click="go(i)">
+        <i class="icon ion-ios-cart-outline"></i> buy
+       </a>
+
   </div>
   </div>
 </div>

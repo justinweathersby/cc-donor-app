@@ -8,7 +8,7 @@ $ionicLoading.show({
     });
 
 
-  var item = JSON.parse(localStorage["item"]);
+ var item  = JSON.parse($stateParams.item);
  // console.log(item);
 
   // get user location
@@ -88,14 +88,12 @@ swal({
       swal("Order Complete", "your order is processing and delivery will be on the way shortly", "success")
 
       console.log(data);
-      localStorage.removeItem('item');
       $state.go('tabs.dashboard');
     })
       }
     });
 
 };
-
 
     function placeMarker(location)
     {

@@ -261,8 +261,16 @@ label.item.valid-bt {
 
 
 
+.share-button
+{
 
-
+}
+.buy-button
+{
+	text-decoration: none;
+	padding-top: 10px;
+	width: 100px;
+}
 .stripe-modal
 {
 	background-color: #f5f5f5;

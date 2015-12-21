@@ -1,18 +1,18 @@
 'use strict'
 
-app.controller('CheckoutCtrl', function($scope, $ionicLoading, $state, $ionicModal, stripeService, $http) {
+app.controller('CheckoutCtrl', function($scope,$stateParams,  $ionicLoading, $state, $ionicModal, stripeService, $http) {
     Stripe.setPublishableKey('pk_test_tslqI9coii8qKhuEkZI4ZlV6');
-    var item = JSON.parse(localStorage["item"]);
-    console.log(item);
+   
+    // getting item the shop detail view
+
+    var item  = JSON.parse($stateParams.item);
+   
     $scope.sizes = [];
     $scope.count = [];
     $scope.item = item;
-    if(item.item_category.name == 'Clothing')
-    {
-        var optionString = "Size";    
-    }
-    else
-    {
+    if (item.item_category.name == 'Clothing') {
+        var optionString = "Size";
+    } else {
         var optionString = "Color";
     }
     var hasOptions = true;
@@ -42,17 +42,7 @@ app.controller('CheckoutCtrl', function($scope, $ionicLoading, $state, $ionicMod
     $scope.orginalPrice = parseFloat(item.price) + parseFloat(item.shipping);
     $scope.totalPrice = $scope.orginalPrice.toFixed(2);
 
-    // function show() {
 
-    //      console.log('ready');
-    //      document.getElementById('card-form').addEventListener('input', function(e) {
-    //          e.target.value = e.target.value.replace(/[^\d0-9]/g, '').replace(/(.{4})/g, '$1 ').trim();
-    //      });
-    //      document.getElementById('card-exp').addEventListener('input', function(e) {
-    //          e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
-    //      });
-
-    //  }
     $scope.size = {
         name: {
             text: optionString
@@ -107,14 +97,15 @@ app.controller('CheckoutCtrl', function($scope, $ionicLoading, $state, $ionicMod
                 .success(function(data) {
                     $ionicLoading.hide();
                     $scope.modal.hide();
-                    $state.go('map');
+                    // send item as params to map
+                      $state.go('map', {item:JSON.stringify(item)});
                 }).error(function(error) {
                     $scope.modal.hide();
-
-                    sweetAlert("sorry .. ", "your card was declined", "error");
                     $ionicLoading.hide();
+                    sweetAlert("sorry .. ", "your card was declined", "error");
                 });
         } else {
+            $scope.modal.hide();
             $ionicLoading.hide();
             swal({
                 title: "sorry",
@@ -167,8 +158,8 @@ app.controller('CheckoutCtrl', function($scope, $ionicLoading, $state, $ionicMod
             template: '<p style="font-family:Brandon;color:grey;">Processing payment please wait</p><ion-spinner icon="dots"></ion-spinner>',
             hideOnStageChange: true
         });
-         console.log(data);
-          if (!Stripe.card.validateCardNumber(data.card)) {
+        console.log(data);
+        if (!Stripe.card.validateCardNumber(data.card)) {
             $ionicLoading.hide();
             swal({
                 title: "sorry",
@@ -176,36 +167,34 @@ app.controller('CheckoutCtrl', function($scope, $ionicLoading, $state, $ionicMod
                 timer: 2000,
                 showConfirmButton: false
             });
+        } else {
+            var cardString = data.card.toString();
+            var card = cardString.replace(/\s/g, "");
+            //var exp = data.exp.replace(/[^\dA-Z]/g, '/');
+            var expString = data.exp.toString();
+            var one = expString.charAt(0);
+            var two = expString.charAt(1);
+            var three = expString.charAt(2);
+            var four = expString.charAt(3);
+            var exp = one + two + "-" + three + four;
+
+            if (!Stripe.card.validateExpiry(exp)) {
+                $ionicLoading.hide();
+                swal({
+                    title: "sorry",
+                    text: 'your expiration date is incorrect',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+            //console.log(card);
+            // use details to create token
+            Stripe.card.createToken({
+                number: card,
+                cvc: data.cvc.toString(),
+                exp: exp.toString(),
+            }, stripeResponseHandler);
         }
-        else
-        {
-        var cardString = data.card.toString(); 
-        var card = cardString.replace(/\s/g, "");
-        //var exp = data.exp.replace(/[^\dA-Z]/g, '/');
-        var expString = data.exp.toString();
-        var one = expString.charAt(0);
-        var two = expString.charAt(1);
-        var three = expString.charAt(2);
-        var four = expString.charAt(3);
-        var exp = one + two + "-" + three + four;
-    
-        if (!Stripe.card.validateExpiry(exp)) {
-            $ionicLoading.hide();
-            swal({
-                title: "sorry",
-                text: 'your expiration date is incorrect',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        }
-        //console.log(card);
-        // use details to create token
-        Stripe.card.createToken({
-            number: card,
-            cvc: data.cvc.toString(),
-            exp: exp.toString(),
-        }, stripeResponseHandler);
-}
     }
 
 

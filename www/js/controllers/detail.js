@@ -4,13 +4,11 @@ app.controller('DetailCtrl', function($cordovaSocialSharing,$ionicModal, $ionicL
 
   $scope.query = "";
 
-$scope.saveImage = function(item)
+$scope.go = function(item)
 {
-  
-var checkoutItem = item;
-localStorage["item"] = JSON.stringify(checkoutItem);
-$state.go('checkout');
+  $state.go('checkout', {item:JSON.stringify(item)});
 }
+
 
 var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
