@@ -57,6 +57,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
     })
     .state('tabs.dashboard', { //--child template of tabs
       url: '/dashboard',
+      cache: false,
       views: {
         'dashboard-tab' : { //--name of view
         templateUrl: 'templates/dashboard.html',
@@ -115,6 +116,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
       .state('tabs.shopDetail', { //--child template of tabs
       url: '/shop/:shop/:id',
+      cache: false,
       views: {
         'shop-tab' : { //--name of view
         templateUrl: 'templates/shop-detail.html',
