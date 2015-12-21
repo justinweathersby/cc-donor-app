@@ -111,6 +111,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $ionic
 
      .state('map', {
       url: '/map/:item',
+      cache:false,
         templateUrl: 'templates/map.html',
         controller: 'MapCtrl'
     })
