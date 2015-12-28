@@ -16,7 +16,7 @@
                     "CoreLocation.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "CoreGraphics.framework": [
@@ -28,19 +28,19 @@
                     "AssetsLibrary.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 3
                         }
                     ],
                     "MobileCoreServices.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "AVFoundation.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "Social.framework": [
@@ -56,6 +56,30 @@
                         }
                     ],
                     "QuartzCore.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "CoreMedia.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "CoreMotion.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "SystemConfiguration.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "OpenGLES.framework": [
                         {
                             "xml": false,
                             "count": 1
@@ -103,7 +127,21 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
+                        }
+                    ],
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"TestFairy\"><param name=\"ios-package\" value=\"CDVTestFairy\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -158,7 +196,16 @@
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "com.gold.square.donor"
         },
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "com.gold.square.donor"
+        },
+        "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "com.gold.square.donor"
+        },
         "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "com.gold.square.donor"
+        },
+        "com.testfairy.cordova-plugin": {
             "PACKAGE_NAME": "com.gold.square.donor"
         }
     },

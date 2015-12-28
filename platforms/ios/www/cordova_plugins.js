@@ -3,7 +3,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "id": "cordova-plugin-camera.Camera",
-        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "Camera"
         ]
@@ -11,7 +10,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
         "id": "cordova-plugin-camera.CameraPopoverOptions",
-        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverOptions"
         ]
@@ -19,7 +17,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/Camera.js",
         "id": "cordova-plugin-camera.camera",
-        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "navigator.camera"
         ]
@@ -27,7 +24,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/ios/CameraPopoverHandle.js",
         "id": "cordova-plugin-camera.CameraPopoverHandle",
-        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverHandle"
         ]
@@ -35,7 +31,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
         "id": "cordova-plugin-console.console",
-        "pluginId": "cordova-plugin-console",
         "clobbers": [
             "console"
         ]
@@ -43,7 +38,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
-        "pluginId": "cordova-plugin-console",
         "clobbers": [
             "cordova.logger"
         ]
@@ -51,7 +45,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
-        "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
         ]
@@ -59,7 +52,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "pluginId": "cordova-plugin-inappbrowser",
         "clobbers": [
             "cordova.InAppBrowser.open",
             "window.open"
@@ -68,7 +60,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
-        "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
             "window.plugins.socialsharing"
         ]
@@ -76,20 +67,17 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "id": "cordova-plugin-x-toast.Toast",
-        "pluginId": "cordova-plugin-x-toast",
         "clobbers": [
             "window.plugins.toast"
         ]
     },
     {
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests",
-        "pluginId": "cordova-plugin-x-toast"
+        "id": "cordova-plugin-x-toast.tests"
     },
     {
         "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
         "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
-        "pluginId": "de.appplant.cordova.plugin.background-mode",
         "clobbers": [
             "cordova.plugins.backgroundMode",
             "plugin.backgroundMode"
@@ -98,7 +86,6 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
-        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "clobbers": [
             "cordova.plugins.notification.local",
             "plugin.notification.local"
@@ -107,7 +94,6 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Core",
-        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "clobbers": [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
@@ -116,16 +102,174 @@ module.exports = [
     {
         "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js",
         "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Util",
-        "pluginId": "de.appplant.cordova.plugin.local-notification",
         "merges": [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
+        "id": "org.apache.cordova.file.DirectoryEntry",
+        "clobbers": [
+            "window.DirectoryEntry"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/DirectoryReader.js",
+        "id": "org.apache.cordova.file.DirectoryReader",
+        "clobbers": [
+            "window.DirectoryReader"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/Entry.js",
+        "id": "org.apache.cordova.file.Entry",
+        "clobbers": [
+            "window.Entry"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/File.js",
+        "id": "org.apache.cordova.file.File",
+        "clobbers": [
+            "window.File"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileEntry.js",
+        "id": "org.apache.cordova.file.FileEntry",
+        "clobbers": [
+            "window.FileEntry"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileError.js",
+        "id": "org.apache.cordova.file.FileError",
+        "clobbers": [
+            "window.FileError"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileReader.js",
+        "id": "org.apache.cordova.file.FileReader",
+        "clobbers": [
+            "window.FileReader"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileSystem.js",
+        "id": "org.apache.cordova.file.FileSystem",
+        "clobbers": [
+            "window.FileSystem"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileUploadOptions.js",
+        "id": "org.apache.cordova.file.FileUploadOptions",
+        "clobbers": [
+            "window.FileUploadOptions"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileUploadResult.js",
+        "id": "org.apache.cordova.file.FileUploadResult",
+        "clobbers": [
+            "window.FileUploadResult"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/FileWriter.js",
+        "id": "org.apache.cordova.file.FileWriter",
+        "clobbers": [
+            "window.FileWriter"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/Flags.js",
+        "id": "org.apache.cordova.file.Flags",
+        "clobbers": [
+            "window.Flags"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/LocalFileSystem.js",
+        "id": "org.apache.cordova.file.LocalFileSystem",
+        "clobbers": [
+            "window.LocalFileSystem"
+        ],
+        "merges": [
+            "window"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/Metadata.js",
+        "id": "org.apache.cordova.file.Metadata",
+        "clobbers": [
+            "window.Metadata"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/ProgressEvent.js",
+        "id": "org.apache.cordova.file.ProgressEvent",
+        "clobbers": [
+            "window.ProgressEvent"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystems.js",
+        "id": "org.apache.cordova.file.fileSystems"
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/requestFileSystem.js",
+        "id": "org.apache.cordova.file.requestFileSystem",
+        "clobbers": [
+            "window.requestFileSystem"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/resolveLocalFileSystemURI.js",
+        "id": "org.apache.cordova.file.resolveLocalFileSystemURI",
+        "merges": [
+            "window"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/ios/FileSystem.js",
+        "id": "org.apache.cordova.file.iosFileSystem",
+        "merges": [
+            "FileSystem"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystems-roots.js",
+        "id": "org.apache.cordova.file.fileSystems-roots",
+        "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystemPaths.js",
+        "id": "org.apache.cordova.file.fileSystemPaths",
+        "merges": [
+            "cordova"
+        ],
+        "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.file-transfer/www/FileTransferError.js",
+        "id": "org.apache.cordova.file-transfer.FileTransferError",
+        "clobbers": [
+            "window.FileTransferError"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file-transfer/www/FileTransfer.js",
+        "id": "org.apache.cordova.file-transfer.FileTransfer",
+        "clobbers": [
+            "window.FileTransfer"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
         "id": "org.apache.cordova.geolocation.Coordinates",
-        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "Coordinates"
         ]
@@ -133,7 +277,6 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/PositionError.js",
         "id": "org.apache.cordova.geolocation.PositionError",
-        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "PositionError"
         ]
@@ -141,7 +284,6 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/Position.js",
         "id": "org.apache.cordova.geolocation.Position",
-        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "Position"
         ]
@@ -149,9 +291,15 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.geolocation/www/geolocation.js",
         "id": "org.apache.cordova.geolocation.geolocation",
-        "pluginId": "org.apache.cordova.geolocation",
         "clobbers": [
             "navigator.geolocation"
+        ]
+    },
+    {
+        "file": "plugins/com.testfairy.cordova-plugin/www/testfairy.js",
+        "id": "com.testfairy.cordova-plugin.TestFairy",
+        "clobbers": [
+            "TestFairy"
         ]
     }
 ];
@@ -168,7 +316,10 @@ module.exports.metadata =
     "de.appplant.cordova.common.registerusernotificationsettings": "1.0.1",
     "de.appplant.cordova.plugin.background-mode": "0.6.4",
     "de.appplant.cordova.plugin.local-notification": "0.8.2",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.file": "1.3.3",
+    "org.apache.cordova.file-transfer": "0.5.0",
+    "org.apache.cordova.geolocation": "0.3.12",
+    "com.testfairy.cordova-plugin": "1.5.3"
 }
 // BOTTOM OF METADATA
 });

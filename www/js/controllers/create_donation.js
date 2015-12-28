@@ -71,12 +71,12 @@ app.controller('CreateDonationController', function($scope,
         if ($scope.s3_upload_image){
           $scope.uploadPicture(resp.id, fileName)
           .then(function(rest) {
+            console.log("Inside Then for uploadPicture");
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
               title: 'Success',
               template: "Your donation with image has been successfully uploaded to Creative Chatter. Check notifications for a match."
             });
-            console.log("Inside Then for uploadPicture");
             $state.go('showDonation', {id :resp.id}); // on success go back to home i.e. donations state.
           });
         }

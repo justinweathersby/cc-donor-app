@@ -10,6 +10,7 @@ var app = angular.module('cc-donor-app', ['ionic',
 
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
+      TestFairy.begin('993218db594324f249e28bfa5a72f74f0d21732d');
               if(device.platform === "iOS") {
         window.plugin.notification.local.registerPermission();
     }
